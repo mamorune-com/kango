@@ -38,6 +38,7 @@ extension Judge {
         var out: [Mark] = []
         for (i, line) in lines.enumerated() {
             let low = norm(line)
+            let lowScalars = Array(low.unicodeScalars)
             let found = scan(line)
             let hosts = Set(found.urls.compactMap(host(of:)) + found.bare)
             let plainRange = NSRange(found.plain.startIndex..., in: found.plain)
@@ -49,13 +50,13 @@ extension Judge {
                 let hit: Bool
                 switch r.code {
                 case "not_in_ledger":
-                    hit = brands.first { $0.id == r.target }.map { b in b.words.contains { low.contains(norm($0)) } } ?? false
+                    hit = brands.first { $0.id == r.target }.map { b in b.words.contains { has(lowScalars, norm($0)) } } ?? false
                 case _ where hostCodes.contains(r.code):
                     hit = r.target.map { hosts.contains($0) } ?? false
                 case "phone":
                     hit = phonePattern.firstMatch(in: found.plain, range: plainRange) != nil
                 case "pressure":
-                    hit = pressure.contains { low.contains($0.word) }
+                    hit = pressure.contains { has(lowScalars, $0.word) }
                 case "takeover":
                     hit = takeover.contains { $0.pattern.firstMatch(in: low, range: lowRange) != nil }
                 default:
