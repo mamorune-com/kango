@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kango"
-version = "0.6.3"
+version = "0.6.4"
 description = "勘合：届いた連絡を、自分の契約台帳と会社の公式ドメインで照合するフィッシング判定（AI不使用・決定的）"
 readme = "README.md"
 # ライセンスの写し（LICENSE・NOTICE）は、リポジトリのいちばん上のものを python/ に写して部品に入れる（CI が食い違いを落とす）

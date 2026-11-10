@@ -445,6 +445,14 @@
     {"note": "英字は ASCII だけ：İ（U+0130）を含む住所は、ふつう使わない文字として赤（idn）",
      "text": "【Amazon】https://amazon.co.jp.evİl.example/",
      "ledger": ["amazon"],
-     "level": "red", "codes": ["in_ledger", "idn"], "claimed": ["amazon"], "hosts": ["amazon.co.jp.evi̇l.example"]}
+     "level": "red", "codes": ["in_ledger", "idn"], "claimed": ["amazon"], "hosts": ["amazon.co.jp.evi̇l.example"]},
+    {"note": "見せかけ：@ の後ろが空で行き先が読み取れないリンクも赤（disguised）",
+     "text": "【Amazon】ログイン情報を返信してください https://amazon.com@/",
+     "ledger": ["amazon"],
+     "level": "red", "codes": ["in_ledger", "disguised"], "claimed": ["amazon"], "hosts": []},
+    {"note": "見せかけ：行き先が読み取れないものはまとめて1回。出す順はリンクが出てきた順",
+     "text": "【Amazon】https://amazon.com@/ https://a@evil.example/ https://amazon.co.jp@:443/",
+     "ledger": ["amazon"],
+     "level": "red", "codes": ["in_ledger", "disguised", "disguised", "off_domain"], "claimed": ["amazon"], "hosts": ["evil.example"]}
   ]
 }

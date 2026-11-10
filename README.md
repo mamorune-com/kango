@@ -27,7 +27,7 @@
 ### Python
 
 ```sh
-pip install "git+https://github.com/mamorune-com/kango@v0.6.3#subdirectory=python"
+pip install "git+https://github.com/mamorune-com/kango@v0.6.4#subdirectory=python"
 ```
 
 PyPI にある `kango` は、この部品とは関係のない別のものです。`pip install kango` では入りません。
@@ -58,7 +58,7 @@ python -m kango --brands   # 台帳に入れられる会社の一覧
 Xcode の「File → Add Package Dependencies…」で `https://github.com/mamorune-com/kango` を入れるか、`Package.swift` の dependencies に次の1行を足します。
 
 ```swift
-.package(url: "https://github.com/mamorune-com/kango", from: "0.6.3")
+.package(url: "https://github.com/mamorune-com/kango", from: "0.6.4")
 ```
 
 使う側では、
