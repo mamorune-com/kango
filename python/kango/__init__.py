@@ -207,9 +207,13 @@ def _judge(text: str, ledger: Iterable[str], brands: Optional[List[dict]] = None
             say("in_ledger", f"「{b['name']}」はあなたの割符にあります。", 0, b["id"])
 
     # 「@」や「\」で本当の行き先をごまかす書き方（https://本物の住所@偽の住所/・https://偽の住所\@本物の住所/）
-    tricked = [host_of(u) for u in urls if any(c in _SHOWN.match(u).group(1) for c in "@\\")]
-    for h in dict.fromkeys(h for h in tricked if h):
-        say("disguised", f"リンクの住所に「@」や「\\」を使った見せかけがあります。本当の行き先は「{h}」です。", 2, h)
+    # 行き先が空で読み取れないもの（https://本物の住所@/）も、見せかけとして数える（行き先は "" で表す）
+    tricked = [host_of(u) or "" for u in urls if any(c in _SHOWN.match(u).group(1) for c in "@\\")]
+    for h in dict.fromkeys(tricked):
+        if h:
+            say("disguised", f"リンクの住所に「@」や「\\」を使った見せかけがあります。本当の行き先は「{h}」です。", 2, h)
+        else:
+            say("disguised", "リンクの住所に「@」や「\\」を使った見せかけがあります。本当の行き先は読み取れません。", 2)
 
     for h in dict.fromkeys(hosts):   # 同じ住所は1回だけ
         if h in SHORTENERS:

@@ -293,9 +293,13 @@ public enum Judge {
         // 「@」や「\」で本当の行き先をごまかす書き方（https://本物の住所@偽の住所/・https://偽の住所\@本物の住所/）
         let tricked = unique(found.urls.filter { u in
             (authority(of: u, shownPattern) ?? "").unicodeScalars.contains { $0 == "@" || $0 == "\\" }
-        }.compactMap(host(of:)))
+        }.map { host(of: $0) ?? "" })   // 行き先が空で読み取れないもの（https://本物の住所@/）も数える（"" で表す）
         for h in tricked {
-            say("disguised", "リンクの住所に「@」や「\\」を使った見せかけがあります。本当の行き先は「\(h)」です。", .red, h)
+            if h.isEmpty {
+                say("disguised", "リンクの住所に「@」や「\\」を使った見せかけがあります。本当の行き先は読み取れません。", .red)
+            } else {
+                say("disguised", "リンクの住所に「@」や「\\」を使った見せかけがあります。本当の行き先は「\(h)」です。", .red, h)
+            }
         }
 
         for h in hosts {
