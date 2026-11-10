@@ -97,31 +97,89 @@ public enum Judge {
          "会議や面接のためと言って、アプリや部品を入れさせようとする"),
         (#"(ターミナル|コマンドプロンプト|powershell|ファイル名を指定して実行).{0,40}(貼り付け|貼りつけ|ペースト|入力して|実行して|打って)|curl [^\n]{0,100}\|\s*(sh|bash|zsh)"#,
          "コマンドを貼り付けて実行させようとする"),
-    ].map { (try! NSRegularExpression(pattern: $0.0), $0.1) }
+    // 「.」は改行にも当てる（頼みごとの途中で行を変えて照合を外す手口があるため）
+    ].map { (try! NSRegularExpression(pattern: $0.0, options: [.dotMatchesLineSeparators]), $0.1) }
 
     /// 見た目が似た文字（amaz0n・rakut3n 等）を戻してから、似せた住所を探す
     static let lookalike: [Character: Character] = ["0": "o", "1": "l", "3": "e", "5": "s", "4": "a"]
 
+    /// リンクが終わる文字＝空白と制御文字・かぎかっこ・山かっこ（<> 〈〉 《》）・亀甲かっこ・引用符・閉じかっこ・読点「、」。
+    /// 空白は \s と書かない（何を空白とみなすかが言語ごとに違い、答えが食い違うため）。
+    static let endChars = #"\u0000-\u0020\u007f-\u009f\u1680「」『』【】〈〉《》〔〕<>"'）)、"#
     /// リンク＝ http: か https: のあとに / か \ が続く文字の並び（ブラウザは \ も / とみなし、/ が1つでも開く）。
-    /// 空白・かぎかっこ・山かっこ・引用符・閉じかっこ・読点「、」で終わる。
-    static let urlPattern = try! NSRegularExpression(pattern: #"https?:[/\\]+[^\s「」『』【】<>"'）)、]+"#, options: [.caseInsensitive])
+    static let urlPattern = try! NSRegularExpression(pattern: #"https?:[/\\]+[^"# + endChars + #"]+"#, options: [.caseInsensitive])
+    /// リンクの中に入っている、もう1つのリンクの始まり（https://本物/・https://偽物/ や ?url=https://… など）
+    static let innerPattern = try! NSRegularExpression(pattern: #"https?:[/\\]"#, options: [.caseInsensitive])
     /// リンクの「住所の部分」（最初の / \ ? # まで）
     static let authorityPattern = try! NSRegularExpression(pattern: #"^https?:[/\\]+([^/\\?#]*)"#, options: [.caseInsensitive])
     /// 見た目の「住所の部分」（\ を区切りと思わずに読んだ時。ここに @ や \ があれば見せかけ）
     static let shownPattern = try! NSRegularExpression(pattern: #"^https?:[/\\]+([^/?#]*)"#, options: [.caseInsensitive])
     /// https:// の無いリンク（rakuten-card-login.com/abc など。メッセージアプリはこれも押せるリンクにする）。
     /// 英数字とハイフンの並びを . でつなぎ、最後が英字2〜24文字。前後に英数字や @ が付くもの（メールアドレスなど）は数えない。
-    static let barePattern = try! NSRegularExpression(pattern: #"(?<![a-z0-9@._%+\-])((?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,24})(?![a-z0-9\-@])(?:[/?#][^\s「」『』【】<>"'）)、]*)?"#, options: [.caseInsensitive])
+    static let barePattern = try! NSRegularExpression(pattern: #"(?<![a-z0-9@._%+\-])((?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,24})(?![a-z0-9\-@])(?:[/?#][^"# + endChars + #"]*)?"#, options: [.caseInsensitive])
     /// ファイル名（meisai.pdf など）は住所として数えない（どれもトップレベルドメインではない）
     static let fileExtensions: Set<String> = ["pdf", "html", "htm", "jpg", "jpeg", "png", "gif", "txt", "csv", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "js", "css", "json", "xml", "php", "exe", "apk"]
     /// 住所にふつう使う文字（英小文字・数字・. ・-）。これ以外を含む住所＝見た目を似せる手口か、壊れた住所
     static let hostCharsPattern = try! NSRegularExpression(pattern: #"^[a-z0-9.\-]+$"#)
 
-    /// 電話番号＝0（または +81）で始まり、区切り（空白・かっこ・ハイフン類＝数字の間に3文字まで）を除いて10〜11桁（+81 の時は9〜10桁）。
-    /// 前後に数字が続くもの（注文番号など）は数えない。番号が本物かは確かめられない＝黄まで。
-    static let phonePattern = try! NSRegularExpression(pattern: #"(?<![0-9])(?:\+81[ ()\-‐−–ー]{0,3}|0)[1-9](?:[ ()\-‐−–ー]{0,3}[0-9]){8,9}(?![0-9])"#)
+    /// 電話番号＝0（または +81）で始まり、区切り（空白・かっこ・ハイフン類・「.」「・」＝数字の間に3文字まで）を除いて
+    /// 10〜11桁（+81 の時は9〜10桁）。前後に数字が続くもの（注文番号など）は数えない。番号が本物かは確かめられない＝黄まで。
+    static let phoneSeparators = #"[ ()\-‐−–—―ー.・]{0,3}"#
+    static let phonePattern = try! NSRegularExpression(
+        pattern: #"(?<![0-9])(?:\+81|0)"# + phoneSeparators + #"[1-9](?:"# + phoneSeparators + #"[0-9]){8,9}(?![0-9])"#)
 
-    static func norm(_ s: String) -> String { s.precomposedStringWithCompatibilityMapping.lowercased() }
+    /// 改行のなかま（CR・垂直タブ・改ページ・U+001C〜001F・U+0085・行と段落の区切り）。LF にそろえる
+    /// （「.」や空白が何に当たるかが言語ごとに違い、答えが食い違うため）。
+    static func isBreak(_ v: UInt32) -> Bool {
+        v == 0x0D || v == 0x0B || v == 0x0C || (0x1C...0x1F).contains(v) || v == 0x85 || v == 0x2028 || v == 0x2029
+    }
+
+    /// 目に見えない文字（ゼロ幅の空白・異体字セレクタ・向きを変える印など）。言葉や番号の間にはさんで照合を外す手口に使われる。
+    /// Unicode の版で変わらないよう、範囲を書き並べる（SPEC.md と Python の _INVISIBLE と同じ）。
+    static func isInvisible(_ v: UInt32) -> Bool {
+        switch v {
+        case 0x00AD, 0x034F, 0x061C, 0x115F, 0x1160, 0x17B4, 0x17B5, 0x180B...0x180F, 0x200B...0x200F, 0x202A...0x202E,
+             0x2060...0x206F, 0x3164, 0xFE00...0xFE0F, 0xFEFF, 0xFFA0,
+             0x1BCA0...0x1BCA3, 0x1D173...0x1D17A, 0xE0000...0xE0FFF:
+            return true
+        default:
+            return false
+        }
+    }
+
+    /// NFKC にして、改行のなかまを LF にそろえる（リンクを探す時の文面）
+    static func prep(_ s: String) -> String {
+        var out = String.UnicodeScalarView()
+        for u in s.precomposedStringWithCompatibilityMapping.unicodeScalars {
+            out.append(isBreak(u.value) ? ("\n" as Unicode.Scalar) : u)
+        }
+        return String(out)
+    }
+
+    static func withoutInvisible(_ s: String) -> String {
+        var out = String.UnicodeScalarView()
+        for u in s.unicodeScalars where !isInvisible(u.value) { out.append(u) }
+        return String(out)
+    }
+
+    /// 目に見えない文字を取りのぞく（言葉や電話番号を探す時の文面）。取りのぞいてから、もう一度 NFKC にする。
+    static func bareText(_ s: String) -> String {
+        withoutInvisible(withoutInvisible(s).precomposedStringWithCompatibilityMapping)
+    }
+
+    static func norm(_ s: String) -> String { bareText(prep(s)).lowercased() }
+
+    /// 文字の番号（Unicode スカラー）の並びで「含むか」を見る。Swift の String.contains は「見た目の1文字」の単位で比べるので、
+    /// 言葉のすぐ後ろに結合文字などが続くと一致しなくなる（Python と答えが食い違う）。
+    static func has(_ hay: [Unicode.Scalar], _ needle: String) -> Bool {
+        let n = Array(needle.unicodeScalars)
+        if n.isEmpty { return true }
+        if hay.count < n.count { return false }
+        for i in 0...(hay.count - n.count) where hay[i] == n[0] {
+            if hay[i..<(i + n.count)].elementsEqual(n) { return true }
+        }
+        return false
+    }
 
     static func authority(of url: String, _ pattern: NSRegularExpression) -> String? {
         let range = NSRange(url.startIndex..., in: url)
@@ -134,24 +192,52 @@ public enum Judge {
     /// \ は / と同じ・@ より前（利用者名とパスワード）は住所ではない・: の後ろは番号（ポート）・「。」は「.」と同じ。
     public static func host(of url: String) -> String? {
         guard let auth = authority(of: url, authorityPattern) else { return nil }
-        var h = auth.components(separatedBy: "@").last ?? ""
-        h = h.hasPrefix("[") ? (h.components(separatedBy: "]").first ?? "") + "]" : (h.components(separatedBy: ":").first ?? "")
-        h = h.replacingOccurrences(of: "。", with: ".").lowercased()
-        while h.hasSuffix(".") { h.removeLast() }
-        return h.isEmpty ? nil : h
+        // 文字の番号（Unicode スカラー）の単位で切る（@ や : のすぐ後ろに結合文字が続いても、同じ所で切れるように）
+        var s = Array(auth.unicodeScalars)
+        if let i = s.lastIndex(of: "@") { s = Array(s[(i + 1)...]) }
+        if s.first == "[" {
+            if let i = s.firstIndex(of: "]") { s = Array(s[..<i]) }
+            s.append("]")
+        } else if let i = s.firstIndex(of: ":") {
+            s = Array(s[..<i])
+        }
+        var view = String.UnicodeScalarView()
+        for u in s { view.append(u == "。" ? "." : u) }
+        var low = Array(String(view).lowercased().unicodeScalars)
+        while low.last == "." { low.removeLast() }
+        var out = String.UnicodeScalarView()
+        out.append(contentsOf: low)
+        return low.isEmpty ? nil : String(out)
     }
 
     /// 文面を、リンク・https:// の無いリンクの住所・それ以外の文字（電話番号を探す所）に分ける
     static func scan(_ text: String) -> (urls: [String], bare: [String], plain: String) {
-        let t = text.precomposedStringWithCompatibilityMapping
-        let urls = urlPattern.matches(in: t, range: NSRange(t.startIndex..., in: t))
-            .compactMap { Range($0.range, in: t).map { String(t[$0]) } }
-        let rest = urlPattern.stringByReplacingMatches(in: t, range: NSRange(t.startIndex..., in: t), withTemplate: " ")
-        let bare = barePattern.matches(in: rest, range: NSRange(rest.startIndex..., in: rest))
-            .compactMap { Range($0.range(at: 1), in: rest).map { String(rest[$0]).lowercased() } }
-            .filter { !fileExtensions.contains($0.components(separatedBy: ".").last ?? "") }
-        let plain = barePattern.stringByReplacingMatches(in: rest, range: NSRange(rest.startIndex..., in: rest), withTemplate: " ")
-        return (urls, bare, plain)
+        let t = prep(text) as NSString
+        let whole = NSRange(location: 0, length: t.length)
+        var urls: [String] = []
+        for m in urlPattern.matches(in: t as String, range: whole) {
+            let u = t.substring(with: m.range) as NSString
+            urls.append(u as String)
+            // リンクの中に、もう1つリンクが入っていれば、それも数える（前のリンクに続けて書いて隠す手口）
+            for inner in innerPattern.matches(in: u as String, range: NSRange(location: 0, length: u.length))
+            where inner.range.location > 0 {
+                urls.append(u.substring(from: inner.range.location))
+            }
+        }
+        let rest = urlPattern.stringByReplacingMatches(in: t as String, range: whole, withTemplate: " ") as NSString
+        var bare: [String] = []
+        // ファイル名はリンクではないので、文面に残す（090-1234-5678.pdf のように番号を隠す手口）
+        let plain = NSMutableString(string: rest as String)
+        let found = barePattern.matches(in: rest as String, range: NSRange(location: 0, length: rest.length))
+        var links: [NSRange] = []
+        for m in found {
+            let name = rest.substring(with: m.range(at: 1)).lowercased()
+            if fileExtensions.contains(name.components(separatedBy: ".").last ?? "") { continue }
+            bare.append(name)
+            links.append(m.range)
+        }
+        for r in links.reversed() { plain.replaceCharacters(in: r, with: " ") }
+        return (urls, bare, bareText(plain as String))
     }
 
     public static func urls(in text: String) -> [String] { scan(text).urls }
@@ -180,7 +266,8 @@ public enum Judge {
 
     public static func judge(text: String, ledger: Set<String>, brands: [Brand] = Catalog.bundled) -> Verdict {
         let low = norm(text)
-        let claimed = brands.filter { b in b.words.contains { low.contains(norm($0)) } }
+        let lowScalars = Array(low.unicodeScalars)
+        let claimed = brands.filter { b in b.words.contains { has(lowScalars, norm($0)) } }
         let found = scan(text)
         let hosts = unique(found.urls.compactMap(host(of:)) + found.bare)
         var reasons: [Verdict.Reason] = []
@@ -204,7 +291,7 @@ public enum Judge {
 
         // 「@」や「\」で本当の行き先をごまかす書き方（https://本物の住所@偽の住所/・https://偽の住所\@本物の住所/）
         let tricked = unique(found.urls.filter { u in
-            (authority(of: u, shownPattern) ?? "").contains { $0 == "@" || $0 == "\\" }
+            (authority(of: u, shownPattern) ?? "").unicodeScalars.contains { $0 == "@" || $0 == "\\" }
         }.compactMap(host(of:)))
         for h in tricked {
             say("disguised", "リンクの住所に「@」や「\\」を使った見せかけがあります。本当の行き先は「\(h)」です。", .red, h)
@@ -240,7 +327,7 @@ public enum Judge {
             say("phone", "電話番号が書かれています。この番号が本物かは確かめられません。電話する時は、公式サイトやカードの裏面など、自分で確かめた番号からかけてください。", .amber)
         }
 
-        let tricks = unique(pressure.filter { low.contains($0.word) }.map(\.reason))
+        let tricks = unique(pressure.filter { has(lowScalars, $0.word) }.map(\.reason))
         if !tricks.isEmpty {
             say("pressure", "詐欺によくある言いまわし：" + tricks.joined(separator: "、") + "。", .amber)
         }

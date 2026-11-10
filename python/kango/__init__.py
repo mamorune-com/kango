@@ -67,10 +67,15 @@ TAKEOVER = (
     (r"(ターミナル|コマンドプロンプト|powershell|ファイル名を指定して実行).{0,40}(貼り付け|貼りつけ|ペースト|入力して|実行して|打って)|curl [^\n]{0,100}\|\s*(sh|bash|zsh)",
      "コマンドを貼り付けて実行させようとする"),
 )
-_TAKEOVER = tuple((re.compile(p), r) for p, r in TAKEOVER)
+# 「.」は改行にも当てる（頼みごとの途中で行を変えて照合を外す手口があるため）
+_TAKEOVER = tuple((re.compile(p, re.S), r) for p, r in TAKEOVER)
+# リンクが終わる文字＝空白と制御文字・かぎかっこ・山かっこ（<> 〈〉 《》）・亀甲かっこ・引用符・閉じかっこ・読点「、」。
+# 空白は \s と書かない（何を空白とみなすかが言語ごとに違い、答えが食い違うため）。
+_END = r"\x00-\x20\x7f-\x9f\u1680「」『』【】〈〉《》〔〕<>\"'）)、"
 # リンク＝ http: か https: のあとに / か \ が続く文字の並び（ブラウザは \ も / とみなし、/ が1つでも開く）。
-# 空白・かぎかっこ・山かっこ・引用符・閉じかっこ・読点「、」で終わる。
-_URL = re.compile(r"https?:[/\\]+[^\s「」『』【】<>\"'）)、]+", re.I)
+_URL = re.compile(r"https?:[/\\]+[^" + _END + r"]+", re.I)
+# リンクの中に入っている、もう1つのリンクの始まり（https://本物/・https://偽物/ や ?url=https://… など）
+_INNER = re.compile(r"https?:[/\\]", re.I)
 # リンクの「住所の部分」（最初の / \ ? # まで）
 _AUTH = re.compile(r"https?:[/\\]+([^/\\?#]*)", re.I)
 # 見た目の「住所の部分」（\ を区切りと思わずに読んだ時。ここに @ や \ があれば見せかけ）
@@ -78,14 +83,23 @@ _SHOWN = re.compile(r"https?:[/\\]+([^/?#]*)", re.I)
 # https:// の無いリンク（rakuten-card-login.com/abc など。メッセージアプリはこれも押せるリンクにする）。
 # 英数字とハイフンの並びを . でつなぎ、最後が英字2〜24文字。前後に英数字や @ が付くもの（メールアドレスなど）は数えない。
 _BARE = re.compile(r"(?<![a-z0-9@._%+\-])((?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,24})(?![a-z0-9\-@])"
-                   r"(?:[/?#][^\s「」『』【】<>\"'）)、]*)?", re.I)
+                   r"(?:[/?#][^" + _END + r"]*)?", re.I)
 # ファイル名（meisai.pdf など）は住所として数えない（どれもトップレベルドメインではない）
 _FILE_EXT = frozenset("pdf html htm jpg jpeg png gif txt csv doc docx xls xlsx ppt pptx js css json xml php exe apk".split())
 # 住所にふつう使う文字（英小文字・数字・. ・-）。これ以外を含む住所＝見た目を似せる手口か、壊れた住所
 _HOST_OK = re.compile(r"[a-z0-9.\-]+")
-# 電話番号＝0（または +81）で始まり、区切り（空白・かっこ・ハイフン類＝数字の間に3文字まで）を除いて10〜11桁（+81 の時は9〜10桁）。
-# 前後に数字が続くもの（注文番号など）は数えない。番号が本物かは確かめられない＝黄まで。
-_PHONE = re.compile(r"(?<![0-9])(?:\+81[ ()\-‐−–ー]{0,3}|0)[1-9](?:[ ()\-‐−–ー]{0,3}[0-9]){8,9}(?![0-9])")
+# 電話番号＝0（または +81）で始まり、区切り（空白・かっこ・ハイフン類・「.」「・」＝数字の間に3文字まで）を除いて
+# 10〜11桁（+81 の時は9〜10桁）。前後に数字が続くもの（注文番号など）は数えない。番号が本物かは確かめられない＝黄まで。
+_SEP = r"[ ()\-‐−–—―ー.・]{0,3}"
+_PHONE = re.compile(r"(?<![0-9])(?:\+81|0)" + _SEP + r"[1-9](?:" + _SEP + r"[0-9]){8,9}(?![0-9])")
+# 改行のなかま（CR・垂直タブ・改ページ・U+001C〜001F・U+0085・行と段落の区切り）。LF にそろえる
+# （「.」や空白が何に当たるかが言語ごとに違い、答えが食い違うため）。
+_BREAKS = re.compile("[\r\x0b\x0c\x1c-\x1f\x85\u2028\u2029]")
+# 目に見えない文字（ゼロ幅の空白・異体字セレクタ・向きを変える印など）。言葉や番号の間にはさんで照合を外す手口に使われる。
+# Unicode の版で変わらないよう、範囲を書き並べる（SPEC.md と Swift の invisible と同じ）。
+_INVISIBLE = re.compile("[\u00ad\u034f\u061c\u115f\u1160\u17b4\u17b5\u180b-\u180f\u200b-\u200f\u202a-\u202e"
+                        "\u2060-\u206f\u3164\ufe00-\ufe0f\ufeff\uffa0"
+                        "\U0001bca0-\U0001bca3\U0001d173-\U0001d17a\U000e0000-\U000e0fff]")
 # 見た目が似た文字（amaz0n・rakuten → rakut3n 等）を戻してから似せた住所を探す
 _LOOKALIKE = str.maketrans({"0": "o", "1": "l", "3": "e", "5": "s", "4": "a"})
 
@@ -99,8 +113,18 @@ TODO = {
 HELPLINES = [{"label": "警察相談専用電話", "tel": "#9110"}, {"label": "消費者ホットライン", "tel": "188"}]
 
 
+def _prep(s: str) -> str:
+    """NFKC にして、改行のなかまを LF にそろえる（リンクを探す時の文面）。"""
+    return _BREAKS.sub("\n", unicodedata.normalize("NFKC", s or ""))
+
+
+def _bare_text(s: str) -> str:
+    """目に見えない文字を取りのぞく（言葉や電話番号を探す時の文面）。取りのぞいてから、もう一度 NFKC にする。"""
+    return _INVISIBLE.sub("", unicodedata.normalize("NFKC", _INVISIBLE.sub("", s)))
+
+
 def _norm(s: str) -> str:
-    return unicodedata.normalize("NFKC", s or "").lower()
+    return _bare_text(_prep(s)).lower()
 
 
 def host_of(url: str) -> Optional[str]:
@@ -117,12 +141,21 @@ def host_of(url: str) -> Optional[str]:
 
 def _scan(text: str):
     """文面を、リンク・https:// の無いリンクの住所・それ以外の文字（電話番号を探す所）に分ける。"""
-    t = unicodedata.normalize("NFKC", text or "")
-    urls = _URL.findall(t)
+    t = _prep(text)
+    urls = []
+    for u in _URL.findall(t):
+        urls.append(u)
+        # リンクの中に、もう1つリンクが入っていれば、それも数える（前のリンクに続けて書いて隠す手口）
+        urls.extend(u[m.start():] for m in _INNER.finditer(u) if m.start() > 0)
     rest = _URL.sub(" ", t)
-    bare = [m.group(1).lower() for m in _BARE.finditer(rest)
-            if m.group(1).rsplit(".", 1)[-1].lower() not in _FILE_EXT]
-    return urls, bare, _BARE.sub(" ", rest)
+
+    def is_file(m) -> bool:
+        return m.group(1).rsplit(".", 1)[-1].lower() in _FILE_EXT
+
+    bare = [m.group(1).lower() for m in _BARE.finditer(rest) if not is_file(m)]
+    # ファイル名はリンクではないので、文面に残す（090-1234-5678.pdf のように番号を隠す手口）
+    plain = _BARE.sub(lambda m: m.group(0) if is_file(m) else " ", rest)
+    return urls, bare, _bare_text(plain)
 
 
 def is_official(host: str, brand: dict) -> bool:

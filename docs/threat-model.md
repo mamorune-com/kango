@@ -33,6 +33,8 @@
 | 数字で似せた住所（e を 3 に） | `【楽天】ポイント失効のお知らせ https://rakut3n-pay.com/` | 赤 | `in_ledger` `mimic` |
 | 本物の住所の後ろに続けた住所 | `【楽天カード】ご利用確認 https://www.rakuten-card.co.jp.account-check.example/` | 赤 | `in_ledger` `mimic` |
 | 名乗った会社と関係のない住所 | `【ドコモ】料金のお知らせ https://bill-check.example.net/` | 赤 | `in_ledger` `off_domain` |
+| 本物のリンクのすぐ後ろに、偽のリンクを続けて書く | `【楽天カード】公式案内〈https://www.rakuten-card.co.jp/〉手続き〈https://evil.example/〉` | 赤 | `in_ledger` `official` `off_domain` |
+| 公式の住所の中にある転送ページで、偽の住所へ送る（架空の例で、楽天カードにこのページがあるという意味ではありません） | `【楽天カード】ご確認 https://www.rakuten-card.co.jp/redirect?to=https://evil.example/` | 赤 | `in_ledger` `official` `off_domain` |
 | 見た目がそっくりな文字の住所（国際化ドメイン） | `【Amazon】ご注文の確認 https://xn--amazn-mua.com/` | 赤 | `in_ledger` `idn` |
 | 「@」で行き先をごまかす（ブラウザは @ の後ろへ行く） | `【楽天カード】ご確認 https://www.rakuten-card.co.jp:443@evil.example/login` | 赤 | `in_ledger` `disguised` `off_domain` |
 | 「\」で行き先をごまかす（ブラウザは \ を / と読む） | `【楽天カード】ご確認 https://evil.example\@www.rakuten-card.co.jp/login` | 赤 | `in_ledger` `disguised` `off_domain` |
@@ -76,7 +78,7 @@
 
 | 手口 | 文面の例 | 答え | 理由のコード |
 |---|---|---|---|
-| 公式の住所の中にある転送ページを使う（誤った青。架空の例で、楽天カードにこのページがあるという意味ではありません） | `【楽天カード】ご確認 https://www.rakuten-card.co.jp/redirect?to=https://evil.example/` | 青 | `in_ledger` `official` |
+| 公式の住所の中にある転送ページを使い、行き先を `%` の書き方で隠す（誤った青。架空の例で、楽天カードにこのページがあるという意味ではありません） | `【楽天カード】ご確認 https://www.rakuten-card.co.jp/redirect?to=https%3A%2F%2Fevil.example%2F` | 青 | `in_ledger` `official` |
 | メールアドレスへの返信を求める（誤った青） | `【楽天カード】ご本人様確認のため、rakuten-help@mail.example へご返信ください` | 青 | `in_ledger` |
 | LINE の ID を友だち追加させる（誤った青） | `【楽天カード】お問い合わせはLINEで「rakuten-help」を友だち追加してください` | 青 | `in_ledger` |
 | 本物の連絡に、別の会社名が出てくる（誤った赤。Apple も名乗ったとみなす） | `【楽天カード】Apple Pay に登録すると便利です https://www.rakuten-card.co.jp/` | 赤 | `in_ledger` `not_in_ledger` `official` |
@@ -109,6 +111,6 @@
 
 約束ではありません。誤った赤を増やさずにできるかを確かめてから、規則にします。
 
-- リンクの中に別のリンクが入っている時（転送）に、その行き先も照らし合わせる。
+- リンクの中に、`%` の書き方で隠した別のリンクが入っている時（転送）に、その行き先も照らし合わせる（そのまま書かれた行き先は、v0.6.2 から照らし合わせています）。
 - メールアドレスの住所（`@` の後ろ）も、公式の住所と照らし合わせる。
 - 「名乗った会社」を、文面の頭の【】や署名から読むようにして、別の会社名がただ出てくるだけの誤った赤を減らす。
