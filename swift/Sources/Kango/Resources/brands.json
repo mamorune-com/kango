@@ -257,6 +257,30 @@
   "checked": null
  },
  {
+  "id": "google",
+  "name": "Google",
+  "kind": "contract",
+  "words": [
+   "googleアカウント",
+   "google アカウント",
+   "google account",
+   "グーグルアカウント",
+   "グーグル アカウント",
+   "gmail アカウント",
+   "gmailアカウント"
+  ],
+  "domains": [
+   "accounts.google.com",
+   "myaccount.google.com",
+   "support.google.com",
+   "g.co"
+  ],
+  "stems": [
+   "google"
+  ],
+  "checked": null
+ },
+ {
   "id": "saison",
   "name": "セゾンカード",
   "kind": "contract",
