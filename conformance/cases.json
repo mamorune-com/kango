@@ -453,6 +453,10 @@
     {"note": "見せかけ：行き先が読み取れないものはまとめて1回。出す順はリンクが出てきた順",
      "text": "【Amazon】https://amazon.com@/ https://a@evil.example/ https://amazon.co.jp@:443/",
      "ledger": ["amazon"],
-     "level": "red", "codes": ["in_ledger", "disguised", "disguised", "off_domain"], "claimed": ["amazon"], "hosts": ["evil.example"]}
+     "level": "red", "codes": ["in_ledger", "disguised", "disguised", "off_domain"], "claimed": ["amazon"], "hosts": ["evil.example"]},
+    {"note": "Google：パスワード変更を装い、Google に似せた住所へ（赤）", "text": "【Google】お使いのGoogleアカウントで不審なログインがありました。24時間以内にパスワードを変更してください https://google-account-security.example/reset", "ledger": ["google"], "level": "red", "codes": ["in_ledger", "mimic", "pressure"], "claimed": ["google"], "hosts": ["google-account-security.example"]},
+    {"note": "Google：本物のログイン通知・公式の住所（青）", "text": "Google アカウントへの新しいログインがありました。心当たりがない場合は確認してください https://accounts.google.com/", "ledger": ["google"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["google"], "hosts": ["accounts.google.com"]},
+    {"note": "Google：だれでもページを作れる sites.google.com は公式の住所に入れない（赤）", "text": "Google アカウントの確認をお願いします https://sites.google.com/view/account-check", "ledger": ["google"], "level": "red", "codes": ["in_ledger", "mimic"], "claimed": ["google"], "hosts": ["sites.google.com"]},
+    {"note": "Google：「Googleマップ」だけでは Google を名乗ったとみなさない（黄）", "text": "お店の場所はGoogleマップでご確認ください", "level": "amber", "codes": ["no_claim"], "claimed": [], "hosts": []}
   ]
 }

@@ -2,6 +2,21 @@
 
 版ごとの変更です。**答え（色）が変わる変更**を、それぞれの版のはじめに書きます。版を上げる前に読み、自分のアプリやサービスで見せている説明（「黄が増えます」など）も見直してください。日付は [リリースの一覧](https://github.com/mamorune-com/kango/releases) にあります。
 
+## v0.7.0
+
+会社の一覧に Google を足しました。パスキーは Google や Apple のアカウントの中に入っているので、そのアカウントのパスワード変更を装う偽メールが、パスキーごと乗っ取る入口になります（2026年11月、パスキーを設定した証券口座がこの手口で乗っ取られた疑いが報じられました）。
+
+### 答えが変わる変更
+
+- **「Google アカウント」を名乗る連絡を、Google の連絡として照合します。** 台帳に `google` を入れていない人には、本物の Google の連絡も赤になります（ほかの `contract` の会社と同じです）。名乗ったとみなすのは「Googleアカウント」「Google account」「グーグルアカウント」「Gmailアカウント」などの言葉だけです。「Googleマップ」や `@gmail.com` のアドレスだけでは、Google を名乗ったとはみなしません。
+- **住所に `google` を含む、公式でない住所は赤になります（黄 → 赤）。** 例：`google-account-security.example`。
+- **公式の住所は `accounts.google.com`・`myaccount.google.com`・`support.google.com`・`g.co` だけです。** `google.com` 全体は入れていません。`sites.google.com`（Google サイト）・`docs.google.com`（フォーム）・`storage.googleapis.com` などは、だれでもページを置けるので、偽のログイン画面に使われます。これらは「Google に似せた住所」として赤になります。`www.google.com` も、転送の仕組みが悪用されることがあるので入れていません。
+
+### 知っておいてほしい限界
+
+- Google の公式の住所は、まだ Google 自身の一覧で確かめきれていないので、`checked` は空欄です。
+- `sites.google.com` などは Google 自身の住所ですが、理由の文は「似せた住所」になります。
+
 ## v0.6.4
 
 v0.6.3 をもう一度外からレビューしてもらい、見つかった1件を直しました。

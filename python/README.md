@@ -3,7 +3,7 @@
 勘合の判定を Python から使うための部品です。判定の規則と会社一覧は、リポジトリの [README](https://github.com/mamorune-com/kango) と [SPEC.md](https://github.com/mamorune-com/kango/blob/main/SPEC.md) をご覧ください。
 
 ```sh
-pip install "git+https://github.com/mamorune-com/kango@v0.6.4#subdirectory=python"
+pip install "git+https://github.com/mamorune-com/kango@v0.7.0#subdirectory=python"
 ```
 
 ```python

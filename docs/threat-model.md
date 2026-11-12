@@ -41,6 +41,8 @@
 | https:// を外したリンク（メッセージアプリでは押せる） | `【楽天カード】ご利用確認はこちら rakuten-card-login.com` | 赤 | `in_ledger` `mimic` |
 | 機種変更を口実に、パスキーを作り直させる | `【Amazon】機種変更に伴い、パスキーの再登録が必要です https://amazon-passkey.example/` | 赤 | `in_ledger` `mimic` `takeover` |
 | 本人確認を口実に、自撮りと免許証を送らせる | `【楽天カード】本人確認のため、自撮り写真と運転免許証をアップロードしてください https://rakuten-card-kyc.example/` | 赤 | `in_ledger` `mimic` `takeover` |
+| Google アカウントのパスワード変更を装い、偽の住所へ（パスキーごと乗っ取る入口） | `【Google】お使いのGoogleアカウントで不審なログインがありました。パスワードを変更してください https://google-account-security.example/` | 赤 | `not_in_ledger` `mimic` `pressure` |
+| Google の本物の住所の中にある、だれでも作れるページ（Google サイト）へ送る | `Google アカウントの確認をお願いします https://sites.google.com/view/account-check` | 赤 | `not_in_ledger` `mimic` |
 | AI が書いたような自然な文面でも | `【楽天カード】いつも楽天カードをご利用いただき、誠にありがとうございます。ご登録情報の確認をお願いしております。お手数ですが下記よりご確認ください。 https://rakuten-card.secure-info.example/` | 赤 | `in_ledger` `mimic` |
 
 最後の行のとおり、文章がどれだけ自然でも、答えは変わりません。勘合は文章のうまさを見ていないからです。
