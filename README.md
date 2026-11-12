@@ -95,7 +95,7 @@ Python 版と Swift 版は、同じ規則で動きます。文面と返すべき
 ## なぜ広まっていないのか（私たちの見立て）
 
 - **契約台帳が要ります。** 「この人はどの会社と契約しているか」を事業者が集めると、それ自体が大きなプライバシーの問題になります。勘合は台帳を利用者の端末の中だけに置き、外へ送りません。
-- **お金になりにくい仕組みです。** 広告や手数料を生みにくく、事業として取り組む理由が小さいものです。
+- **利用者の情報を集めない仕組みです。** 文面も台帳も端末の外へ出ないので、集めた情報をもとにした広告などには使えません。そのため、これまで事業として取り組まれにくかったと考えています。
 - **これまでの対策は「危ない住所の一覧（ブロックリスト）」が中心でした。** 一覧はとても大切ですが、作られたばかりの偽サイトには追いつけません。勘合は「本物の住所の一覧」と照らし合わせるので、会社を名乗った連絡なら、作られたばかりの偽サイトでも「公式の住所ではない」と分かります。ブロックリストに代わるものではなく、組み合わせて使うものです。
 
 ## できないこと
@@ -143,6 +143,6 @@ Apache License 2.0（[LICENSE](LICENSE)）。会社のアプリやサービス�
 
 **Not a new idea.** kango applies the principle behind password-manager autofill (only on the registered domain) and passkeys / WebAuthn (credentials bound to the domain) to incoming messages. Red and green are decided by things an attacker cannot fake (your own ledger, and domains they do not own), not by how convincing the text is, so making the text more natural with AI does not, by itself, turn red into green.
 
-**Why isn't this common? (our view)** It needs a per-user contract ledger, which is a privacy problem for any provider to collect; kango keeps it on the device. It earns little. And the industry has mostly invested in blocklists, which lag behind newly created phishing sites. kango complements blocklists rather than replacing them.
+**Why isn't this common? (our view)** It needs a per-user contract ledger, which is a privacy problem for any provider to collect; kango keeps it on the device. Because nothing leaves the device, it does not fit business models built on collected data. And the industry has mostly invested in blocklists, which lag behind newly created phishing sites. kango complements blocklists rather than replacing them.
 
 **Limits.** Amber is common by design. A message with nothing to check (for example, one that names a delivery company or the tax agency but has no link) is amber, never green. Brands missing from the list (30 so far, 6 not yet verified) are not covered, and a company you use but did not add to your ledger shows red. Phone numbers cannot be verified, so a message that contains one is never green, even if the claimed brand is in your ledger. Email addresses and LINE IDs are not checked. A URL glued to Japanese text (no space) is read as part of the host and shows red. A genuinely compromised official account or site, or an open redirect on an official domain whose target is hidden (for example, percent-encoded), can pass as green. Scams that claim no brand (investment, romance) stay amber. Input is text only.
