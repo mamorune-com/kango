@@ -17,6 +17,28 @@ public struct Brand: Codable, Hashable, Identifiable, Sendable {
     public let stems: [String]
     /// 公式ドメインを各社のサイトで確かめた日（未確認は nil）
     public let checked: String?
+    /// 英語の名前（英語の答えに使う。無ければ name）
+    public let nameEn: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id, name, kind, words, domains, stems, checked
+        case nameEn = "name_en"
+    }
+
+    public init(id: String, name: String, kind: Kind, words: [String], domains: [String], stems: [String],
+                checked: String? = nil, nameEn: String? = nil) {
+        self.id = id
+        self.name = name
+        self.kind = kind
+        self.words = words
+        self.domains = domains
+        self.stems = stems
+        self.checked = checked
+        self.nameEn = nameEn
+    }
+
+    /// 答えの言語に合わせた名前（"en" なら英語の名前）
+    public func displayName(_ lang: String) -> String { lang == "ja" ? name : (nameEn ?? name) }
 }
 
 public enum Catalog {

@@ -33,3 +33,39 @@ def test_helplines_unless_green():
     for case, r in _all():
         tels = [h["tel"] for h in r["helplines"]]
         assert tels == ([] if r["level"] == "green" else ["#9110", "188"]), case["text"]
+
+
+def test_english_answers_keep_level_and_codes():
+    # lang="en" で変わるのは文だけ。色・理由のコード・名乗った会社・リンク先は同じ
+    for case, r in _all():
+        e = kango.judge(case["text"], case.get("ledger", CASES["ledger"]), lang="en")
+        assert {k: e[k] for k in ("level", "claimed", "hosts")} == {k: r[k] for k in ("level", "claimed", "hosts")}
+        assert [x["code"] for x in e["reasons"]] == [x["code"] for x in r["reasons"]], case["text"]
+        assert e["head"] == kango.PHRASES["heads"]["en"][e["level"]]
+        if e["level"] == "green":
+            words = (e["head"] + e["todo"] + "".join(x["text"] for x in e["reasons"])).lower()
+            for w in ("genuine", "safe", "legit", "authentic"):
+                assert w not in words, case["text"]
+
+
+def test_english_uses_english_brand_names():
+    r = kango.judge("【ヤマト運輸】お荷物のお届けにあがりましたが不在のため持ち帰りました https://yamato-hd.example/", [], lang="en")
+    assert "Yamato Transport" in r["reasons"][0]["text"]
+
+
+def test_helplines_by_region():
+    text = "Your account will be suspended https://evil.example/"
+    tels = lambda **kw: [(h.get("tel"), h.get("url")) for h in kango.judge(text, [], **kw)["helplines"]]
+    assert tels() == [("#9110", None), ("188", None)]                 # 既定＝日本語・日本
+    assert tels(lang="en") == []                                         # 英語で国が分からない時は出さない
+    assert tels(lang="en", region="JP") == [("#9110", None), ("188", None)]
+    assert tels(lang="en", region="us") == [(None, "https://reportfraud.ftc.gov/")]
+    assert ("7726", None) in tels(lang="en", region="GB")
+    assert tels(lang="en", region="AU")[0][1].startswith("https://portal.scamwatch.gov.au/")
+    assert tels(lang="en", region="FR") == []                            # 窓口を確かめていない国は出さない
+
+
+def test_unknown_lang_is_rejected():
+    import pytest
+    with pytest.raises(ValueError):
+        kango.judge("test", [], lang="xx")

@@ -39,3 +39,15 @@ def test_marks_never_on_green_and_every_code_has_a_label():
 
 def test_enough_cases():
     assert len(CASES["cases"]) >= 8, "見本が読めていません"
+
+
+def test_marks_labels_in_english():
+    # lang="en" で変わるのは labels の言葉だけ（行・色・コードは同じ）
+    for case in CASES["cases"]:
+        led = case.get("ledger", CASES["ledger"])
+        ja = kango.marks(case["lines"], led)
+        en = kango.marks(case["lines"], led, lang="en")
+        assert [{k: m[k] for k in ("line", "level", "codes")} for m in en] == \
+               [{k: m[k] for k in ("line", "level", "codes")} for m in ja]
+        for m in en:
+            assert m["labels"] == [kango.PHRASES["mark_labels"]["en"][c] for c in m["codes"]]

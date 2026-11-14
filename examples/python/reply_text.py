@@ -18,7 +18,7 @@ def reply_for(text: str, ledger: Iterable[str]) -> str:
     lines = [f"【{LABEL[v['level']]}】{v['head']}"]
     lines += ["・" + r["text"] for r in v["reasons"]]
     lines.append(v["todo"])
-    lines += [f"{h['label']}：{h['tel']}" for h in v["helplines"]]
+    lines += [f"{h['label']}：{h.get('tel') or h.get('url')}" for h in v["helplines"]]
     return "\n".join(lines)
 
 
