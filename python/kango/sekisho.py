@@ -41,17 +41,37 @@ RULES = [
     ("override",
      r"(?:ignore|disregard|forget)\s+(?:all\s+|any\s+)?(?:the\s+)?(?:previous|prior|above|earlier)\s+(?:instructions?|prompts?|rules?)"
      r"|(?:以前|前|これまで|上記|今まで)の(?:指示|命令|ルール|設定|プロンプト)を(?:すべて|全て)?(?:無視|忘れ|取り消)"
-     r"|system\s*prompt|システムプロンプト|you\s+are\s+now\b|あなたは(?:今から|これから)",
+     r"|system\s*prompt|システムプロンプト|you\s+are\s+now\b|あなたは(?:今から|これから)"
+     # スペイン語・フランス語・ドイツ語・ポルトガル語・中国語・韓国語
+     r"|(?:ignora(?:r)?|olvida(?:r)?)\s+(?:todas\s+)?las\s+instrucciones(?:\s+(?:anteriores|previas))?"
+     r"|(?:ignore[zr]?|oublie[zr]?)\s+(?:toutes\s+)?les\s+instructions(?:\s+(?:précédentes|antérieures))?"
+     r"|(?:ignoriere?|vergiss)\s+(?:alle\s+)?(?:vorherigen\s+|bisherigen\s+|obigen\s+)?(?:anweisungen|befehle)"
+     r"|(?:ignore|esqueça)\s+(?:todas\s+)?as\s+instruções(?:\s+(?:anteriores|prévias))?"
+     r"|(?:忽略|无视|無視|忘记|忘記)(?:之前|以前|上面|上述|先前|所有)的?(?:所有)?(?:指示|指令|规则|規則|提示)|系统提示词|系統提示詞|你现在是|你現在是"
+     r"|(?:이전|위|앞|지금까지)의?\s*(?:모든\s*)?(?:지시|명령|규칙|지침)(?:을|를|은|는)?\s*(?:무시|잊어)|시스템\s*프롬프트|(?:너는|당신은)\s*이제",
      "AI への指示を書きかえようとする言いまわしです。",
      "この文書が、AI の役割や指示を変える必要のある文書か確かめてください。そうでなければ AI に渡さないでください。"),
     ("conceal",
      r"(?:do\s+not|don'?t|never)\s+(?:tell|inform|mention\s+(?:this\s+)?to|reveal\s+(?:this\s+)?to)\s+the\s+user"
-     r"|(?:ユーザー|利用者|人間|使用者)に(?:は)?(?:言わ|伝え|知らせ|見せ|教え)(?:ないで|るな|ず)|黙って(?:実行|送|行)",
+     r"|(?:ユーザー|利用者|人間|使用者)に(?:は)?(?:言わ|伝え|知らせ|見せ|教え)(?:ないで|るな|ず)|黙って(?:実行|送|行)"
+     r"|no\s+(?:se\s+lo\s+|le\s+)?(?:digas|menciones|cuentes)\s+(?:nada\s+)?al\s+usuario"
+     r"|ne\s+(?:le\s+)?(?:dis|dites)\s+(?:rien\s+)?pas\s+à\s+l.utilisateur|sans\s+(?:le\s+)?dire\s+à\s+l.utilisateur"
+     r"|(?:sag|sage|erzähl|erwähne)\s+(?:es\s+|das\s+)?dem\s+(?:benutzer|nutzer|anwender)\s+nicht|ohne\s+(?:es\s+)?dem\s+(?:benutzer|nutzer)\s+zu\s+sagen"
+     r"|não\s+(?:conte|diga|mencione)\s+(?:nada\s+)?ao\s+usuário"
+     r"|不要(?:告诉|告訴|通知|让|讓)(?:用户|用戶|使用者)|(?:瞒着|瞞著)(?:用户|用戶)"
+     r"|사용자(?:에게|한테)\s*(?:말하지|알리지|보여주지)\s*(?:마|말)",
      "人に隠して何かをさせようとする言いまわしです。",
      "隠す理由がある文書か確かめてください。AI が人に黙って動く指示は、ふつうの文書には入りません。"),
     ("exfiltrate",
      r"(?:send|upload|post|forward|email|exfiltrate)\s+(?:\w+\s+){0,4}(?:api\s*keys?|tokens?|passwords?|secrets?|credentials?|\.env|ssh\s+keys?|cookies?)"
-     r"|(?:api\s*キー|apiキー|トークン|パスワード|秘密鍵|認証情報|\.env|クッキー)[^。\n]{0,20}(?:送|アップロード|転送|貼り付け|投稿)",
+     r"|(?:api\s*キー|apiキー|トークン|パスワード|秘密鍵|認証情報|\.env|クッキー)[^。\n]{0,20}(?:送|アップロード|転送|貼り付け|投稿)"
+     r"|(?:envía|enviar|sube|subir|reenvía)\s+(?:\w+\s+){0,4}(?:claves?\s+(?:de\s+)?api|tokens?|contraseñas?|credenciales|secretos?)"
+     r"|(?:envoie[zr]?|transmet(?:s|tez|tre)|télécharge[zr]?)\s+(?:\w+\s+){0,4}(?:clés?\s+(?:d.)?api|jetons?|tokens?|mots?\s+de\s+passe|identifiants|secrets?)"
+     r"|(?:sende|schicke|lade)\s+(?:\w+\s+){0,4}(?:api-?schlüssel|tokens?|passw(?:ö|o)rter?|zugangsdaten|geheimnisse)"
+     r"|(?:envie|enviar|mande|carregue)\s+(?:\w+\s+){0,4}(?:chaves?\s+(?:de\s+)?api|tokens?|senhas?|credenciais|segredos?)"
+     r"|(?:api\s*密钥|api\s*密鑰|令牌|密码|密碼|私钥|私鑰|凭证|憑證|\.env)[^。\n]{0,20}(?:发送|發送|上传|上傳|转发|轉發|发给|發給)"
+     r"|(?:发送|發送|上传|上傳|转发|轉發)[^。\n]{0,10}(?:api\s*密钥|api\s*密鑰|令牌|密码|密碼|私钥|私鑰|凭证|憑證)"
+     r"|(?:api\s*키|토큰|비밀번호|패스워드|개인\s*키|인증\s*정보|\.env)[^.\n]{0,20}(?:보내|전송|업로드)",
      "鍵やパスワードを外へ送らせようとする言いまわしです。",
      "鍵やパスワードを外へ送る必要は、まずありません。AI に渡さず、書いた人に確かめてください。"),
     ("command",
@@ -74,11 +94,51 @@ RULES = [
      r"|(?:調べ|解析し|分析し|スキャンし|検査し)(?:ないで|るな)"
      r"|著作権[^。\n]{0,30}(?:断|拒否|拒ん|解析できません|解析しないで|お答えできません)"
      r"|(?:この|本|当)(?:ファイル|プログラム|コード|文書|ソフト|サンプル)(?:は|には)[^。\n]{0,10}"
-     r"(?:無害|危険(?:では|じゃ)(?:ない|ありません)|悪意(?:は|が)?(?:ない|ありません)|マルウェアでは(?:ない|ありません)|安全(?:です|だ|。|$))",
+     r"(?:無害|危険(?:では|じゃ)(?:ない|ありません)|悪意(?:は|が)?(?:ない|ありません)|マルウェアでは(?:ない|ありません)|安全(?:です|だ|。|$))"
+     r"|no\s+(?:lo\s+)?(?:analices|escanees|inspecciones)|este\s+(?:archivo|código|programa)\s+es\s+(?:completamente\s+|totalmente\s+)?(?:inofensivo|benigno)"
+     r"|n.analyse[zr]?\s+pas|ne\s+(?:pas\s+)?analyser|ce\s+(?:fichier|code|programme)\s+est\s+(?:totalement\s+|complètement\s+)?(?:inoffensif|bénin)"
+     r"|(?:analysiere|scanne|untersuche)\s+(?:diese\s+datei\s+|dies\s+|das\s+)?nicht|diese\s+(?:datei|software)\s+ist\s+(?:völlig\s+|komplett\s+)?(?:harmlos|gutartig)"
+     r"|não\s+(?:analise|escaneie|inspecione)|este\s+(?:arquivo|código|programa)\s+é\s+(?:totalmente\s+|completamente\s+)?(?:inofensivo|benigno)"
+     r"|不要(?:分析|扫描|掃描|检查|檢查)|(?:此|这个|這個|本)(?:文件|程序|程式|代码|代碼|檔案)(?:是)?(?:完全)?(?:无害|無害)的?"
+     r"|분석하지\s*(?:마|말)|(?:이|본)\s*(?:파일|프로그램|코드)(?:은|는)\s*(?:완전히\s*)?무해",
      "AI の解析役に、調べるのをやめさせたり「無害」と答えさせたりする言いまわしです。",
      "文書が自分で「無害です」「調べないで」と言う理由は、ふつうありません。AI の答えをうのみにせず、人が中身を確かめてください。"),
 ]
 _RULES = [(code, re.compile(pat, re.I), why, how) for code, pat, why, how in RULES]
+
+# 英語の説明（check(..., lang="en")）。日本語はコードの中の文（RULES・_FIXED・_HEADS）。
+_EN = {
+    "override": ("Wording that tries to rewrite the AI's instructions.",
+                 "Check whether this document really needs to change the AI's role or instructions. If not, don't give it to the AI."),
+    "conceal": ("Wording that tries to make the AI do something without telling the person.",
+                "Check whether there's a reason to hide anything. Ordinary documents don't tell an AI to act behind the person's back."),
+    "exfiltrate": ("Wording that tries to send keys or passwords somewhere.",
+                   "There's almost never a reason to send keys or passwords out. Don't give it to the AI; ask the author."),
+    "command": ("A command that downloads something and runs it straight away.",
+                "Don't let the AI run this. If it really needs to run, a person should read it first and run it themselves."),
+    "deflect": ("Wording aimed at an AI analyzer, telling it to stop checking or to call the file harmless.",
+                "A document has no ordinary reason to say \"this is harmless\" or \"don't analyze me\". Don't take the AI's answer at face value; have a person check it."),
+    "invisible": ("There are invisible characters. People can't read them, but the AI can.",
+                  "Remove the invisible characters before passing it on, or ask the author why they're there."),
+    "hidden_html": ("Part of the HTML is hidden. It doesn't show on screen, but the AI reads it.",
+                    "Open the source and have a person check what the hidden part says."),
+    "comment": ("There's a comment (<!-- -->). It doesn't show on screen, but the AI reads it.",
+                "Have a person read the comment. If it contains anything like instructions, don't pass the document on."),
+    "image_beacon": ("An image address has extra text after \"?\". If the AI opens the image, that text reaches whoever runs the server.",
+                     "Check that nothing secret or from the conversation could end up in the image address."),
+    "outside_link": ("A link to an address that isn't on your trusted list.",
+                     "Have a person check the address before letting the AI open the link."),
+    "encoded": ("A long encoded-looking string (base64 or similar). Its content can't be read.",
+                "Until a person has checked what it says, don't let anyone tell the AI to decode and run it."),
+}
+_HEADS = {
+    "ja": {"red": "赤：隠れた指示か、隠した文字があります。AI に渡さないでください。",
+           "amber": "黄：確かめてほしい所があります。人が読んでから渡してください。",
+           "none": "見つかりませんでした（安全という意味ではありません）。"},
+    "en": {"red": "Red: there are hidden instructions or hidden characters. Don't give this to the AI.",
+           "amber": "Amber: some parts need checking. Have a person read it before passing it on.",
+           "none": "Nothing found (this doesn't mean it's safe)."},
+}
 
 _FIXED = {
     "invisible": ("目に見えない文字が入っています。人には読めず、AI にだけ届きます。",
@@ -122,16 +182,21 @@ def _quote(s: str) -> str:
 
 
 def check(text: str, trusted_hosts: Optional[Iterable[str]] = None,
-          approved: Optional[Iterable[str]] = None) -> dict:
+          approved: Optional[Iterable[str]] = None, lang: str = "ja") -> dict:
     """文書を調べる。
+
+    言いまわしは、日本語・英語・スペイン語・フランス語・ドイツ語・ポルトガル語・中国語・韓国語で探す。
+    lang: 答えの文（head・why・how）の言語（"ja" か "en"）。色とコードは言語で変わらない。
 
     trusted_hosts: 信用する住所（例 ["github.com"]）。渡すと、それ以外へのリンクを黄（outside_link）にする。
     approved: 人が前に確かめた文書の指紋（fingerprint の値）。同じなら approved=True を返す（答えの色は変えない）。
     """
+    if lang not in _HEADS:
+        raise ValueError(f"lang は ja か en です：{lang!r}")
     findings: List[dict] = []
 
     def add(code, sev, pos, quote, why=None, how=None):
-        w, h = (why, how) if why else _FIXED[code]
+        w, h = _EN[code] if lang == "en" else (why, how) if why else _FIXED[code]
         findings.append({"code": code, "sev": sev, "line": _line_of(text, pos), "quote": _quote(quote),
                          "why": w, "how": h})
 
@@ -175,9 +240,7 @@ def check(text: str, trusted_hosts: Optional[Iterable[str]] = None,
 
     findings.sort(key=lambda f: (f["line"], f["code"]))
     level = "red" if any(f["sev"] == "red" for f in findings) else "amber" if findings else "none"
-    head = {"red": "赤：隠れた指示か、隠した文字があります。AI に渡さないでください。",
-            "amber": "黄：確かめてほしい所があります。人が読んでから渡してください。",
-            "none": "見つかりませんでした（安全という意味ではありません）。"}[level]
+    head = _HEADS[lang][level]
     fp = fingerprint(text)
     return {"level": level, "head": head, "findings": findings, "sha256": fp,
             "approved": fp in set(approved or [])}
@@ -197,6 +260,7 @@ def _main(argv: Optional[List[str]] = None) -> int:
     p.add_argument("--approved", default=None, metavar="FILE",
                    help="人が確かめた文書の指紋（sha256）を1行に1つ書いたファイル")
     p.add_argument("--json", action="store_true", help="答えを JSON で出す")
+    p.add_argument("--lang", default="ja", choices=sorted(_HEADS), help="答えの文の言語（ja か en）")
     p.add_argument("--findings", action="store_true",
                    help="答えを akaire-findings/v1 の形の JSON で出す（アカイレなどの表示に渡せます）")
     a = p.parse_args(argv)
@@ -211,7 +275,7 @@ def _main(argv: Optional[List[str]] = None) -> int:
     if a.approved:
         with open(a.approved, encoding="utf-8") as f:
             approved = [s.split()[0] for s in f if s.strip() and not s.startswith("#")]
-    r = check(text, trusted_hosts=trusted, approved=approved)
+    r = check(text, trusted_hosts=trusted, approved=approved, lang=a.lang)
 
     if a.findings:
         src = a.file or "stdin"
