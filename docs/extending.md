@@ -21,6 +21,9 @@
 | `words` | 文面にあれば「この会社を名乗っている」とみなす言葉。**短すぎる言葉は使わない**（例：`au` は他の言葉の中にも出てくるので、`au pay`・`au id` のように長くする）。 |
 | `domains` | 公式の住所。下の住所（`*.domain`）も公式とみなすので、**誰でも下の住所を作れるもの（共有のホスティングなど）は入れない**。 |
 | `stems` | 偽の住所に紛れ込みやすい名前の断片。**短すぎると、関係のない住所まで「似せた住所」として赤にしてしまう**ので、会社をはっきり指す長さにする。 |
+| `name_en` | 英語の答えに出す名前。 |
+
+**短い英語の名前には、両端の印を付けます。** `[ups]` のように先頭に `[`・末尾に `]` を付けると、前後が英数字の時は当たりません（`groups`・`startups` を UPS とみなさない）。`[chase card` のように先頭だけでもかまいません（`purchase card` を Chase とみなさない）。決まりは SPEC.md の「言葉の両端の印」です。
 
 ### 3. 同梱データを作り直して、テストを足す
 
@@ -48,7 +51,7 @@ cd python && python -m pytest -q        # Python のテスト
 1. **実際にありそうな文面で、困っていることを書く。** Issue に「この文面が、今はこの色になる。本当はこうあるべき」と書きます（Issue の「判定がおかしい」のひな形が使えます）。**偽物の連絡が青になる時は、Issue ではなく [SECURITY.md](../SECURITY.md) の方法で、非公開で知らせます。**実在の人の名前・電話番号・住所は入れず、攻撃側の住所には `example`（`evil.example` など、例のために取っておかれた住所）を使います。
 2. **SPEC.md を先に直す。** 規則の正は SPEC.md です。新しい理由のコードは表に足します。
 3. **Python（`python/kango/__init__.py`）を直す。**
-4. **Swift（`swift/Sources/Kango/Judge.swift`）を同じように直す。** 正規表現は、Python と同じ文字列にします。文言も同じにします。
+4. **Swift（`swift/Sources/Kango/Judge.swift`）を同じように直す。** 正規表現は、Python と同じ文字列にします。答えの文・急かす言葉・乗っ取りの頼みごと・相談先は [data/phrases.json](../data/phrases.json) にあり、Python と Swift が同じファイルを読みます（直したら `python3 scripts/sync_brands.py`）。英語の文は、英語を母語とする人が読んで自然な文にします。
 5. **共通の見本（[conformance/cases.json](../conformance/cases.json)）に見本を足す。** Python と Swift のテストが、どちらもこの見本を読み込みます。「こうなるべき」見本と、「こうならないべき」見本（本物の連絡が誤って黄・赤にならないこと）の両方を入れます。答えは SPEC.md から先に考えて書き、`python -m kango --json` で今の勘合の答えと見比べます（書き方は [conformance/README.md](../conformance/README.md)）。
 6. **できないことが変わったら、README の「できないこと」と [守れる範囲](threat-model.md) を直す。** 表は勘合を動かした答えをそのまま書きます（テストが確かめます）。
 7. **CI（data・python・swift）がすべて緑になってから** Pull Request を出します。
