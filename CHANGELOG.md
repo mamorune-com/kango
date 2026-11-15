@@ -4,24 +4,27 @@
 
 ## v0.9.0
 
-日本・米国・韓国の主な銀行と証券会社を、会社の一覧に足しました（27社）。お金に直接かかわる会社は、世界中でフィッシングに狙われているためです。
+日本・米国・韓国・英国・欧州・台湾の主な銀行と証券会社を、会社の一覧に足しました（56社）。お金に直接かかわる会社は、世界中でフィッシングに狙われているためです。
 
 ### 答えが変わる変更
 
-- **銀行と証券会社を名乗る連絡を、その会社の連絡として照合します。** 足したのは次の会社です（すべて `contract`）。
+- **銀行と証券会社を名乗る連絡を、その会社の連絡として照合します。** 足したのは次の会社です
   - 日本：SBI証券・野村證券・SMBC日興証券・マネックス証券・大和証券・松井証券・みずほ証券・三菱UFJ eスマート証券（旧 auカブコム証券）・三菱UFJモルガン・スタンレー証券・みずほ銀行
   - 米国：Citi・Capital One・Charles Schwab・Fidelity・Robinhood・Vanguard
   - 韓国：KB国民銀行・新韓銀行・ウリ銀行・ハナ銀行・NH農協銀行・カカオバンク・Toss（トスバンク・トス証券）・キウム証券・未来アセット証券・サムスン証券・韓国投資証券
+  - 英国：Lloyds Bank・Halifax・NatWest・Santander・Nationwide・Monzo・Revolut・TSB
+  - 欧州：ING・Deutsche Bank・Commerzbank・N26・BNP Paribas・Crédit Agricole・Société Générale・BBVA・CaixaBank・Intesa Sanpaolo・UniCredit・Rabobank・ABN AMRO
+  - 台湾：玉山銀行・國泰世華銀行・台北富邦銀行・台新銀行・兆豐銀行・臺灣銀行・元大證券（以上 `contract`）、中華郵政（`everyone`）
 
   **台帳に入れていないこれらの会社を名乗る連絡は、本物でも赤になります（黄 → 赤）。**
-- **住所にこれらの会社の名前を含む、公式でない住所は赤になります（黄 → 赤）。** 例：`smbcnikko-login.example`・`schwab-secure.example`・`kbstar-auth.example`。名前の断片は、ほかの会社と取り違えにくいものだけにしました（「nomura」だけでは野村證券とみなしません。野村不動産などと取り違えるためです）。
+- **住所にこれらの会社の名前を含む、公式でない住所は赤になります（黄 → 赤）。** 例：`smbcnikko-login.example`・`schwab-secure.example`・`kbstar-auth.example`・`ing-diba-sicherheit.example`・`postgov-taiwan.example`。名前の断片は、ほかの会社と取り違えにくいものだけにしました（「nomura」だけでは野村證券とみなしません。野村不動産などと取り違えるためです）。ふつうの言葉や地名と重なる名前（ING・Revolut・Santander・Nationwide・Halifax）は、「ING Bank」「Santander UK」のように長くするか、両端の印を付けました。英語の -ing、revolution、地名のサンタンデールやハリファックスは、銀行とみなしません。
 - **楽天証券の住所（`rakuten-sec.co.jp`・`marketspeed.jp`・`ispeed.jp`）を、楽天の公式の住所に足しました（黄 → 青になることがあります）。**
 - **「三菱UFJ」だけでは、三菱UFJ銀行を名乗ったとみなさなくなりました。** 「三菱UFJ銀行」「三菱UFJダイレクト」「【三菱UFJ】」と書かれた時だけです。三菱UFJ eスマート証券や三菱UFJモルガン・スタンレー証券の連絡を、銀行の連絡と取り違えないためです。三菱UFJ信託銀行など、一覧に無いグループ会社の連絡は、銀行を台帳に入れていても青ではなく黄になります（青 → 黄）。
 - **DHL の自社の住所（`.dhl`、例：`m.dhl`）を、公式の住所に戻しました（赤 → 青）。** v0.8.0 で誤って外していました。
 
 ### 足したもの
 
-- 見本の文面を13件足しました（銀行・証券の本物は青、似せた住所は赤、野村不動産は黄など）。
+- 見本の文面を27件足しました（銀行・証券の本物は青、似せた住所は赤、野村不動産や英語の -ing は黄など）。
 
 ## v0.8.0
 

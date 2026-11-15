@@ -67,6 +67,34 @@ kiwoom,キウム証券,contract,키움증권|kiwoom,kiwoom.com,kiwoom,2026-11-15
 miraeasset,未来アセット証券,contract,미래에셋|mirae asset|miraeasset,miraeasset.com,miraeasset|mirae-asset,2026-11-15,Mirae Asset Securities
 samsungsec,サムスン証券,contract,삼성증권|samsung securities|samsungpop,samsungpop.com,samsungpop|samsung-pop,2026-11-15,Samsung Securities
 kis,韓国投資証券,contract,한국투자증권|korea investment & securities|truefriend,truefriend.com|koreainvestment.com,truefriend|koreainvestment|korea-investment,2026-11-15,Korea Investment & Securities
+lloyds,ロイズ銀行,contract,lloyds bank|lloydsbank|ロイズ銀行,lloydsbank.com|lloydsbankinggroup.com,lloydsbank|lloyds-bank,2026-11-15,Lloyds Bank
+halifax,ハリファックス,contract,halifax bank|halifax online|halifax account|【halifax】|[halifax:|bank of scotland,halifax.co.uk|halifax-online.co.uk,halifax-online|halifaxonline|halifax-bank|halifaxbank,2026-11-15,Halifax
+natwest,ナットウエスト,contract,natwest,natwest.com,natwest,2026-11-15,NatWest
+santander,サンタンデール,contract,banco santander|santander bank|santander uk|santander online|santander account|【santander】|[santander:|サンタンデール銀行,santander.co.uk|santanderinternational.co.uk|bancosantander.es,santander,2026-11-15,Santander
+nationwide,ネーションワイド住宅金融組合,contract,nationwide building society|[nationwide bank]|【nationwide】|[nationwide:,nationwide.co.uk,nationwide-bank|nationwidebank|nationwide-building|nationwidebuilding|nationwidebanking|nationwide-banking,2026-11-15,Nationwide Building Society
+monzo,Monzo,contract,monzo,monzo.com,monzo,2026-11-15,Monzo
+revolut,Revolut,contract,[revolut],revolut.com,[revolut],2026-11-15,Revolut
+tsb,TSB銀行,contract,[tsb bank|【tsb】|[tsb:,tsb.co.uk,tsb-bank|tsbbank|tsb-online|tsbonline,2026-11-15,TSB Bank
+ing,ING,contract,[ing bank|[ing-bank|[ing direct|[ing-diba|[ing diba|[mijn ing]|【ing】|[ing:,ing.de|ing.nl,[ingbank|[ing-bank|[ing-diba|[ingdiba|[mijn-ing]|[mijning],2026-11-15,ING
+deutschebank,ドイツ銀行,contract,deutsche bank|deutschebank|ドイツ銀行,deutsche-bank.de,deutsche-bank|deutschebank,2026-11-15,Deutsche Bank
+commerzbank,コメルツ銀行,contract,commerzbank,commerzbank.de,commerzbank,2026-11-15,Commerzbank
+n26,N26,contract,[n26],n26.com,[n26],2026-11-15,N26
+bnpparibas,BNPパリバ,contract,bnp paribas|bnpparibas|bnpパリバ,bnpparibas|bnpparibas.com|bnpparibasfortis.be,bnpparibas|bnp-paribas,2026-11-15,BNP Paribas
+creditagricole,クレディ・アグリコル,contract,crédit agricole|credit agricole|credit-agricole|creditagricole,credit-agricole.fr,credit-agricole|creditagricole,2026-11-15,Crédit Agricole
+socgen,ソシエテ・ジェネラル,contract,société générale|societe generale|socgen,sg.fr|socgen.com|societegenerale.com,societegenerale|societe-generale|socgen,2026-11-15,Société Générale
+bbva,BBVA,contract,bbva,bbva.es|bbva.com,bbva,2026-11-15,BBVA
+caixabank,カイシャバンク,contract,caixabank,caixabank.es|caixabank.cat,caixabank|caixa-bank,2026-11-15,CaixaBank
+intesa,インテーザ・サンパオロ,contract,intesa sanpaolo|intesasanpaolo,intesasanpaolo.com,intesasanpaolo|intesa-sanpaolo,2026-11-15,Intesa Sanpaolo
+unicredit,ウニクレディト,contract,unicredit,unicredit.it|unicreditgroup.eu,unicredit,2026-11-15,UniCredit
+rabobank,ラボバンク,contract,rabobank,rabobank.nl,rabobank,2026-11-15,Rabobank
+abnamro,ABNアムロ,contract,abn amro|abnamro,abnamro.nl|abnamro.com,abnamro|abn-amro,2026-11-15,ABN AMRO
+esun,玉山銀行,contract,玉山銀行|玉山商業銀行|e.sun bank|esun bank,esunbank.com|esunbank.com.tw,esunbank|esun-bank,2026-11-15,E.SUN Bank
+cathaybk,國泰世華銀行,contract,國泰世華|国泰世華|国泰世华|cathay united,cathaybk.com.tw,cathaybk|cathay-bk,2026-11-15,Cathay United Bank
+fubon,台北富邦銀行,contract,台北富邦|臺北富邦|富邦銀行|taipei fubon,fubon.com,fubon,2026-11-15,Taipei Fubon Bank
+taishin,台新銀行,contract,台新銀行|台新国際|台新國際|taishin bank|taishin,taishinbank.com.tw,taishin,2026-11-15,Taishin Bank
+megabank,兆豐銀行,contract,兆豐銀行|兆豐國際|兆丰银行|mega international commercial,megabank.com.tw,megabank|mega-bank,2026-11-15,Mega International Commercial Bank
+taiwanbank,臺灣銀行,contract,臺灣銀行|台灣銀行|台湾銀行|台湾银行|bank of taiwan,bot.com.tw,bankoftaiwan|bank-of-taiwan|botcomtw|bot-com-tw,2026-11-15,Bank of Taiwan
+yuanta,元大證券,contract,元大證券|元大证券|元大銀行|yuanta,yuanta.com.tw|yuanta.com|yuantabank.com.tw,yuanta,2026-11-15,Yuanta Securities
 yamato,ヤマト運輸,everyone,ヤマト|クロネコ|yamato transport,kuronekoyamato.co.jp,kuroneko|yamato,,Yamato Transport
 sagawa,佐川急便,everyone,佐川|sagawa express,sagawa-exp.co.jp,sagawa,,Sagawa Express
 jppost,日本郵便,everyone,日本郵便|郵便局|japan post,japanpost.jp,japanpost|japan-post,2026-10-31,Japan Post
@@ -78,6 +106,7 @@ usps,米国郵便公社（USPS）,everyone,usps|united states postal service|us 
 royalmail,ロイヤルメール,everyone,royal mail|royalmail|parcelforce,royalmail.com|parcelforce.com,royalmail|royal-mail|parcelforce,2026-11-15,Royal Mail
 canadapost,カナダ郵便,everyone,canada post|postes canada|canadapost,canadapost-postescanada.ca|canadapost.ca,canadapost|postescanada|canada-post,2026-11-15,Canada Post
 auspost,オーストラリア郵便,everyone,australia post|auspost,auspost.com.au,auspost,2026-11-15,Australia Post
+chunghwapost,中華郵政,everyone,中華郵政|中华邮政|chunghwa post,post.gov.tw,chunghwapost|chunghwa-post|postgov|post-gov,2026-11-15,Chunghwa Post
 docusign,DocuSign,everyone,docusign|ドキュサイン,docusign.net|docusign.com,docusign,2026-11-15,DocuSign
 irs,米国内国歳入庁（IRS）,everyone,internal revenue service|[irs],irs.gov,[irs],2026-11-15,IRS (US Internal Revenue Service)
 hmrc,英国歳入関税庁（HMRC）,everyone,hmrc|hm revenue,gov.uk,hmrc,2026-11-15,HMRC (UK tax authority)

@@ -536,6 +536,20 @@
     {"note": "韓国：KB国民銀行を名乗り、似せた住所（赤）", "text": "[KB국민은행] 계좌 정지 https://kbstar-auth.example/", "level": "red", "codes": ["not_in_ledger", "mimic", "pressure"], "claimed": ["kbstar"], "hosts": ["kbstar-auth.example"]},
     {"note": "韓国：KB国民銀行を台帳に入れていて、公式の住所なら青", "text": "[KB국민은행] 이번 달 명세서 안내 https://obank.kbstar.com/", "ledger": ["kbstar"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["kbstar"], "hosts": ["obank.kbstar.com"]},
     {"note": "韓国：トスバンクを名乗り、公式でない住所（赤）", "text": "토스뱅크 송금 확인 https://toss-pay.example/", "level": "red", "codes": ["not_in_ledger", "off_domain"], "claimed": ["toss"], "hosts": ["toss-pay.example"]},
-    {"note": "海外：DHL の自社の住所（.dhl）も公式（青）", "text": "DHL: track your parcel https://m.dhl/", "level": "green", "codes": ["official"], "claimed": ["dhl"], "hosts": ["m.dhl"]}
+    {"note": "海外：DHL の自社の住所（.dhl）も公式（青）", "text": "DHL: track your parcel https://m.dhl/", "level": "green", "codes": ["official"], "claimed": ["dhl"], "hosts": ["m.dhl"]},
+    {"note": "英国：Lloyds Bank を台帳に入れていて、公式の住所なら青", "text": "Lloyds Bank: your new statement is ready https://email.lloydsbank.com/statement", "ledger": ["lloyds"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["lloyds"], "hosts": ["email.lloydsbank.com"]},
+    {"note": "英国：NatWest を名乗り、似せた住所（赤）", "text": "NatWest: your card has been suspended https://natwest-help.example/", "level": "red", "codes": ["not_in_ledger", "mimic", "pressure"], "claimed": ["natwest"], "hosts": ["natwest-help.example"]},
+    {"note": "英国：Revolut を名乗り、似せた住所（赤）", "text": "Revolut: please confirm your details https://revolut-verify.example/", "level": "red", "codes": ["not_in_ledger", "mimic"], "claimed": ["revolut"], "hosts": ["revolut-verify.example"]},
+    {"note": "英国：revolution の中の revolut を Revolut とみなさない（黄）", "text": "A revolutionary new product https://revolution.example/", "level": "amber", "codes": ["no_claim", "unknown_domain"], "claimed": [], "hosts": ["revolution.example"]},
+    {"note": "欧州：ING を台帳に入れていて、公式の住所なら青", "text": "ING Bank: uw nieuwe pas is onderweg https://www.ing.nl/particulier", "ledger": ["ing"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["ing"], "hosts": ["www.ing.nl"]},
+    {"note": "欧州：ING を名乗り、似せた住所（赤）", "text": "ING: Ihr Konto wurde gesperrt https://ing-diba-sicherheit.example/", "level": "red", "codes": ["not_in_ledger", "mimic", "pressure"], "claimed": ["ing"], "hosts": ["ing-diba-sicherheit.example"]},
+    {"note": "欧州：英語の -ing を ING とみなさない（黄）", "text": "Thank you for using our bank-ing app https://example.com/", "level": "amber", "codes": ["no_claim", "unknown_domain"], "claimed": [], "hosts": ["example.com"]},
+    {"note": "欧州：ソシエテ・ジェネラルを台帳に入れていて、公式の住所なら青", "text": "Société Générale : votre relevé est disponible https://particuliers.sg.fr/", "ledger": ["socgen"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["socgen"], "hosts": ["particuliers.sg.fr"]},
+    {"note": "欧州：BBVA を名乗り、似せた住所（赤）", "text": "BBVA: revisa tu cuenta https://bbva-seguridad.example/", "level": "red", "codes": ["not_in_ledger", "mimic"], "claimed": ["bbva"], "hosts": ["bbva-seguridad.example"]},
+    {"note": "欧州：地名のサンタンデールは、銀行とみなさない（黄）", "text": "Visit Santander city this summer https://example.com/", "level": "amber", "codes": ["no_claim", "unknown_domain"], "claimed": [], "hosts": ["example.com"]},
+    {"note": "台湾：國泰世華銀行を台帳に入れていて、公式の住所なら青", "text": "國泰世華銀行 帳單通知 https://www.cathaybk.com.tw/cathaybk/", "ledger": ["cathaybk"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["cathaybk"], "hosts": ["www.cathaybk.com.tw"]},
+    {"note": "台湾：玉山銀行を名乗り、似せた住所（赤）", "text": "【玉山銀行】帳戶異常 https://esunbank-tw.example/", "level": "red", "codes": ["not_in_ledger", "mimic"], "claimed": ["esun"], "hosts": ["esunbank-tw.example"]},
+    {"note": "台湾：中華郵政を名乗り、似せた住所（赤）", "text": "中華郵政:您有包裹等待投遞 https://postgov-taiwan.example/", "level": "red", "codes": ["mimic"], "claimed": ["chunghwapost"], "hosts": ["postgov-taiwan.example"]},
+    {"note": "台湾：中華郵政の公式の住所なら青（誰にでも届く会社）", "text": "中華郵政 包裹查詢 https://postserv.post.gov.tw/", "level": "green", "codes": ["official"], "claimed": ["chunghwapost"], "hosts": ["postserv.post.gov.tw"]}
   ]
 }
