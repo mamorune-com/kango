@@ -29,4 +29,50 @@ final class JudgeTests: XCTestCase {
             XCTAssertEqual(v.helplines.map(\.tel), v.level == .green ? [] : ["#9110", "188"], text)
         }
     }
+
+    func testEnglishAnswersKeepLevelAndCodes() throws {
+        // lang: "en" で変わるのは文だけ。色・理由のコード・名乗った会社・リンク先は同じ（python/tests/test_judge.py と同じこと）
+        let all = try ConformanceTests.loadCases()
+        for c in all.cases {
+            let ledger = Set(c.ledger ?? all.ledger)
+            let ja = Judge.judge(text: c.text, ledger: ledger)
+            let en = Judge.judge(text: c.text, ledger: ledger, lang: "en")
+            XCTAssertEqual(en.level, ja.level, c.text)
+            XCTAssertEqual(en.reasons.map(\.code), ja.reasons.map(\.code), c.text)
+            XCTAssertEqual(en.claimed, ja.claimed, c.text)
+            XCTAssertEqual(en.hosts, ja.hosts, c.text)
+            XCTAssertNotEqual(en.head, ja.head, c.text)
+            if en.level == .green {
+                let words = (en.head + en.todo + en.reasons.map(\.text).joined()).lowercased()
+                for w in ["genuine", "safe", "legit", "authentic"] { XCTAssertFalse(words.contains(w), c.text) }
+            }
+        }
+    }
+
+    func testEnglishUsesEnglishBrandNames() {
+        let v = Judge.judge(text: "【ヤマト運輸】お荷物のお届けにあがりましたが不在のため持ち帰りました https://yamato-hd.example/", ledger: [], lang: "en")
+        XCTAssertTrue(v.reasons[0].text.contains("Yamato Transport"))
+    }
+
+    func testHelplinesByRegion() {
+        let text = "Your account will be suspended https://evil.example/"
+        func lines(_ lang: String = "ja", _ region: String? = nil) -> [String] {
+            Judge.judge(text: text, ledger: [], lang: lang, region: region).helplines.map { $0.tel + "|" + ($0.url ?? "") }
+        }
+        XCTAssertEqual(lines(), ["#9110|", "188|"])
+        XCTAssertEqual(lines("en"), [])
+        XCTAssertEqual(lines("en", "JP"), ["#9110|", "188|"])
+        XCTAssertEqual(lines("en", "us"), ["|https://reportfraud.ftc.gov/"])
+        XCTAssertTrue(lines("en", "GB").contains("7726|"))
+        XCTAssertTrue(lines("en", "AU")[0].hasPrefix("|https://portal.scamwatch.gov.au/"))
+        XCTAssertEqual(lines("en", "FR"), [])
+    }
+
+    func testMarksLabelsInEnglish() {
+        let lines = ["UPS: Your package is on hold.", "Pay the redelivery fee within 24 hours:", "https://ups-fee.example/pay"]
+        let ja = Judge.marks(lines: lines, ledger: [])
+        let en = Judge.marks(lines: lines, ledger: [], lang: "en")
+        XCTAssertEqual(en.map(\.codes), ja.map(\.codes))
+        XCTAssertEqual(en.first?.labels, ["Wording common in scams"])
+    }
 }

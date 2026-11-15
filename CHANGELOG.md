@@ -2,6 +2,38 @@
 
 版ごとの変更です。**答え（色）が変わる変更**を、それぞれの版のはじめに書きます。版を上げる前に読み、自分のアプリやサービスで見せている説明（「黄が増えます」など）も見直してください。日付は [リリースの一覧](https://github.com/mamorune-com/kango/releases) にあります。
 
+## v0.8.0
+
+海外の利用者にも使えるようにしました。会社の一覧に海外の会社を25社足し、答えの文を英語でも返し、国ごとの相談先を出せるようにしました。急かす言葉と乗っ取りの頼みごとは、英語ほか主要な言語でも探します。
+
+### 答えが変わる変更
+
+- **海外の会社を名乗る連絡を、その会社の連絡として照合します。** 足したのは PayPal・Microsoft・Netflix・Meta（Facebook・Instagram・WhatsApp）・eBay・Coinbase・Binance・Chase・Bank of America・Wells Fargo・HSBC・Barclays・Airbnb・Booking.com・Steam（以上 `contract`）、DHL・FedEx・UPS・USPS・Royal Mail・Canada Post・Australia Post・DocuSign・IRS・HMRC（以上 `everyone`）です。**台帳に入れていない `contract` の会社を名乗る連絡は、本物でも赤になります（黄 → 赤）。** 日本の利用者でも、たとえば「PayPal」や「Netflix」と書かれたお知らせは、台帳に入れていなければ赤になります。
+- **住所にこれらの会社の名前を含む、公式でない住所は赤になります（黄 → 赤）。** 例：`paypal-resolution.example`・`dhl-customs.example`。
+- **公式の住所は、各社の公式ページで確かめたものだけです**（確かめた日は `checked`）。Amazon と Apple にも、各社の公式ページにある海外の住所（`amazon.co.uk`・`amazon.de`・`icloud.com` など）を足しました。
+- **英語などの急かす言葉と、乗っ取りの頼みごとでも黄になります（青 → 黄）。** 例：「suspended」「within 24 hours」「verify your identity」「tell us the verification code」「remote access」「git clone … npm install」。スペイン語・フランス語・ドイツ語・イタリア語・ポルトガル語・中国語・韓国語・インドネシア語・ベトナム語の言葉も探します。本物の確認コードの SMS（「Never share this code」）は、乗っ取りの頼みごとにしません。
+- **海外の電話番号も、電話番号として数えます（青 → 黄）。** `+` と国番号で始まる番号（`+44 20 7946 0958` など）と、北米の書き方（`(800) 555-0199`・`1-800-555-0199`）です。
+- **国税庁の言葉と名前の断片に、両端の印を付けました（赤 → 黄、黄 → 青になることがあります）。** これまでは `income-tax` の中の `e-tax` や、`santa-` の中の `nta-` も国税庁とみなしていました。
+- **ヤマト運輸を名乗る英語の言葉「Yamato Transport」を足しました。**
+
+### 足したもの
+
+- **答えの文を英語でも返します。** Python は `judge(text, ledger, lang="en")`、Swift は `Judge.judge(text:ledger:lang:)`。色・理由のコード・名乗った会社・リンク先は、言語で変わりません。行の印（`marks`）と関所（`kango.sekisho.check`）も `lang="en"` を受け取ります。コマンドは `--lang en`。
+- **相談先を国・地域ごとに出します。** `region` に `JP`・`US`・`GB`・`AU` を渡します（コマンドは `--region`）。省いた時は、日本語なら日本の窓口（#9110・188）で、これまでと同じです。英語で `region` を省くと、相談先は出しません。相談先は `url`（届け出のページ）を持つことがあり、`tel` が無いこともあります（Swift の `Helpline.tel` は空の文字列）。
+- **言葉の両端の印（`[` と `]`）。** `data/brands.csv` の言葉の先頭や末尾に付けると、別の単語の中では当たらなくなります（`[ups]` は `groups` に当たらない）。SPEC.md の「言葉の両端の印」。
+- **`data/brands.csv` に `name_en`（英語の名前）の列を足しました。** Swift の `Brand` に `nameEn` と `displayName(_:)` があります。
+- **答えの文と言いまわしの一覧を `data/phrases.json` に移しました。** Python と Swift が同じファイルを読みます。`scripts/sync_brands.py` が写します。Python の `PRESSURE`・`TAKEOVER`・`HEADS`・`TODO`・`HELPLINES`・`MARK_LABELS` は、これまでの形（日本語）のまま残しています。
+- **関所（`kango.sekisho`）が、スペイン語・フランス語・ドイツ語・ポルトガル語・中国語・韓国語の言いまわしも探します**（指示の書きかえ・人に隠させる・鍵を送らせる・解析をやめさせる）。
+- 英語の README（[README.en.md](README.en.md)）。
+- 共通の見本に 51 件（海外の会社の青と赤・短い英語の名前の誤判定を防ぐ見本・多言語の言いまわし・海外の電話番号）、行の印の見本に 1 件を足しました。
+
+### 知っておいてほしい限界
+
+- 相談先を出せるのは、日本・米国・英国・オーストラリアだけです（各国の政府や警察の公式ページで確かめたもの）。カナダなどは、まだ確かめていないので出しません。
+- DHL の日本の住所（`dhl.co.jp`）は、DHL の公式の一覧で確かめられなかったので入れていません。日本の DHL からの本物の連絡が赤になることがあります。
+- `facebook.com` や `docusign.net` のように、だれでもページや書類を置ける公式の住所は、公式として青になりえます。
+- `facebookmail.com`（Facebook の送信用の住所）は、Meta の公式ページで確かめられなかったので入れていません。
+
 ## v0.7.0
 
 会社の一覧に Google を足しました。パスキーは Google や Apple のアカウントの中に入っているので、そのアカウントのパスワード変更を装う偽メールが、パスキーごと乗っ取る入口になります（2026年11月、パスキーを設定した証券口座がこの手口で乗っ取られた疑いが報じられました）。

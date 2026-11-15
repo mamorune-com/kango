@@ -27,31 +27,53 @@ public struct Verdict: Equatable, Sendable {
     public let reasons: [Reason]
     public let claimed: [String]
     public let hosts: [String]
+    /// 答えの文の言語（"ja" か "en"）。色と理由のコードは言語で変わらない
+    public let lang: String
+    /// 相談先を出す国・地域（"JP"・"US"・"GB"・"AU"）。nil なら、日本語は日本、英語は出さない
+    public let region: String?
 
-    public var head: String {
-        switch level {
-        case .green: return "割符が合いました"
-        case .amber: return "確かめきれません"
-        case .red: return "割符が合いません。偽物の疑いが強いです"
+    init(level: Level, reasons: [Reason], claimed: [String], hosts: [String], lang: String = "ja", region: String? = nil) {
+        self.level = level
+        self.reasons = reasons
+        self.claimed = claimed
+        self.hosts = hosts
+        self.lang = lang
+        self.region = region
+    }
+
+    static func levelName(_ l: Level) -> String {
+        switch l {
+        case .green: return "green"
+        case .amber: return "amber"
+        case .red: return "red"
         }
     }
 
-    public var todo: String {
-        switch level {
-        case .green: return "念のため、リンクではなく公式アプリやいつものブックマークから開いて確かめてください。"
-        case .amber: return "リンクは押さずに、公式アプリやいつものブックマークから開いて確かめてください。"
-        case .red: return "リンクは押さないでください。入力してしまった時は、すぐにパスワードを変え、カード会社や銀行に連絡してください。"
-        }
-    }
+    public var head: String { Phrases.bundled.heads[lang]?[Verdict.levelName(level)] ?? "" }
+
+    public var todo: String { Phrases.bundled.todo[lang]?[Verdict.levelName(level)] ?? "" }
 
     public struct Helpline: Hashable, Sendable {
         public let label: String
+        /// かける番号（無い窓口は ""）
         public let tel: String
+        /// 届け出のページ（無い窓口は nil）
+        public let url: String?
+
+        public init(label: String, tel: String, url: String? = nil) {
+            self.label = label
+            self.tel = tel
+            self.url = url
+        }
     }
 
     /// 迷った時の窓口（青では出さない）
     public var helplines: [Helpline] {
-        level == .green ? [] : [.init(label: "警察相談専用電話", tel: "#9110"), .init(label: "消費者ホットライン", tel: "188")]
+        if level == .green { return [] }
+        let r = (region ?? (lang == "ja" ? "JP" : "")).uppercased()
+        return (Phrases.bundled.helplines[r] ?? []).map { h in
+            Helpline(label: lang == "en" ? h.en : h.ja, tel: h.tel ?? "", url: h.url)
+        }
     }
 
     public static func == (a: Verdict, b: Verdict) -> Bool {
@@ -64,41 +86,24 @@ public struct Verdict: Equatable, Sendable {
 public enum Judge {
     static let shorteners: Set<String> = ["bit.ly", "t.co", "tinyurl.com", "is.gd", "x.gd", "t.ly", "cutt.ly", "ow.ly", "rebrand.ly"]
 
-    /// 詐欺によくある言いまわし（言葉ひとつでは赤にしない＝黄まで）
-    static let pressure: [(word: String, reason: String)] = [
-        ("停止", "アカウントの停止で急がせる"), ("凍結", "凍結をちらつかせる"),
-        ("24時間以内", "期限で急がせる"), ("本日中", "期限で急がせる"),
-        ("支払い情報", "支払い情報を入力させようとする"), ("お支払い方法", "支払い方法を更新させようとする"),
-        ("カード情報", "カード情報を求める"), ("暗証番号", "暗証番号を求める（正規の会社は聞きません）"),
-        ("パスワード", "パスワードの入力を求める"), ("ギフトカード", "ギフトカードでの支払いを求める"),
-        ("未納", "未納を理由に払わせる"), ("不在", "不在通知を装う"),
-        ("ご本人確認", "本人確認を名目に入力させる"), ("異常なログイン", "不正ログインで不安をあおる"),
-    ]
+    /// 答えの文の言語
+    public static let languages: [String] = Phrases.bundled.languages
+    /// 相談先を出せる国・地域
+    public static let regions: [String] = Phrases.bundled.helplines.keys.sorted()
+
+    /// 詐欺によくある言いまわし（言葉ひとつでは赤にしない＝黄まで）。日本語・英語ほか主要な言語の言葉を、理由ごとにまとめてある。
+    static let pressure: [Phrases.Pressure] = Phrases.bundled.pressure
 
     /// 乗っ取りの入口によくある頼みごと（顔認証・指紋・パスキーそのものではなく、本人に操作させる手口）。
     /// 言葉だけでは赤にしない＝黄まで。照合は正規化した文面（NFKC・小文字）に対して行う。
-    static let takeover: [(pattern: NSRegularExpression, reason: String)] = [
-        (#"(パスキー|顔認証|指紋認証|生体認証).{0,6}(再登録|再設定|作り直|登録し直|設定し直|登録をし直|設定をし直)"#,
-         "パスキーや顔認証を作り直させようとする"),
-        (#"(自撮り|セルフィー|顔写真(?!付)|顔の(写真|画像|動画)).{0,30}(身分証|免許証|マイナンバーカード|パスポート|在留カード|送信|送って|送付|アップロード)"#,
-         "顔写真や身分証を送らせようとする"),
-        (#"(身分証|免許証|マイナンバーカード|パスポート|在留カード).{0,30}(自撮り|セルフィー|顔写真(?!付)|顔の(写真|画像|動画))"#,
-         "顔写真や身分証を送らせようとする"),
-        (#"(アカウント|ログイン).{0,6}(復旧|復元|ロック解除|ロックを解除|制限解除|制限を解除)"#,
-         "アカウントの復旧を名目に操作させる"),
-        (#"(確認コード|認証コード|認証番号|ワンタイムパスワード|セキュリティコード|qrコード|二次元コード|[0-9]桁の(番号|コード|数字)).{0,20}(教えて|伝えて|読み上げて|お知らせください|返信して|読み取って|読みとって|スキャンして)"#,
-         "確認コードやQRコードを渡させようとする"),
-        (#"(遠隔操作|リモート操作|リモートサポート|画面共有|画面を共有|anydesk|teamviewer|quick ?support|クイックサポート|airdroid)"#,
-         "遠隔操作や画面共有をさせようとする"),
-        // 偽の面接・偽の会議アプリ・コマンドの貼り付け（開発者や会社員の PC を乗っ取る入口）。
-        (#"(課題|選考|面接|コーディングテスト|技術テスト|リポジトリ|github).{0,40}(実行して|動かして|起動して|セットアップして|ビルドして|クローンして|git clone|npm |yarn |pnpm |pip install)"#,
-         "面接の課題などを口実に、渡したコードを動かさせようとする"),
-        (#"(面接|会議|ミーティング|通話|面談|打ち合わせ|ウェビナー).{0,40}(アプリ|ソフト|ツール|プラグイン|拡張機能|ドライバ|コーデック).{0,20}(インストール|ダウンロード|入れて|更新して|アップデートして)"#,
-         "会議や面接のためと言って、アプリや部品を入れさせようとする"),
-        (#"(ターミナル|コマンドプロンプト|powershell|ファイル名を指定して実行).{0,40}(貼り付け|貼りつけ|ペースト|入力して|実行して|打って)|curl [^\n]{0,100}\|\s*(sh|bash|zsh)"#,
-         "コマンドを貼り付けて実行させようとする"),
-    // 「.」は改行にも当てる（頼みごとの途中で行を変えて照合を外す手口があるため）
-    ].map { (try! NSRegularExpression(pattern: $0.0, options: [.dotMatchesLineSeparators]), $0.1) }
+    /// 「.」は改行にも当てる（頼みごとの途中で行を変えて照合を外す手口があるため）
+    static let takeover: [(patterns: [NSRegularExpression], entry: Phrases.Takeover)] = Phrases.bundled.takeover.map { t in
+        (t.patterns.map { try! NSRegularExpression(pattern: $0, options: [.dotMatchesLineSeparators]) }, t)
+    }
+
+    static func matches(_ p: NSRegularExpression, _ s: String) -> Bool {
+        p.firstMatch(in: s, range: NSRange(s.startIndex..., in: s)) != nil
+    }
 
     /// 見た目が似た文字（amaz0n・rakut3n 等）を戻してから、似せた住所を探す
     static let lookalike: [Character: Character] = ["0": "o", "1": "l", "3": "e", "5": "s", "4": "a"]
@@ -122,12 +127,16 @@ public enum Judge {
     /// 住所にふつう使う文字（英小文字・数字・. ・-）。これ以外を含む住所＝見た目を似せる手口か、壊れた住所
     static let hostCharsPattern = try! NSRegularExpression(pattern: #"^[a-z0-9.\-]+$"#)
 
-    /// 電話番号＝0（または +81）で始まり、区切り（空白＝スペース・タブ・改行・U+1680、かっこ・ハイフン類・「.」「・」＝数字の間に3文字まで）を除いて
-    /// 10〜11桁（+81 の時は9〜10桁）。2桁目が 0 の番号（0077 など）も数える。
-    /// 前後に数字が続くもの（注文番号など）は数えない。番号が本物かは確かめられない＝黄まで。
+    /// 電話番号＝次のどれか。前後に数字が続くもの（注文番号など）は数えない。番号が本物かは確かめられない＝黄まで。
+    /// ・0（または +81）で始まり、区切り（空白＝スペース・タブ・改行・U+1680、かっこ・ハイフン類・「.」「・」＝数字の間に3文字まで）を除いて
+    ///   10〜11桁（+81 の時は9〜10桁）。2桁目が 0 の番号（0077 など）も数える。英国・フランス・ドイツなどの国内の書き方もこれに当たる。
+    /// ・+ と国番号で始まる国際的な書き方（+81 以外）。区切りを除いて 8〜15桁。
+    /// ・北米の書き方（(800) 555-0199・800-555-0199・1-800-555-0199）。3桁・3桁・4桁を区切りでつなぐ（区切りの無い10桁は数えない）。
     static let phoneSeparators = #"[ \t\n\u1680()\-‐−–—―ー.・]{0,3}"#
     static let phonePattern = try! NSRegularExpression(
-        pattern: #"(?<![0-9])(?:\+81|0)"# + phoneSeparators + #"[0-9](?:"# + phoneSeparators + #"[0-9]){8,9}(?![0-9])"#)
+        pattern: #"(?<![0-9])(?:(?:\+81|0)"# + phoneSeparators + #"[0-9](?:"# + phoneSeparators + #"[0-9]){8,9}"#
+            + #"|\+(?!81)[1-9](?:"# + phoneSeparators + #"[0-9]){7,14}"#
+            + #"|(?:1[ .\-])?(?:\([2-9][0-9]{2}\) ?|[2-9][0-9]{2}[ .\-])[2-9][0-9]{2}[ .\-][0-9]{4})(?![0-9])"#)
 
     /// 改行のなかま（CR・垂直タブ・改ページ・U+001C〜001F・U+0085・行と段落の区切り）。LF にそろえる
     /// （「.」や空白が何に当たるかが言語ごとに違い、答えが食い違うため）。
@@ -178,6 +187,30 @@ public enum Judge {
         if hay.count < n.count { return false }
         for i in 0...(hay.count - n.count) where hay[i] == n[0] {
             if hay[i..<(i + n.count)].elementsEqual(n) { return true }
+        }
+        return false
+    }
+
+    static func isAsciiAlnum(_ u: Unicode.Scalar) -> Bool {
+        (0x61...0x7A).contains(u.value) || (0x30...0x39).contains(u.value)
+    }
+
+    /// hay に w が含まれるか。w の先頭の「[」＝その前が英数字でないこと、末尾の「]」＝その後ろが英数字でないこと
+    /// （"[ups]" は groups の中の ups に当たらない・"[chase card" は purchase card に当たらない）。Python の _has と同じ。
+    static func hasToken(_ hay: [Unicode.Scalar], _ w: String) -> Bool {
+        var n = Array(w.unicodeScalars)
+        let left = n.first == "["
+        let right = n.count > 1 && n.last == "]"
+        if left { n.removeFirst() }
+        if right { n.removeLast() }
+        if !left && !right { return has(hay, w) }
+        if n.isEmpty { return true }
+        if hay.count < n.count { return false }
+        for i in 0...(hay.count - n.count) where hay[i..<(i + n.count)].elementsEqual(n) {
+            let j = i + n.count
+            if (!left || i == 0 || !isAsciiAlnum(hay[i - 1])) && (!right || j == hay.count || !isAsciiAlnum(hay[j])) {
+                return true
+            }
         }
         return false
     }
@@ -259,16 +292,22 @@ public enum Judge {
 
     /// 公式でない住所に、会社の名前（似せた文字も含む）が入っていれば その会社
     public static func mimicked(_ host: String, in brands: [Brand]) -> Brand? {
-        let plain = String(host.map { lookalike[$0] ?? $0 })
+        let plain = Array(String(host.map { lookalike[$0] ?? $0 }).unicodeScalars)
+        let hs = Array(host.unicodeScalars)
         return brands.first { b in
-            !isOfficial(host, b) && b.stems.contains { host.contains($0) || plain.contains($0) }
+            !isOfficial(host, b) && b.stems.contains { hasToken(hs, $0) || hasToken(plain, $0) }
         }
     }
 
-    public static func judge(text: String, ledger: Set<String>, brands: [Brand] = Catalog.bundled) -> Verdict {
+    /// 勘合の判定。lang＝答えの文の言語（"ja" か "en"・それ以外は "ja"）。region＝相談先の国・地域（"JP"・"US"・"GB"・"AU"）。
+    /// 色と理由のコードは lang と region で変わらない。
+    public static func judge(text: String, ledger: Set<String>, brands: [Brand] = Catalog.bundled,
+                             lang: String = "ja", region: String? = nil) -> Verdict {
+        let lang = languages.contains(lang) ? lang : "ja"
+        let ph = Phrases.bundled
         let low = norm(text)
         let lowScalars = Array(low.unicodeScalars)
-        let claimed = brands.filter { b in b.words.contains { has(lowScalars, norm($0)) } }
+        let claimed = brands.filter { b in b.words.contains { hasToken(lowScalars, norm($0)) } }
         let found = scan(text)
         let hosts = unique(found.urls.compactMap(host(of:)) + found.bare)
         var reasons: [Verdict.Reason] = []
@@ -280,13 +319,13 @@ public enum Judge {
         }
 
         if claimed.isEmpty {
-            say("no_claim", "どの会社を名乗っているか読み取れませんでした。", .amber)
+            say("no_claim", ph.text(lang, "no_claim"), .amber)
         }
         for b in claimed where b.kind == .contract {
             if ledger.contains(b.id) {
-                say("in_ledger", "「\(b.name)」はあなたの割符にあります。", .green, b.id)
+                say("in_ledger", ph.text(lang, "in_ledger", ["name": b.displayName(lang)]), .green, b.id)
             } else {
-                say("not_in_ledger", "「\(b.name)」を名乗っていますが、あなたの割符（契約している会社）にありません。", .red, b.id)
+                say("not_in_ledger", ph.text(lang, "not_in_ledger", ["name": b.displayName(lang)]), .red, b.id)
             }
         }
 
@@ -296,62 +335,60 @@ public enum Judge {
         }.map { host(of: $0) ?? "" })   // 行き先が空で読み取れないもの（https://本物の住所@/）も数える（"" で表す）
         for h in tricked {
             if h.isEmpty {
-                say("disguised", "リンクの住所に「@」や「\\」を使った見せかけがあります。本当の行き先は読み取れません。", .red)
+                say("disguised", ph.text(lang, "disguised_unreadable"), .red)
             } else {
-                say("disguised", "リンクの住所に「@」や「\\」を使った見せかけがあります。本当の行き先は「\(h)」です。", .red, h)
+                say("disguised", ph.text(lang, "disguised", ["host": h]), .red, h)
             }
         }
 
         for h in hosts {
             if shorteners.contains(h) {
-                say("shortener", "リンク（\(h)）は短縮URLで、行き先が見えません。", .amber, h)
+                say("shortener", ph.text(lang, "shortener", ["host": h]), .amber, h)
                 continue
             }
             if h.hasPrefix("xn--") || h.contains(".xn--") || !hasOnlyHostChars(h) {
-                say("idn", "リンク先「\(h)」は、ふつうの住所には使わない文字を含んでいます。見た目を似せる手口に使われます。", .red, h)
+                say("idn", ph.text(lang, "idn", ["host": h]), .red, h)
                 continue
             }
             let owner = brands.first { isOfficial(h, $0) }
             if !claimed.isEmpty && !claimed.contains(where: { isOfficial(h, $0) }) {
                 if let look = mimicked(h, in: claimed) {
-                    say("mimic", "リンク先「\(h)」は「\(look.name)」に似せた住所ですが、公式の住所ではありません。", .red, h)
+                    say("mimic", ph.text(lang, "mimic", ["host": h, "name": look.displayName(lang)]), .red, h)
                 } else {
-                    say("off_domain", "リンク先「\(h)」は、名乗った会社の公式の住所ではありません。", .red, h)
+                    say("off_domain", ph.text(lang, "off_domain", ["host": h]), .red, h)
                 }
             } else if let owner {
-                say("official", "リンク先「\(h)」は「\(owner.name)」の公式の住所と一致しました。", .green, h)
+                say("official", ph.text(lang, "official", ["host": h, "name": owner.displayName(lang)]), .green, h)
             } else if let look = mimicked(h, in: brands) {
-                say("mimic", "リンク先「\(h)」は「\(look.name)」に似せた住所ですが、公式の住所ではありません。", .red, h)
+                say("mimic", ph.text(lang, "mimic", ["host": h, "name": look.displayName(lang)]), .red, h)
             } else {
-                say("unknown_domain", "リンク先「\(h)」は、登録された公式の住所ではありません。", .amber, h)
+                say("unknown_domain", ph.text(lang, "unknown_domain", ["host": h]), .amber, h)
             }
         }
 
         // リンク（https:// の無いものも）の中の数字は数えない（住所はリンクとして照合済み）
         if phonePattern.firstMatch(in: found.plain, range: NSRange(found.plain.startIndex..., in: found.plain)) != nil {
-            say("phone", "電話番号が書かれています。この番号が本物かは確かめられません。電話する時は、公式サイトやカードの裏面など、自分で確かめた番号からかけてください。", .amber)
+            say("phone", ph.text(lang, "phone"), .amber)
         }
 
-        let tricks = unique(pressure.filter { has(lowScalars, $0.word) }.map(\.reason))
+        let sep = ph.messages[lang]?["list_sep"] ?? "、"
+        let tricks = unique(pressure.filter { p in p.words.contains { has(lowScalars, $0) } }.map { $0.reason(lang) })
         if !tricks.isEmpty {
-            say("pressure", "詐欺によくある言いまわし：" + tricks.joined(separator: "、") + "。", .amber)
+            say("pressure", ph.text(lang, "pressure", ["list": tricks.joined(separator: sep)]), .amber)
         }
 
-        let asks = unique(takeover.filter {
-            $0.pattern.firstMatch(in: low, range: NSRange(low.startIndex..., in: low)) != nil
-        }.map(\.reason))
+        let asks = unique(takeover.filter { t in t.patterns.contains { matches($0, low) } }.map { $0.entry.reason(lang) })
         if !asks.isEmpty {
-            say("takeover", "乗っ取りの入口によくある頼みごと：" + asks.joined(separator: "、") + "。"
-                + "本物の会社は、ふつうメールやSMSのリンク・電話でこれを頼みません。公式アプリから自分で確かめてください。", .amber)
+            say("takeover", ph.text(lang, "takeover", ["list": asks.joined(separator: sep)]), .amber)
         }
 
         // 何ひとつ照らし合わせられなかった（配送・郵便・国税庁を名乗り、リンクが無い等）＝青にしない。
         // 青は、何か1つでも割符が合った時（in_ledger・official）だけ。
         if reasons.isEmpty {
-            say("nothing_to_check", "割符（契約している会社）や公式の住所へのリンクなど、照らし合わせられるものがありませんでした。", .amber)
+            say("nothing_to_check", ph.text(lang, "nothing_to_check"), .amber)
         }
 
-        return Verdict(level: level, reasons: reasons, claimed: claimed.map(\.id), hosts: hosts)
+        return Verdict(level: level, reasons: reasons, claimed: claimed.map(\.id), hosts: hosts, lang: lang, region: region)
     }
 
     static func unique(_ xs: [String]) -> [String] {

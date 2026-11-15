@@ -1,31 +1,56 @@
-id,name,kind,words,domains,stems,checked
-amazon,Amazon,contract,amazon|アマゾン,amazon.co.jp|amazon.com|amazon.jp,amazon,
-rakuten,楽天,contract,楽天|rakuten,rakuten.co.jp|rakuten-card.co.jp|rakuten-bank.co.jp|rakuten.jp|rakuten-card.jp|rakuten-static.com|rakuten-wallet.co.jp|rakuten-insurance.co.jp,rakuten,2026-10-31
-mercari,メルカリ,contract,メルカリ|mercari|メルペイ|merpay,mercari.com|merpay.com|mercari-shops.com,mercari,2026-10-31
-paypay,PayPay,contract,paypay|ペイペイ,paypay.ne.jp|paypay.co.jp|paypay-card.co.jp|paypay-corp.co.jp|paypay-business.jp,paypay,2026-10-31
-yucho,ゆうちょ銀行,contract,ゆうちょ,jp-bank.japanpost.jp,yucho|jp-bank,2026-10-31
-smbccard,三井住友カード,contract,三井住友カード|vpass,smbc-card.com|vpass.ne.jp,smbc|vpass,2026-10-31
-smbc,三井住友銀行,contract,三井住友銀行,smbc.co.jp,smbc,2026-10-31
-mufg,三菱UFJ銀行,contract,三菱ufj,bk.mufg.jp|mufg.jp,mufg,2026-10-31
-jcb,JCB,contract,jcb,jcb.co.jp|global.jcb,jcb,2026-10-31
-aeon,イオンカード,contract,イオンカード|イオン銀行,aeon.co.jp|aeonbank.co.jp,aeon,
-docomo,ドコモ,contract,ドコモ|docomo|dカード,docomo.ne.jp|nttdocomo.co.jp,docomo,2026-10-31
-au,au,contract,kddi|auじぶん|au id|au pay,au.com|kddi.com|auone.jp,kddi,2026-10-31
-softbank,ソフトバンク,contract,ソフトバンク|softbank|ワイモバイル|y!mobile|linemo,softbank.jp|ymobile.jp|linemo.jp,softbank,2026-10-31
-apple,Apple,contract,apple|アップル|icloud,apple.com|icloud.com,apple|icloud,
-google,Google,contract,googleアカウント|google アカウント|google account|グーグルアカウント|グーグル アカウント|gmail アカウント|gmailアカウント,accounts.google.com|myaccount.google.com|support.google.com|g.co,google,
-saison,セゾンカード,contract,セゾン|saison card|saisoncard|セゾンポータル|saison portal,saisoncard.co.jp|saisonportal.jp|saison.link|saisonid.com|a-q-f.com|pointunyou.jp,saisoncard|saisonportal|saisonid,2026-11-02
-epos,エポスカード,contract,エポス|eposcard|epos card,eposcard.co.jp,eposcard,2026-11-02
-amex,アメリカン・エキスプレス,contract,アメックス|アメリカン・エキスプレス|アメリカンエキスプレス|american express|americanexpress|amex,americanexpress.com|aexp-static.com|amex,amex|americanexpress,2026-11-02
-view,ビューカード,contract,ビューカード|viewカード|viewcard|view card|viewsnet|view's net,jreast.co.jp|viewsnet.jp,viewcard|viewsnet,2026-11-02
-orico,オリコ,contract,オリコ|orico,orico.co.jp|oricomall.com|orico-web.jp,orico,2026-11-02
-lifecard,ライフカード,contract,ライフカード|lifecard|life card,lifecard.co.jp,lifecard,2026-11-02
-jaccs,ジャックス,contract,ジャックス|jaccs,jaccs.co.jp,jaccs,2026-11-05
-uccard,UCカード,contract,UCカード|uc card|uccard|アットユーネット,uccard.co.jp|saisoncard.co.jp,uccard|atunet,2026-11-05
-micard,エムアイカード,contract,エムアイカード|miカード|mi card|micard,micard.co.jp,micard,2026-11-05
-toyotafinance,トヨタファイナンス,contract,トヨタファイナンス|toyota finance|ts cubic|tscubic,toyota-finance.co.jp|tscubic.com,toyota-finance|toyotafinance|tscubic,2026-11-05
-pocketcard,ポケットカード,contract,ポケットカード|pocketcard|pocket card,pocketcard.co.jp,pocketcard,2026-11-05
-yamato,ヤマト運輸,everyone,ヤマト|クロネコ,kuronekoyamato.co.jp,kuroneko|yamato,
-sagawa,佐川急便,everyone,佐川,sagawa-exp.co.jp,sagawa,
-jppost,日本郵便,everyone,日本郵便|郵便局,japanpost.jp,japanpost|japan-post,2026-10-31
-nta,国税庁,everyone,国税庁|e-tax|税務署,nta.go.jp,e-tax|etax|nta-,2026-10-31
+id,name,kind,words,domains,stems,checked,name_en
+amazon,Amazon,contract,amazon|アマゾン,amazon.co.jp|amazon.com|amazon.jp|amazon.ca|amazon.com.mx|amazon.com.br|amazon.co.uk|amazon.de|amazon.fr|amazon.it|amazon.es|amazon.nl|amazon.se|amazon.pl|amazon.com.be|amazon.ie|amazon.com.tr|amazon.ae|amazon.sa|amazon.in|amazon.sg|amazon.com.au|amazon.co.za,amazon,,Amazon
+rakuten,楽天,contract,楽天|rakuten,rakuten.co.jp|rakuten-card.co.jp|rakuten-bank.co.jp|rakuten.jp|rakuten-card.jp|rakuten-static.com|rakuten-wallet.co.jp|rakuten-insurance.co.jp,rakuten,2026-10-31,Rakuten
+mercari,メルカリ,contract,メルカリ|mercari|メルペイ|merpay,mercari.com|merpay.com|mercari-shops.com,mercari,2026-10-31,Mercari
+paypay,PayPay,contract,paypay|ペイペイ,paypay.ne.jp|paypay.co.jp|paypay-card.co.jp|paypay-corp.co.jp|paypay-business.jp,paypay,2026-10-31,PayPay
+yucho,ゆうちょ銀行,contract,ゆうちょ|japan post bank,jp-bank.japanpost.jp,yucho|jp-bank,2026-10-31,Japan Post Bank
+smbccard,三井住友カード,contract,三井住友カード|vpass,smbc-card.com|vpass.ne.jp,smbc|vpass,2026-10-31,Sumitomo Mitsui Card
+smbc,三井住友銀行,contract,三井住友銀行,smbc.co.jp,smbc,2026-10-31,Sumitomo Mitsui Banking Corporation
+mufg,三菱UFJ銀行,contract,三菱ufj|mufg bank,bk.mufg.jp|mufg.jp,mufg,2026-10-31,MUFG Bank
+jcb,JCB,contract,jcb,jcb.co.jp|global.jcb,jcb,2026-10-31,JCB
+aeon,イオンカード,contract,イオンカード|イオン銀行,aeon.co.jp|aeonbank.co.jp,aeon,,AEON Card
+docomo,ドコモ,contract,ドコモ|docomo|dカード,docomo.ne.jp|nttdocomo.co.jp,docomo,2026-10-31,NTT docomo
+au,au,contract,kddi|auじぶん|au id|au pay,au.com|kddi.com|auone.jp,kddi,2026-10-31,au (KDDI)
+softbank,ソフトバンク,contract,ソフトバンク|softbank|ワイモバイル|y!mobile|linemo,softbank.jp|ymobile.jp|linemo.jp,softbank,2026-10-31,SoftBank
+apple,Apple,contract,apple|アップル|icloud,apple.com|icloud.com|me.com|mac.com,apple|icloud,2026-11-15,Apple
+google,Google,contract,googleアカウント|google アカウント|google account|グーグルアカウント|グーグル アカウント|gmail アカウント|gmailアカウント,accounts.google.com|myaccount.google.com|support.google.com|g.co,google,,Google
+saison,セゾンカード,contract,セゾン|saison card|saisoncard|セゾンポータル|saison portal,saisoncard.co.jp|saisonportal.jp|saison.link|saisonid.com|a-q-f.com|pointunyou.jp,saisoncard|saisonportal|saisonid,2026-11-02,Saison Card
+epos,エポスカード,contract,エポス|eposcard|epos card,eposcard.co.jp,eposcard,2026-11-02,Epos Card
+amex,アメリカン・エキスプレス,contract,アメックス|アメリカン・エキスプレス|アメリカンエキスプレス|american express|americanexpress|amex,americanexpress.com|aexp-static.com|amex,amex|americanexpress,2026-11-02,American Express
+view,ビューカード,contract,ビューカード|viewカード|viewcard|view card|viewsnet|view's net,jreast.co.jp|viewsnet.jp,viewcard|viewsnet,2026-11-02,View Card
+orico,オリコ,contract,オリコ|orico,orico.co.jp|oricomall.com|orico-web.jp,orico,2026-11-02,Orico
+lifecard,ライフカード,contract,ライフカード|lifecard|life card,lifecard.co.jp,lifecard,2026-11-02,Life Card
+jaccs,ジャックス,contract,ジャックス|jaccs,jaccs.co.jp,jaccs,2026-11-05,JACCS
+uccard,UCカード,contract,UCカード|uc card|uccard|アットユーネット,uccard.co.jp|saisoncard.co.jp,uccard|atunet,2026-11-05,UC Card
+micard,エムアイカード,contract,エムアイカード|miカード|mi card|micard,micard.co.jp,micard,2026-11-05,MI Card
+toyotafinance,トヨタファイナンス,contract,トヨタファイナンス|toyota finance|ts cubic|tscubic,toyota-finance.co.jp|tscubic.com,toyota-finance|toyotafinance|tscubic,2026-11-05,Toyota Finance
+pocketcard,ポケットカード,contract,ポケットカード|pocketcard|pocket card,pocketcard.co.jp,pocketcard,2026-11-05,Pocket Card
+paypal,PayPal,contract,paypal|ペイパル,paypal.com,paypal,2026-11-15,PayPal
+microsoft,Microsoft,contract,microsoft account|microsoftアカウント|microsoft アカウント|マイクロソフトアカウント|マイクロソフト アカウント|microsoft 365|office 365|microsoft support|microsoft security|microsoft:|【microsoft】|【マイクロソフト】,www.microsoft.com|account.microsoft.com|accountprotection.microsoft.com|support.microsoft.com|login.microsoftonline.com|login.live.com|account.live.com,microsoft|microsoftonline|office365,2026-11-15,Microsoft
+netflix,Netflix,contract,netflix|ネットフリックス,netflix.com,netflix,2026-11-15,Netflix
+meta,Meta（Facebook・Instagram・WhatsApp）,contract,facebook account|facebookアカウント|facebook アカウント|フェイスブックアカウント|facebook security|facebook support|facebook:|【facebook】|instagram account|instagramアカウント|instagram アカウント|インスタグラムアカウント|instagram security|instagram support|instagram:|【instagram】|whatsapp account|whatsappアカウント|whatsapp support|whatsapp:|【whatsapp】|[meta account|[metaアカウント|[meta verified|[meta business|[meta support|[meta:|【meta】,facebook.com|instagram.com|whatsapp.com|meta.com|threads.net,facebook|instagram|whatsapp,2026-11-15,"Meta (Facebook, Instagram, WhatsApp)"
+ebay,eBay,contract,ebay|イーベイ,ebay.com|ebay.co.uk|ebay.com.au|ebay.ca|ebay.com.sg,ebay,2026-11-15,eBay
+coinbase,Coinbase,contract,coinbase|コインベース,coinbase.com,coinbase,2026-11-15,Coinbase
+binance,Binance,contract,binance|バイナンス,binance.com,binance,2026-11-15,Binance
+chase,Chase,contract,[chase bank|jpmorgan chase|[chase card|[chase account|[chase online|[chase sapphire|[chase freedom|[chase alert|[chase fraud|[chase:|【chase】|[chase.com,chase.com|jpmorganchase.com|jpmorgan.com|chase.ca,[chase]|jpmorganchase,2026-11-15,Chase
+bofa,バンク・オブ・アメリカ,contract,bank of america|bankofamerica|[bofa],bankofamerica.com|bofa.com,bankofamerica|[bofa],2026-11-15,Bank of America
+wellsfargo,ウェルズ・ファーゴ,contract,wells fargo|wellsfargo,wellsfargo.com|wf.com,wellsfargo|wells-fargo,2026-11-15,Wells Fargo
+hsbc,HSBC,contract,hsbc,hsbc.co.uk|hsbc.com|hsbc.uk|hsbc.ae,hsbc,2026-11-15,HSBC
+barclays,バークレイズ,contract,barclays|barclaycard,barclays.co.uk|barclays.com|barclaycard.co.uk,barclays|barclaycard,2026-11-15,Barclays
+airbnb,Airbnb,contract,airbnb|エアビーアンドビー,airbnb.com|airbnb.co.uk|airbnb.es|airbnb.it|airbnb.at,airbnb,2026-11-15,Airbnb
+booking,Booking.com,contract,booking.com|ブッキングドットコム,booking.com,,2026-11-15,Booking.com
+steam,Steam,contract,[steam account|[steam guard|[steam support|[steam wallet|steamcommunity|steampowered|[steam:|【steam】,steampowered.com|steamcommunity.com|valvesoftware.com,steamcommunity|steampowered|[steam],2026-11-15,Steam
+yamato,ヤマト運輸,everyone,ヤマト|クロネコ|yamato transport,kuronekoyamato.co.jp,kuroneko|yamato,,Yamato Transport
+sagawa,佐川急便,everyone,佐川|sagawa express,sagawa-exp.co.jp,sagawa,,Sagawa Express
+jppost,日本郵便,everyone,日本郵便|郵便局|japan post,japanpost.jp,japanpost|japan-post,2026-10-31,Japan Post
+nta,国税庁,everyone,国税庁|[e-tax|税務署|national tax agency,nta.go.jp,[e-tax|[etax|[nta-,2026-10-31,National Tax Agency (Japan)
+dhl,DHL,everyone,dhl,dhl.com|dpdhl.com|dhl-news.com|dhl.de|dhl.fr|dhl.ae|dhl,dhl,2026-11-15,DHL
+fedex,FedEx,everyone,fedex|フェデックス,fedex.com,fedex,2026-11-15,FedEx
+ups,UPS,everyone,united parcel service|[ups package|[ups delivery|[ups parcel|[ups shipment|[ups tracking|[ups my choice|[ups:|【ups】|[ups.com,ups.com,[ups],2026-11-15,UPS
+usps,米国郵便公社（USPS）,everyone,usps|united states postal service|us postal service,usps.com,usps,2026-11-15,USPS (United States Postal Service)
+royalmail,ロイヤルメール,everyone,royal mail|royalmail|parcelforce,royalmail.com|parcelforce.com,royalmail|royal-mail|parcelforce,2026-11-15,Royal Mail
+canadapost,カナダ郵便,everyone,canada post|postes canada|canadapost,canadapost-postescanada.ca|canadapost.ca,canadapost|postescanada|canada-post,2026-11-15,Canada Post
+auspost,オーストラリア郵便,everyone,australia post|auspost,auspost.com.au,auspost,2026-11-15,Australia Post
+docusign,DocuSign,everyone,docusign|ドキュサイン,docusign.net|docusign.com,docusign,2026-11-15,DocuSign
+irs,米国内国歳入庁（IRS）,everyone,internal revenue service|[irs],irs.gov,[irs],2026-11-15,IRS (US Internal Revenue Service)
+hmrc,英国歳入関税庁（HMRC）,everyone,hmrc|hm revenue,gov.uk,hmrc,2026-11-15,HMRC (UK tax authority)

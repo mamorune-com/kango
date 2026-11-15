@@ -1,0 +1,575 @@
+{
+ "_note": "Wording and phrase lists for kango (source of truth). After editing, run: python3 scripts/sync_brands.py",
+ "languages": [
+  "ja",
+  "en"
+ ],
+ "heads": {
+  "ja": {
+   "green": "割符が合いました",
+   "amber": "確かめきれません",
+   "red": "割符が合いません。偽物の疑いが強いです"
+  },
+  "en": {
+   "green": "The tallies match",
+   "amber": "Can't confirm",
+   "red": "The tallies don't match. This is very likely fake."
+  }
+ },
+ "todo": {
+  "ja": {
+   "green": "念のため、リンクではなく公式アプリやいつものブックマークから開いて確かめてください。",
+   "amber": "リンクは押さずに、公式アプリやいつものブックマークから開いて確かめてください。",
+   "red": "リンクは押さないでください。入力してしまった時は、すぐにパスワードを変え、カード会社や銀行に連絡してください。"
+  },
+  "en": {
+   "green": "Just in case, open it from the official app or your usual bookmark instead of the link.",
+   "amber": "Don't tap the link. Open the official app or your usual bookmark to check.",
+   "red": "Don't tap the link. If you've already entered anything, change your password right away and contact your bank or card company."
+  }
+ },
+ "messages": {
+  "ja": {
+   "no_claim": "どの会社を名乗っているか読み取れませんでした。",
+   "not_in_ledger": "「{name}」を名乗っていますが、あなたの割符（契約している会社）にありません。",
+   "in_ledger": "「{name}」はあなたの割符にあります。",
+   "disguised": "リンクの住所に「@」や「\\」を使った見せかけがあります。本当の行き先は「{host}」です。",
+   "disguised_unreadable": "リンクの住所に「@」や「\\」を使った見せかけがあります。本当の行き先は読み取れません。",
+   "shortener": "リンク（{host}）は短縮URLで、行き先が見えません。",
+   "idn": "リンク先「{host}」は、ふつうの住所には使わない文字を含んでいます。見た目を似せる手口に使われます。",
+   "mimic": "リンク先「{host}」は「{name}」に似せた住所ですが、公式の住所ではありません。",
+   "off_domain": "リンク先「{host}」は、名乗った会社の公式の住所ではありません。",
+   "official": "リンク先「{host}」は「{name}」の公式の住所と一致しました。",
+   "unknown_domain": "リンク先「{host}」は、登録された公式の住所ではありません。",
+   "phone": "電話番号が書かれています。この番号が本物かは確かめられません。電話する時は、公式サイトやカードの裏面など、自分で確かめた番号からかけてください。",
+   "pressure": "詐欺によくある言いまわし：{list}。",
+   "takeover": "乗っ取りの入口によくある頼みごと：{list}。本物の会社は、ふつうメールやSMSのリンク・電話でこれを頼みません。公式アプリから自分で確かめてください。",
+   "nothing_to_check": "割符（契約している会社）や公式の住所へのリンクなど、照らし合わせられるものがありませんでした。",
+   "list_sep": "、"
+  },
+  "en": {
+   "no_claim": "Couldn't tell which company this claims to be from.",
+   "not_in_ledger": "It claims to be from {name}, but {name} isn't in your ledger (the companies you actually use).",
+   "in_ledger": "{name} is in your ledger.",
+   "disguised": "The link uses \"@\" or \"\\\" to disguise where it goes. It actually goes to \"{host}\".",
+   "disguised_unreadable": "The link uses \"@\" or \"\\\" to disguise where it goes. Where it actually goes can't be read.",
+   "shortener": "The link ({host}) is a shortened URL, so you can't see where it goes.",
+   "idn": "The link \"{host}\" contains characters that normal web addresses don't use. This trick is used to make a fake address look real.",
+   "mimic": "The link \"{host}\" is made to look like an address of {name}, but it isn't an official one.",
+   "off_domain": "The link \"{host}\" isn't an official address of the company it claims to be from.",
+   "official": "The link \"{host}\" matches an official address of {name}.",
+   "unknown_domain": "The link \"{host}\" isn't one of the registered official addresses.",
+   "phone": "There's a phone number in the message. There's no way to tell whether it's real. If you call, use a number you've checked yourself, such as on the official website or the back of your card.",
+   "pressure": "Wording common in scams: {list}.",
+   "takeover": "A request often used to take over accounts: {list}. Real companies don't usually ask for this through a link in an email or text, or over the phone. Check in the official app yourself.",
+   "nothing_to_check": "There was nothing to check this against: no company in your ledger and no link to an official address.",
+   "list_sep": "; "
+  }
+ },
+ "pressure": [
+  {
+   "key": "suspend",
+   "words": [
+    "停止",
+    "suspend",
+    "deactivat",
+    "suspendid",
+    "suspendu",
+    "sospes",
+    "suspensa",
+    "suspenso",
+    "暂停",
+    "暫停",
+    "停用",
+    "정지",
+    "ditangguhkan",
+    "tạm ngưng"
+   ],
+   "ja": "アカウントの停止で急がせる",
+   "en": "threatens to suspend the account"
+  },
+  {
+   "key": "freeze",
+   "words": [
+    "凍結",
+    "frozen",
+    "locked",
+    "冻结",
+    "封号",
+    "封號",
+    "동결",
+    "잠금",
+    "bloquead",
+    "bloqué",
+    "congelad",
+    "gesperrt",
+    "bloccat",
+    "dibekukan",
+    "đóng băng"
+   ],
+   "ja": "凍結をちらつかせる",
+   "en": "threatens to freeze or lock the account"
+  },
+  {
+   "key": "deadline",
+   "words": [
+    "24時間以内",
+    "本日中",
+    "within 24",
+    "within 48",
+    "expires today",
+    "en 24 horas",
+    "en las próximas 24",
+    "dans les 24",
+    "sous 24",
+    "innerhalb von 24",
+    "innerhalb 24",
+    "entro 24",
+    "em 24 horas",
+    "nas próximas 24",
+    "24小时内",
+    "24小時內",
+    "24시간 이내",
+    "24시간 내",
+    "dalam 24 jam",
+    "trong vòng 24"
+   ],
+   "ja": "期限で急がせる",
+   "en": "rushes you with a deadline"
+  },
+  {
+   "key": "payment_info",
+   "words": [
+    "支払い情報",
+    "payment information",
+    "payment details",
+    "billing information",
+    "billing details",
+    "información de pago",
+    "datos de pago",
+    "informations de paiement",
+    "données de paiement",
+    "zahlungsinformationen",
+    "zahlungsdaten",
+    "informazioni di pagamento",
+    "dati di pagamento",
+    "informações de pagamento",
+    "dados de pagamento",
+    "支付信息",
+    "付款信息",
+    "付款資訊",
+    "支付資訊",
+    "결제 정보",
+    "결제정보",
+    "informasi pembayaran",
+    "thông tin thanh toán"
+   ],
+   "ja": "支払い情報を入力させようとする",
+   "en": "tries to get you to enter payment details"
+  },
+  {
+   "key": "payment_method",
+   "words": [
+    "お支払い方法",
+    "payment method",
+    "método de pago",
+    "moyen de paiement",
+    "mode de paiement",
+    "zahlungsmethode",
+    "zahlungsart",
+    "metodo di pagamento",
+    "método de pagamento",
+    "forma de pagamento",
+    "支付方式",
+    "付款方式",
+    "결제 수단",
+    "결제수단",
+    "metode pembayaran",
+    "phương thức thanh toán"
+   ],
+   "ja": "支払い方法を更新させようとする",
+   "en": "asks you to update your payment method"
+  },
+  {
+   "key": "card",
+   "words": [
+    "カード情報",
+    "card details",
+    "card number",
+    "card information",
+    "datos de la tarjeta",
+    "número de tarjeta",
+    "numéro de carte",
+    "kartennummer",
+    "kartendaten",
+    "numero della carta",
+    "dati della carta",
+    "número do cartão",
+    "dados do cartão",
+    "卡号",
+    "卡號",
+    "信用卡信息",
+    "信用卡資訊",
+    "카드 번호",
+    "카드번호",
+    "카드 정보",
+    "nomor kartu",
+    "số thẻ"
+   ],
+   "ja": "カード情報を求める",
+   "en": "asks for card details"
+  },
+  {
+   "key": "pin",
+   "words": [
+    "暗証番号",
+    "pin code",
+    "pin number",
+    "code secret",
+    "geheimzahl",
+    "código pin",
+    "codice pin",
+    "口令",
+    "pin码",
+    "pin碼"
+   ],
+   "ja": "暗証番号を求める（正規の会社は聞きません）",
+   "en": "asks for a PIN (real companies don't ask for it)"
+  },
+  {
+   "key": "password",
+   "words": [
+    "パスワード",
+    "password",
+    "passcode",
+    "contraseña",
+    "mot de passe",
+    "passwort",
+    "kennwort",
+    "senha",
+    "密码",
+    "密碼",
+    "비밀번호",
+    "kata sandi",
+    "mật khẩu"
+   ],
+   "ja": "パスワードの入力を求める",
+   "en": "asks you to enter a password"
+  },
+  {
+   "key": "giftcard",
+   "words": [
+    "ギフトカード",
+    "gift card",
+    "giftcard",
+    "tarjeta de regalo",
+    "carte cadeau",
+    "carte-cadeau",
+    "geschenkkarte",
+    "carta regalo",
+    "cartão-presente",
+    "cartão presente",
+    "礼品卡",
+    "禮品卡",
+    "기프트카드",
+    "기프트 카드",
+    "kartu hadiah",
+    "thẻ quà tặng"
+   ],
+   "ja": "ギフトカードでの支払いを求める",
+   "en": "asks for payment in gift cards"
+  },
+  {
+   "key": "unpaid",
+   "words": [
+    "未納",
+    "unpaid",
+    "overdue",
+    "outstanding balance",
+    "impago",
+    "pendiente de pago",
+    "impayé",
+    "unbezahlt",
+    "offene rechnung",
+    "non pagat",
+    "em atraso",
+    "未付款",
+    "未缴",
+    "未繳",
+    "欠费",
+    "欠費",
+    "미납",
+    "belum dibayar",
+    "chưa thanh toán"
+   ],
+   "ja": "未納を理由に払わせる",
+   "en": "says something is unpaid to make you pay"
+  },
+  {
+   "key": "missed_delivery",
+   "words": [
+    "不在",
+    "missed delivery",
+    "delivery attempt",
+    "unable to deliver",
+    "could not be delivered",
+    "couldn't be delivered",
+    "intento de entrega",
+    "no pudimos entregar",
+    "tentative de livraison",
+    "zustellversuch",
+    "nicht zugestellt",
+    "tentativo di consegna",
+    "tentativa de entrega",
+    "派送失败",
+    "投递失败",
+    "投遞失敗",
+    "배송 실패",
+    "배달 실패",
+    "gagal dikirim",
+    "giao hàng không thành công"
+   ],
+   "ja": "不在通知を装う",
+   "en": "pretends to be a missed-delivery notice"
+  },
+  {
+   "key": "verify_identity",
+   "words": [
+    "ご本人確認",
+    "verify your identity",
+    "confirm your identity",
+    "verify your account",
+    "confirm your account",
+    "verifica tu identidad",
+    "verifique su identidad",
+    "confirma tu identidad",
+    "confirme su identidad",
+    "vérifier votre identité",
+    "vérifiez votre identité",
+    "confirmer votre identité",
+    "confirmez votre identité",
+    "identität bestätigen",
+    "identität zu bestätigen",
+    "identität verifizieren",
+    "verifica la tua identità",
+    "conferma la tua identità",
+    "verifique sua identidade",
+    "confirme sua identidade",
+    "验证身份",
+    "验证您的身份",
+    "驗證身分",
+    "驗證您的身分",
+    "验证你的身份",
+    "본인 확인",
+    "본인확인",
+    "verifikasi identitas",
+    "xác minh danh tính"
+   ],
+   "ja": "本人確認を名目に入力させる",
+   "en": "uses an identity check as a reason to make you enter details"
+  },
+  {
+   "key": "unusual_login",
+   "words": [
+    "異常なログイン",
+    "unusual sign-in",
+    "unusual login",
+    "unusual activity",
+    "suspicious activity",
+    "suspicious login",
+    "suspicious sign-in",
+    "inicio de sesión inusual",
+    "actividad sospechosa",
+    "activité suspecte",
+    "connexion inhabituelle",
+    "ungewöhnliche anmeldung",
+    "verdächtige aktivität",
+    "accesso insolito",
+    "attività sospetta",
+    "atividade suspeita",
+    "login incomum",
+    "异常登录",
+    "異常登入",
+    "异地登录",
+    "비정상 로그인",
+    "비정상적인 로그인",
+    "의심스러운 로그인",
+    "aktivitas mencurigakan",
+    "đăng nhập bất thường"
+   ],
+   "ja": "不正ログインで不安をあおる",
+   "en": "worries you with a suspicious sign-in"
+  }
+ ],
+ "takeover": [
+  {
+   "key": "passkey_reset",
+   "patterns": [
+    "(パスキー|顔認証|指紋認証|生体認証).{0,6}(再登録|再設定|作り直|登録し直|設定し直|登録をし直|設定をし直)",
+    "(passkey|face id|touch id|fingerprint|biometric).{0,20}(re-?register|re-?enroll|reset|set (it |them )?up again|re-?create|add (it |them )?again)",
+    "(re-?register|re-?enroll|reset|re-?create|set up) (your |the )?(passkey|face id|touch id|fingerprint|biometric)"
+   ],
+   "ja": "パスキーや顔認証を作り直させようとする",
+   "en": "asks you to set up your passkey or Face ID again"
+  },
+  {
+   "key": "selfie_id",
+   "patterns": [
+    "(自撮り|セルフィー|顔写真(?!付)|顔の(写真|画像|動画)).{0,30}(身分証|免許証|マイナンバーカード|パスポート|在留カード|送信|送って|送付|アップロード)",
+    "(身分証|免許証|マイナンバーカード|パスポート|在留カード).{0,30}(自撮り|セルフィー|顔写真(?!付)|顔の(写真|画像|動画))",
+    "(selfie|photo of your face|picture of your face|video of your face|face scan).{0,40}((?<![a-z])id(?![a-z])|passport|driver.?s licen[cs]e|identity (card|document)|upload|send|submit)",
+    "((?<![a-z])id card|passport|driver.?s licen[cs]e|identity (card|document)).{0,40}(selfie|photo of your face|picture of your face|video of your face)",
+    "(send|upload|submit|take)( us| me)? (a|your) (selfie|photo of your face|video of your face)"
+   ],
+   "ja": "顔写真や身分証を送らせようとする",
+   "en": "asks you to send a selfie or a photo of your ID"
+  },
+  {
+   "key": "account_recovery",
+   "patterns": [
+    "(アカウント|ログイン).{0,6}(復旧|復元|ロック解除|ロックを解除|制限解除|制限を解除)",
+    "(account|login|sign-?in).{0,10}(recovery|restoration|restore|unlock|reinstat|reactivat)",
+    "(restore|unlock|reinstate|reactivate|recover) your account"
+   ],
+   "ja": "アカウントの復旧を名目に操作させる",
+   "en": "uses \"account recovery\" as a reason to make you do something"
+  },
+  {
+   "key": "share_code",
+   "patterns": [
+    "(確認コード|認証コード|認証番号|ワンタイムパスワード|セキュリティコード|qrコード|二次元コード|[0-9]桁の(番号|コード|数字)).{0,20}(教えて|伝えて|読み上げて|お知らせください|返信して|読み取って|読みとって|スキャンして)",
+    "(reply|respond|text back) with (the |your |this )?(verification |security |confirmation |one-?time |login |sign-?in |[0-9]-digit )?(code|pin|otp)",
+    "(tell|give|read out|read back|send|forward|provide) (us|me|our [a-z]+|the (agent|caller|representative)) (the|your|this|that) [a-z0-9\\- ]{0,25}(code|otp)",
+    "(read|tell|give|send|forward) (the |this |that |your )?([a-z\\-]+ )?(code|otp) (to us|to me|back to|out to|to our|to the (agent|caller))",
+    "scan (this|the|our) qr code",
+    "(dime|dinos|díganos|dígame|envíanos|envíame|envíenos|compártenos|compárteme|indícanos|facilítanos|proporciónanos)( el| tu| su)? (código|pin)",
+    "(donnez|communiquez|envoyez|transmettez|indiquez|dites)[- ](nous|moi) (le|votre|ce) (code|pin)",
+    "(nennen|schicken|senden|teilen|geben|sagen) sie (uns|mir) (den|ihren|diesen) [a-zäöü\\-]{0,25}code",
+    "(envie|informe|diga|passe|compartilhe|mande)-(nos|me) (o|seu|este) (código|pin)",
+    "(nos|me) (envie|informe|diga|passe|mande) (o|seu|este) (código|pin)",
+    "(comunicaci|dicci|inviaci|mandaci|dimmi|comunicami|inviami)( il| il tuo| tuo)? (codice|pin)",
+    "(告诉|告訴|发给|發給|发送给|發送給|提供给|提供給|报给|報給)(我|我们|我們|客服|工作人员|工作人員).{0,6}(验证码|驗證碼|动态码|動態碼)",
+    "(验证码|驗證碼|动态码|動態碼).{0,10}(告诉|告訴|发给|發給|发送给|發送給|提供给|提供給|报给|報給)(我|我们|我們|客服|工作人员|工作人員)",
+    "(인증 ?번호|인증 ?코드|보안 ?코드).{0,10}(알려 ?주세요|불러 ?주세요|보내 ?주세요|말씀해 ?주세요)"
+   ],
+   "ja": "確認コードやQRコードを渡させようとする",
+   "en": "asks you to hand over a verification code or scan a QR code"
+  },
+  {
+   "key": "remote_access",
+   "patterns": [
+    "(遠隔操作|リモート操作|リモートサポート|画面共有|画面を共有|anydesk|teamviewer|quick ?support|クイックサポート|airdroid)",
+    "remote (access|desktop|support session)|screen ?shar|share your screen|control your (computer|pc|phone|device)|rustdesk|ultraviewer|logmein",
+    "acceso remoto|compartir (la|tu|su) pantalla|controlar (tu|su) (ordenador|computadora|equipo|móvil|teléfono)",
+    "accès à distance|prise en main à distance|partage d.écran|partager votre écran|contrôle à distance",
+    "fernzugriff|fernwartung|bildschirm (teilen|freigeben)|bildschirmfreigabe",
+    "acesso remoto|compartilhar (a|sua) tela|compartilhamento de tela|accesso remoto|condivisione (dello )?schermo",
+    "远程控制|遠端控制|遠程控制|远程协助|遠端協助|遠程協助|屏幕共享|共享屏幕|螢幕分享|分享螢幕",
+    "원격 ?(제어|지원|접속)|화면 ?공유"
+   ],
+   "ja": "遠隔操作や画面共有をさせようとする",
+   "en": "asks for remote access or screen sharing"
+  },
+  {
+   "key": "run_code",
+   "patterns": [
+    "(課題|選考|面接|コーディングテスト|技術テスト|リポジトリ|github).{0,40}(実行して|動かして|起動して|セットアップして|ビルドして|クローンして|git clone|npm |yarn |pnpm |pip install)",
+    "(assignment|take-?home|coding (test|challenge|task|exercise)|technical (test|challenge|assessment)|interview|recruit|hiring|repo(sitory)?|github).{0,60}((run|execute) (it|the (code|project|script|app)|this)|npm (install|i|start|run)|yarn |pnpm |pip install|git clone|clone (the|this|our) repo)"
+   ],
+   "ja": "面接の課題などを口実に、渡したコードを動かさせようとする",
+   "en": "asks you to run code it sent, for example as a job-interview task"
+  },
+  {
+   "key": "install_app",
+   "patterns": [
+    "(面接|会議|ミーティング|通話|面談|打ち合わせ|ウェビナー).{0,40}(アプリ|ソフト|ツール|プラグイン|拡張機能|ドライバ|コーデック).{0,20}(インストール|ダウンロード|入れて|更新して|アップデートして)",
+    "(interview|meeting|call|webinar|conference).{0,40}(app|software|plugin|plug-in|extension|driver|codec|client).{0,30}(install|download|update)"
+   ],
+   "ja": "会議や面接のためと言って、アプリや部品を入れさせようとする",
+   "en": "asks you to install an app or plug-in for a meeting or interview"
+  },
+  {
+   "key": "paste_command",
+   "patterns": [
+    "(ターミナル|コマンドプロンプト|powershell|ファイル名を指定して実行).{0,40}(貼り付け|貼りつけ|ペースト|入力して|実行して|打って)|curl [^\\n]{0,100}\\|\\s*(sh|bash|zsh)",
+    "(open|launch|start) (the |a )?(terminal|command prompt|powershell|run (dialog|box)).{0,60}(paste|type|enter|run)",
+    "(paste|copy).{0,40}(into|in) (the |a |your )?(terminal|command prompt|powershell|run (dialog|box))",
+    "(press|hold) (the )?win(dows)?( key)? ?\\+ ?r"
+   ],
+   "ja": "コマンドを貼り付けて実行させようとする",
+   "en": "asks you to paste and run a command"
+  }
+ ],
+ "helplines": {
+  "JP": [
+   {
+    "ja": "警察相談専用電話",
+    "en": "Police consultation line (Japan)",
+    "tel": "#9110"
+   },
+   {
+    "ja": "消費者ホットライン",
+    "en": "Consumer hotline (Japan)",
+    "tel": "188"
+   }
+  ],
+  "US": [
+   {
+    "ja": "米国連邦取引委員会（FTC）への詐欺の届け出",
+    "en": "Report fraud to the FTC",
+    "url": "https://reportfraud.ftc.gov/"
+   }
+  ],
+  "GB": [
+   {
+    "ja": "詐欺のSMSを転送する番号（英国）",
+    "en": "Forward scam texts (free)",
+    "tel": "7726"
+   },
+   {
+    "ja": "Report Fraud（英国の詐欺の届け出窓口）",
+    "en": "Report Fraud",
+    "tel": "0300 123 2040",
+    "url": "https://www.reportfraud.police.uk/"
+   }
+  ],
+  "AU": [
+   {
+    "ja": "Scamwatch（オーストラリアの詐欺の届け出窓口）",
+    "en": "Report a scam to Scamwatch",
+    "url": "https://portal.scamwatch.gov.au/report-a-scam/"
+   },
+   {
+    "ja": "ReportCyber（オーストラリアのサイバー被害の届け出）",
+    "en": "Report cybercrime (ReportCyber)",
+    "url": "https://www.cyber.gov.au/report-and-recover/report"
+   }
+  ]
+ },
+ "mark_labels": {
+  "ja": {
+   "not_in_ledger": "割符にない会社の名前",
+   "disguised": "本当の行き先をごまかしたリンク",
+   "idn": "ふつう使わない文字のリンク",
+   "mimic": "会社の名前に似せたリンク",
+   "off_domain": "名乗った会社の公式の住所ではないリンク",
+   "shortener": "行き先が見えない短縮URL",
+   "unknown_domain": "登録された公式の住所ではないリンク",
+   "phone": "電話番号（本物かは確かめられない）",
+   "pressure": "詐欺によくある言いまわし",
+   "takeover": "乗っ取りの入口によくある頼みごと"
+  },
+  "en": {
+   "not_in_ledger": "Company name not in your ledger",
+   "disguised": "Link that hides where it really goes",
+   "idn": "Link with unusual characters",
+   "mimic": "Link made to look like a company's address",
+   "off_domain": "Link that isn't the claimed company's official address",
+   "shortener": "Shortened link (destination hidden)",
+   "unknown_domain": "Link that isn't a registered official address",
+   "phone": "Phone number (can't tell if it's real)",
+   "pressure": "Wording common in scams",
+   "takeover": "Request often used to take over accounts"
+  }
+ }
+}

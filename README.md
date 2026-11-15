@@ -1,5 +1,7 @@
 # 勘合（kango）
 
+**English: [README.en.md](README.en.md)**
+
 届いたメール・SMS・LINE の文面を、**「自分がどの会社と契約しているか（契約台帳）」**と**「会社ごとの公式ドメイン」**の2つの割符で照合し、青・黄・赤で返すフィッシング判定の部品です。
 
 迷惑メールフィルターは「文面」や「送信元」で見ます。勘合は「**あなたとの契約**」で見ます。AI が自然な日本語で書いた詐欺文でも、割符が合わなければ赤になります。
@@ -27,7 +29,7 @@
 ### Python
 
 ```sh
-pip install "git+https://github.com/mamorune-com/kango@v0.7.0#subdirectory=python"
+pip install "git+https://github.com/mamorune-com/kango@v0.8.0#subdirectory=python"
 ```
 
 PyPI にある `kango` は、この部品とは関係のない別のものです。`pip install kango` では入りません。
@@ -38,7 +40,12 @@ from kango import judge
 r = judge("【楽天カード】ご請求額が確定しました https://www.rakuten-card.co.jp/", ledger=["rakuten"])
 r["level"]    # "green" / "amber" / "red"
 r["reasons"]  # [{"code": "in_ledger", "text": "..."}, ...]
+
+# 答えの文を英語に、相談先を米国の窓口に（色と理由のコードは同じ）
+judge("PayPal: Your account is limited https://paypal-resolution.example/", ledger=[], lang="en", region="US")
 ```
+
+海外の利用者向けには `lang="en"`（答えの文を英語に）と `region`（相談先の国・地域：`JP`・`US`・`GB`・`AU`）を渡してください。会社の一覧には、PayPal・Microsoft・Netflix・Meta・DHL・FedEx・UPS・USPS・IRS など海外の会社も入っています。急かす言葉と乗っ取りの頼みごとは、英語・スペイン語・フランス語・ドイツ語・ポルトガル語・中国語・韓国語などでも探します。
 
 コマンドでも試せます。
 
@@ -58,7 +65,7 @@ python -m kango --brands   # 台帳に入れられる会社の一覧
 Xcode の「File → Add Package Dependencies…」で `https://github.com/mamorune-com/kango` を入れるか、`Package.swift` の dependencies に次の1行を足します。
 
 ```swift
-.package(url: "https://github.com/mamorune-com/kango", from: "0.7.0")
+.package(url: "https://github.com/mamorune-com/kango", from: "0.8.0")
 ```
 
 使う側では、
@@ -68,6 +75,9 @@ import Kango
 
 let v = Judge.judge(text: message, ledger: ["rakuten", "docomo"])
 v.level   // .green / .amber / .red
+
+// 英語の答えと、英国の相談先
+let e = Judge.judge(text: message, ledger: ["paypal"], lang: "en", region: "GB")
 ```
 
 版を上げると、同じ文面でも答えが変わることがあります。版ごとの変更は [CHANGELOG.md](CHANGELOG.md) にあります。
@@ -103,7 +113,8 @@ Python 版と Swift 版は、同じ規則で動きます。文面と返すべき
 勘合が見ているのは、文面の中の会社名・リンクの住所・急かす言葉・乗っ取りの入口によくある頼みごと（パスキーの作り直しや確認コードを求める、面接の課題のコードを動かさせるなど）だけです。次のことはできません。
 
 - **黄（確かめきれない）は、よく出ます。** 短縮 URL（行き先が見えない）、どの会社を名乗っているか読み取れない連絡、照らし合わせられるものが無い連絡（配送・郵便・国税庁を名乗っていて、リンクが無いもの）は、それだけでは青にも赤にもできず、黄になります。
-- **一覧にない会社は見分けられません（黄になります）。** 会社の一覧はまだ 30 社で、そのうち 6 社は公式の住所を確かめきれていません（`checked` 列が空欄）。
+- **一覧にない会社は見分けられません（黄になります）。** 会社の一覧はまだ 55 社（日本 30 社・海外 25 社）で、そのうち 5 社は公式の住所を確かめきれていません（`checked` 列が空欄）。
+- **相談先を出せる国は、まだ日本・米国・英国・オーストラリアだけです。** ほかの国では、相談先を出しません。答えの文は日本語と英語だけです（言葉を探すのは、ほかの言語でも行います）。
 - **台帳の登録漏れは、誤った赤になります。** 契約しているのに台帳に入れていない会社からの本物の連絡は、赤になります。
 - **電話番号は照合できません。** 番号が本物かは確かめられないので、電話番号が書かれている連絡は、名乗った会社が台帳にあっても黄にします（青にはしません）。
 - **メールアドレスや LINE の ID は照らし合わせません。** 名乗った会社が台帳にあれば、「このアドレスに返信」「この ID を友だち追加」と求める連絡でも青になりえます。
@@ -139,10 +150,12 @@ Apache License 2.0（[LICENSE](LICENSE)）。会社のアプリやサービス�
 
 ## English (summary)
 
-**kango** is a deterministic phishing check for Japanese messages. It verifies two "tallies": whether the brand a message claims is in *your own contract ledger*, and whether every link sits on that brand's *official domain* (with lookalike detection). No AI, no network access, no storage. Green means "the tallies match", never "this is genuine". Python and Swift implementations share the same rules ([SPEC.md](SPEC.md)) and the same language-neutral test vectors ([conformance/cases.json](conformance/cases.json)), which a port to another language can use too. Try it from the command line with `python -m kango --ledger rakuten` (the message is read from stdin). Design notes, a threat model whose verdict table is executed by both test suites, and integration examples (in Japanese) are in [docs/](docs/README.md). Licensed under Apache-2.0; commercial use is welcome (see [docs/commercial-use.md](docs/commercial-use.md) for a plain-language summary). Report bypasses privately as described in [SECURITY.md](SECURITY.md). Verdict-changing updates are listed in [CHANGELOG.md](CHANGELOG.md).
+Full English README: **[README.en.md](README.en.md)**.
+
+**kango** is a deterministic phishing check for messages in Japanese, English and other major languages, with answers in Japanese or English. It verifies two "tallies": whether the brand a message claims is in *your own contract ledger*, and whether every link sits on that brand's *official domain* (with lookalike detection). No AI, no network access, no storage. Green means "the tallies match", never "this is genuine". Python and Swift implementations share the same rules ([SPEC.md](SPEC.md)) and the same language-neutral test vectors ([conformance/cases.json](conformance/cases.json)), which a port to another language can use too. Try it from the command line with `python -m kango --ledger rakuten` (the message is read from stdin). Design notes, a threat model whose verdict table is executed by both test suites, and integration examples (in Japanese) are in [docs/](docs/README.md). Licensed under Apache-2.0; commercial use is welcome (see [docs/commercial-use.md](docs/commercial-use.md) for a plain-language summary). Report bypasses privately as described in [SECURITY.md](SECURITY.md). Verdict-changing updates are listed in [CHANGELOG.md](CHANGELOG.md).
 
 **Not a new idea.** kango applies the principle behind password-manager autofill (only on the registered domain) and passkeys / WebAuthn (credentials bound to the domain) to incoming messages. Red and green are decided by things an attacker cannot fake (your own ledger, and domains they do not own), not by how convincing the text is, so making the text more natural with AI does not, by itself, turn red into green.
 
 **Why isn't this common? (our view)** It needs a per-user contract ledger, which is a privacy problem for any provider to collect; kango keeps it on the device. Because nothing leaves the device, it does not fit business models built on collected data. And the industry has mostly invested in blocklists, which lag behind newly created phishing sites. kango complements blocklists rather than replacing them.
 
-**Limits.** Amber is common by design. A message with nothing to check (for example, one that names a delivery company or the tax agency but has no link) is amber, never green. Brands missing from the list (30 so far, 6 not yet verified) are not covered, and a company you use but did not add to your ledger shows red. Phone numbers cannot be verified, so a message that contains one is never green, even if the claimed brand is in your ledger. Email addresses and LINE IDs are not checked. A URL glued to Japanese text (no space) is read as part of the host and shows red. A genuinely compromised official account or site, or an open redirect on an official domain whose target is hidden (for example, percent-encoded), can pass as green. Scams that claim no brand (investment, romance) stay amber. Input is text only.
+**Limits.** Amber is common by design. A message with nothing to check (for example, one that names a delivery company or the tax agency but has no link) is amber, never green. Brands missing from the list (55 so far, 5 not yet verified) are not covered, and a company you use but did not add to your ledger shows red. Phone numbers cannot be verified, so a message that contains one is never green, even if the claimed brand is in your ledger. Email addresses and LINE IDs are not checked. A URL glued to Japanese text (no space) is read as part of the host and shows red. A genuinely compromised official account or site, or an open redirect on an official domain whose target is hidden (for example, percent-encoded), can pass as green. Scams that claim no brand (investment, romance) stay amber. Input is text only.

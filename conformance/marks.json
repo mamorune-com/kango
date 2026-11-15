@@ -143,6 +143,30 @@
      ]
     }
    ]
+  },
+  {
+   "note": "海外：UPS を名乗る行には印を付けず（誰にでも届く会社）、急がせる行は黄、UPS に似せたリンクの行は赤",
+   "lines": [
+    "UPS: Your package is on hold.",
+    "Pay the redelivery fee within 24 hours:",
+    "https://ups-fee.example/pay"
+   ],
+   "marks": [
+    {
+     "line": 1,
+     "level": "amber",
+     "codes": [
+      "pressure"
+     ]
+    },
+    {
+     "line": 2,
+     "level": "red",
+     "codes": [
+      "mimic"
+     ]
+    }
+   ]
   }
  ]
 }

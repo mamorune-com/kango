@@ -10,12 +10,33 @@
   "domains": [
    "amazon.co.jp",
    "amazon.com",
-   "amazon.jp"
+   "amazon.jp",
+   "amazon.ca",
+   "amazon.com.mx",
+   "amazon.com.br",
+   "amazon.co.uk",
+   "amazon.de",
+   "amazon.fr",
+   "amazon.it",
+   "amazon.es",
+   "amazon.nl",
+   "amazon.se",
+   "amazon.pl",
+   "amazon.com.be",
+   "amazon.ie",
+   "amazon.com.tr",
+   "amazon.ae",
+   "amazon.sa",
+   "amazon.in",
+   "amazon.sg",
+   "amazon.com.au",
+   "amazon.co.za"
   ],
   "stems": [
    "amazon"
   ],
-  "checked": null
+  "checked": null,
+  "name_en": "Amazon"
  },
  {
   "id": "rakuten",
@@ -38,7 +59,8 @@
   "stems": [
    "rakuten"
   ],
-  "checked": "2026-10-31"
+  "checked": "2026-10-31",
+  "name_en": "Rakuten"
  },
  {
   "id": "mercari",
@@ -58,7 +80,8 @@
   "stems": [
    "mercari"
   ],
-  "checked": "2026-10-31"
+  "checked": "2026-10-31",
+  "name_en": "Mercari"
  },
  {
   "id": "paypay",
@@ -78,14 +101,16 @@
   "stems": [
    "paypay"
   ],
-  "checked": "2026-10-31"
+  "checked": "2026-10-31",
+  "name_en": "PayPay"
  },
  {
   "id": "yucho",
   "name": "ゆうちょ銀行",
   "kind": "contract",
   "words": [
-   "ゆうちょ"
+   "ゆうちょ",
+   "japan post bank"
   ],
   "domains": [
    "jp-bank.japanpost.jp"
@@ -94,7 +119,8 @@
    "yucho",
    "jp-bank"
   ],
-  "checked": "2026-10-31"
+  "checked": "2026-10-31",
+  "name_en": "Japan Post Bank"
  },
  {
   "id": "smbccard",
@@ -112,7 +138,8 @@
    "smbc",
    "vpass"
   ],
-  "checked": "2026-10-31"
+  "checked": "2026-10-31",
+  "name_en": "Sumitomo Mitsui Card"
  },
  {
   "id": "smbc",
@@ -127,14 +154,16 @@
   "stems": [
    "smbc"
   ],
-  "checked": "2026-10-31"
+  "checked": "2026-10-31",
+  "name_en": "Sumitomo Mitsui Banking Corporation"
  },
  {
   "id": "mufg",
   "name": "三菱UFJ銀行",
   "kind": "contract",
   "words": [
-   "三菱ufj"
+   "三菱ufj",
+   "mufg bank"
   ],
   "domains": [
    "bk.mufg.jp",
@@ -143,7 +172,8 @@
   "stems": [
    "mufg"
   ],
-  "checked": "2026-10-31"
+  "checked": "2026-10-31",
+  "name_en": "MUFG Bank"
  },
  {
   "id": "jcb",
@@ -159,7 +189,8 @@
   "stems": [
    "jcb"
   ],
-  "checked": "2026-10-31"
+  "checked": "2026-10-31",
+  "name_en": "JCB"
  },
  {
   "id": "aeon",
@@ -176,7 +207,8 @@
   "stems": [
    "aeon"
   ],
-  "checked": null
+  "checked": null,
+  "name_en": "AEON Card"
  },
  {
   "id": "docomo",
@@ -194,7 +226,8 @@
   "stems": [
    "docomo"
   ],
-  "checked": "2026-10-31"
+  "checked": "2026-10-31",
+  "name_en": "NTT docomo"
  },
  {
   "id": "au",
@@ -214,7 +247,8 @@
   "stems": [
    "kddi"
   ],
-  "checked": "2026-10-31"
+  "checked": "2026-10-31",
+  "name_en": "au (KDDI)"
  },
  {
   "id": "softbank",
@@ -235,7 +269,8 @@
   "stems": [
    "softbank"
   ],
-  "checked": "2026-10-31"
+  "checked": "2026-10-31",
+  "name_en": "SoftBank"
  },
  {
   "id": "apple",
@@ -248,13 +283,16 @@
   ],
   "domains": [
    "apple.com",
-   "icloud.com"
+   "icloud.com",
+   "me.com",
+   "mac.com"
   ],
   "stems": [
    "apple",
    "icloud"
   ],
-  "checked": null
+  "checked": "2026-11-15",
+  "name_en": "Apple"
  },
  {
   "id": "google",
@@ -278,7 +316,8 @@
   "stems": [
    "google"
   ],
-  "checked": null
+  "checked": null,
+  "name_en": "Google"
  },
  {
   "id": "saison",
@@ -304,7 +343,8 @@
    "saisonportal",
    "saisonid"
   ],
-  "checked": "2026-11-02"
+  "checked": "2026-11-02",
+  "name_en": "Saison Card"
  },
  {
   "id": "epos",
@@ -321,7 +361,8 @@
   "stems": [
    "eposcard"
   ],
-  "checked": "2026-11-02"
+  "checked": "2026-11-02",
+  "name_en": "Epos Card"
  },
  {
   "id": "amex",
@@ -344,7 +385,8 @@
    "amex",
    "americanexpress"
   ],
-  "checked": "2026-11-02"
+  "checked": "2026-11-02",
+  "name_en": "American Express"
  },
  {
   "id": "view",
@@ -366,7 +408,8 @@
    "viewcard",
    "viewsnet"
   ],
-  "checked": "2026-11-02"
+  "checked": "2026-11-02",
+  "name_en": "View Card"
  },
  {
   "id": "orico",
@@ -384,7 +427,8 @@
   "stems": [
    "orico"
   ],
-  "checked": "2026-11-02"
+  "checked": "2026-11-02",
+  "name_en": "Orico"
  },
  {
   "id": "lifecard",
@@ -401,7 +445,8 @@
   "stems": [
    "lifecard"
   ],
-  "checked": "2026-11-02"
+  "checked": "2026-11-02",
+  "name_en": "Life Card"
  },
  {
   "id": "jaccs",
@@ -417,7 +462,8 @@
   "stems": [
    "jaccs"
   ],
-  "checked": "2026-11-05"
+  "checked": "2026-11-05",
+  "name_en": "JACCS"
  },
  {
   "id": "uccard",
@@ -437,7 +483,8 @@
    "uccard",
    "atunet"
   ],
-  "checked": "2026-11-05"
+  "checked": "2026-11-05",
+  "name_en": "UC Card"
  },
  {
   "id": "micard",
@@ -455,7 +502,8 @@
   "stems": [
    "micard"
   ],
-  "checked": "2026-11-05"
+  "checked": "2026-11-05",
+  "name_en": "MI Card"
  },
  {
   "id": "toyotafinance",
@@ -476,7 +524,8 @@
    "toyotafinance",
    "tscubic"
   ],
-  "checked": "2026-11-05"
+  "checked": "2026-11-05",
+  "name_en": "Toyota Finance"
  },
  {
   "id": "pocketcard",
@@ -493,7 +542,353 @@
   "stems": [
    "pocketcard"
   ],
-  "checked": "2026-11-05"
+  "checked": "2026-11-05",
+  "name_en": "Pocket Card"
+ },
+ {
+  "id": "paypal",
+  "name": "PayPal",
+  "kind": "contract",
+  "words": [
+   "paypal",
+   "ペイパル"
+  ],
+  "domains": [
+   "paypal.com"
+  ],
+  "stems": [
+   "paypal"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "PayPal"
+ },
+ {
+  "id": "microsoft",
+  "name": "Microsoft",
+  "kind": "contract",
+  "words": [
+   "microsoft account",
+   "microsoftアカウント",
+   "microsoft アカウント",
+   "マイクロソフトアカウント",
+   "マイクロソフト アカウント",
+   "microsoft 365",
+   "office 365",
+   "microsoft support",
+   "microsoft security",
+   "microsoft:",
+   "【microsoft】",
+   "【マイクロソフト】"
+  ],
+  "domains": [
+   "www.microsoft.com",
+   "account.microsoft.com",
+   "accountprotection.microsoft.com",
+   "support.microsoft.com",
+   "login.microsoftonline.com",
+   "login.live.com",
+   "account.live.com"
+  ],
+  "stems": [
+   "microsoft",
+   "microsoftonline",
+   "office365"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Microsoft"
+ },
+ {
+  "id": "netflix",
+  "name": "Netflix",
+  "kind": "contract",
+  "words": [
+   "netflix",
+   "ネットフリックス"
+  ],
+  "domains": [
+   "netflix.com"
+  ],
+  "stems": [
+   "netflix"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Netflix"
+ },
+ {
+  "id": "meta",
+  "name": "Meta（Facebook・Instagram・WhatsApp）",
+  "kind": "contract",
+  "words": [
+   "facebook account",
+   "facebookアカウント",
+   "facebook アカウント",
+   "フェイスブックアカウント",
+   "facebook security",
+   "facebook support",
+   "facebook:",
+   "【facebook】",
+   "instagram account",
+   "instagramアカウント",
+   "instagram アカウント",
+   "インスタグラムアカウント",
+   "instagram security",
+   "instagram support",
+   "instagram:",
+   "【instagram】",
+   "whatsapp account",
+   "whatsappアカウント",
+   "whatsapp support",
+   "whatsapp:",
+   "【whatsapp】",
+   "[meta account",
+   "[metaアカウント",
+   "[meta verified",
+   "[meta business",
+   "[meta support",
+   "[meta:",
+   "【meta】"
+  ],
+  "domains": [
+   "facebook.com",
+   "instagram.com",
+   "whatsapp.com",
+   "meta.com",
+   "threads.net"
+  ],
+  "stems": [
+   "facebook",
+   "instagram",
+   "whatsapp"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Meta (Facebook, Instagram, WhatsApp)"
+ },
+ {
+  "id": "ebay",
+  "name": "eBay",
+  "kind": "contract",
+  "words": [
+   "ebay",
+   "イーベイ"
+  ],
+  "domains": [
+   "ebay.com",
+   "ebay.co.uk",
+   "ebay.com.au",
+   "ebay.ca",
+   "ebay.com.sg"
+  ],
+  "stems": [
+   "ebay"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "eBay"
+ },
+ {
+  "id": "coinbase",
+  "name": "Coinbase",
+  "kind": "contract",
+  "words": [
+   "coinbase",
+   "コインベース"
+  ],
+  "domains": [
+   "coinbase.com"
+  ],
+  "stems": [
+   "coinbase"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Coinbase"
+ },
+ {
+  "id": "binance",
+  "name": "Binance",
+  "kind": "contract",
+  "words": [
+   "binance",
+   "バイナンス"
+  ],
+  "domains": [
+   "binance.com"
+  ],
+  "stems": [
+   "binance"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Binance"
+ },
+ {
+  "id": "chase",
+  "name": "Chase",
+  "kind": "contract",
+  "words": [
+   "[chase bank",
+   "jpmorgan chase",
+   "[chase card",
+   "[chase account",
+   "[chase online",
+   "[chase sapphire",
+   "[chase freedom",
+   "[chase alert",
+   "[chase fraud",
+   "[chase:",
+   "【chase】",
+   "[chase.com"
+  ],
+  "domains": [
+   "chase.com",
+   "jpmorganchase.com",
+   "jpmorgan.com",
+   "chase.ca"
+  ],
+  "stems": [
+   "[chase]",
+   "jpmorganchase"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Chase"
+ },
+ {
+  "id": "bofa",
+  "name": "バンク・オブ・アメリカ",
+  "kind": "contract",
+  "words": [
+   "bank of america",
+   "bankofamerica",
+   "[bofa]"
+  ],
+  "domains": [
+   "bankofamerica.com",
+   "bofa.com"
+  ],
+  "stems": [
+   "bankofamerica",
+   "[bofa]"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Bank of America"
+ },
+ {
+  "id": "wellsfargo",
+  "name": "ウェルズ・ファーゴ",
+  "kind": "contract",
+  "words": [
+   "wells fargo",
+   "wellsfargo"
+  ],
+  "domains": [
+   "wellsfargo.com",
+   "wf.com"
+  ],
+  "stems": [
+   "wellsfargo",
+   "wells-fargo"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Wells Fargo"
+ },
+ {
+  "id": "hsbc",
+  "name": "HSBC",
+  "kind": "contract",
+  "words": [
+   "hsbc"
+  ],
+  "domains": [
+   "hsbc.co.uk",
+   "hsbc.com",
+   "hsbc.uk",
+   "hsbc.ae"
+  ],
+  "stems": [
+   "hsbc"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "HSBC"
+ },
+ {
+  "id": "barclays",
+  "name": "バークレイズ",
+  "kind": "contract",
+  "words": [
+   "barclays",
+   "barclaycard"
+  ],
+  "domains": [
+   "barclays.co.uk",
+   "barclays.com",
+   "barclaycard.co.uk"
+  ],
+  "stems": [
+   "barclays",
+   "barclaycard"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Barclays"
+ },
+ {
+  "id": "airbnb",
+  "name": "Airbnb",
+  "kind": "contract",
+  "words": [
+   "airbnb",
+   "エアビーアンドビー"
+  ],
+  "domains": [
+   "airbnb.com",
+   "airbnb.co.uk",
+   "airbnb.es",
+   "airbnb.it",
+   "airbnb.at"
+  ],
+  "stems": [
+   "airbnb"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Airbnb"
+ },
+ {
+  "id": "booking",
+  "name": "Booking.com",
+  "kind": "contract",
+  "words": [
+   "booking.com",
+   "ブッキングドットコム"
+  ],
+  "domains": [
+   "booking.com"
+  ],
+  "stems": [],
+  "checked": "2026-11-15",
+  "name_en": "Booking.com"
+ },
+ {
+  "id": "steam",
+  "name": "Steam",
+  "kind": "contract",
+  "words": [
+   "[steam account",
+   "[steam guard",
+   "[steam support",
+   "[steam wallet",
+   "steamcommunity",
+   "steampowered",
+   "[steam:",
+   "【steam】"
+  ],
+  "domains": [
+   "steampowered.com",
+   "steamcommunity.com",
+   "valvesoftware.com"
+  ],
+  "stems": [
+   "steamcommunity",
+   "steampowered",
+   "[steam]"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Steam"
  },
  {
   "id": "yamato",
@@ -501,7 +896,8 @@
   "kind": "everyone",
   "words": [
    "ヤマト",
-   "クロネコ"
+   "クロネコ",
+   "yamato transport"
   ],
   "domains": [
    "kuronekoyamato.co.jp"
@@ -510,14 +906,16 @@
    "kuroneko",
    "yamato"
   ],
-  "checked": null
+  "checked": null,
+  "name_en": "Yamato Transport"
  },
  {
   "id": "sagawa",
   "name": "佐川急便",
   "kind": "everyone",
   "words": [
-   "佐川"
+   "佐川",
+   "sagawa express"
   ],
   "domains": [
    "sagawa-exp.co.jp"
@@ -525,7 +923,8 @@
   "stems": [
    "sagawa"
   ],
-  "checked": null
+  "checked": null,
+  "name_en": "Sagawa Express"
  },
  {
   "id": "jppost",
@@ -533,7 +932,8 @@
   "kind": "everyone",
   "words": [
    "日本郵便",
-   "郵便局"
+   "郵便局",
+   "japan post"
   ],
   "domains": [
    "japanpost.jp"
@@ -542,7 +942,8 @@
    "japanpost",
    "japan-post"
   ],
-  "checked": "2026-10-31"
+  "checked": "2026-10-31",
+  "name_en": "Japan Post"
  },
  {
   "id": "nta",
@@ -550,17 +951,212 @@
   "kind": "everyone",
   "words": [
    "国税庁",
-   "e-tax",
-   "税務署"
+   "[e-tax",
+   "税務署",
+   "national tax agency"
   ],
   "domains": [
    "nta.go.jp"
   ],
   "stems": [
-   "e-tax",
-   "etax",
-   "nta-"
+   "[e-tax",
+   "[etax",
+   "[nta-"
   ],
-  "checked": "2026-10-31"
+  "checked": "2026-10-31",
+  "name_en": "National Tax Agency (Japan)"
+ },
+ {
+  "id": "dhl",
+  "name": "DHL",
+  "kind": "everyone",
+  "words": [
+   "dhl"
+  ],
+  "domains": [
+   "dhl.com",
+   "dpdhl.com",
+   "dhl-news.com",
+   "dhl.de",
+   "dhl.fr",
+   "dhl.ae",
+   "dhl"
+  ],
+  "stems": [
+   "dhl"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "DHL"
+ },
+ {
+  "id": "fedex",
+  "name": "FedEx",
+  "kind": "everyone",
+  "words": [
+   "fedex",
+   "フェデックス"
+  ],
+  "domains": [
+   "fedex.com"
+  ],
+  "stems": [
+   "fedex"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "FedEx"
+ },
+ {
+  "id": "ups",
+  "name": "UPS",
+  "kind": "everyone",
+  "words": [
+   "united parcel service",
+   "[ups package",
+   "[ups delivery",
+   "[ups parcel",
+   "[ups shipment",
+   "[ups tracking",
+   "[ups my choice",
+   "[ups:",
+   "【ups】",
+   "[ups.com"
+  ],
+  "domains": [
+   "ups.com"
+  ],
+  "stems": [
+   "[ups]"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "UPS"
+ },
+ {
+  "id": "usps",
+  "name": "米国郵便公社（USPS）",
+  "kind": "everyone",
+  "words": [
+   "usps",
+   "united states postal service",
+   "us postal service"
+  ],
+  "domains": [
+   "usps.com"
+  ],
+  "stems": [
+   "usps"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "USPS (United States Postal Service)"
+ },
+ {
+  "id": "royalmail",
+  "name": "ロイヤルメール",
+  "kind": "everyone",
+  "words": [
+   "royal mail",
+   "royalmail",
+   "parcelforce"
+  ],
+  "domains": [
+   "royalmail.com",
+   "parcelforce.com"
+  ],
+  "stems": [
+   "royalmail",
+   "royal-mail",
+   "parcelforce"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Royal Mail"
+ },
+ {
+  "id": "canadapost",
+  "name": "カナダ郵便",
+  "kind": "everyone",
+  "words": [
+   "canada post",
+   "postes canada",
+   "canadapost"
+  ],
+  "domains": [
+   "canadapost-postescanada.ca",
+   "canadapost.ca"
+  ],
+  "stems": [
+   "canadapost",
+   "postescanada",
+   "canada-post"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Canada Post"
+ },
+ {
+  "id": "auspost",
+  "name": "オーストラリア郵便",
+  "kind": "everyone",
+  "words": [
+   "australia post",
+   "auspost"
+  ],
+  "domains": [
+   "auspost.com.au"
+  ],
+  "stems": [
+   "auspost"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Australia Post"
+ },
+ {
+  "id": "docusign",
+  "name": "DocuSign",
+  "kind": "everyone",
+  "words": [
+   "docusign",
+   "ドキュサイン"
+  ],
+  "domains": [
+   "docusign.net",
+   "docusign.com"
+  ],
+  "stems": [
+   "docusign"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "DocuSign"
+ },
+ {
+  "id": "irs",
+  "name": "米国内国歳入庁（IRS）",
+  "kind": "everyone",
+  "words": [
+   "internal revenue service",
+   "[irs]"
+  ],
+  "domains": [
+   "irs.gov"
+  ],
+  "stems": [
+   "[irs]"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "IRS (US Internal Revenue Service)"
+ },
+ {
+  "id": "hmrc",
+  "name": "英国歳入関税庁（HMRC）",
+  "kind": "everyone",
+  "words": [
+   "hmrc",
+   "hm revenue"
+  ],
+  "domains": [
+   "gov.uk"
+  ],
+  "stems": [
+   "hmrc"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "HMRC (UK tax authority)"
  }
 ]

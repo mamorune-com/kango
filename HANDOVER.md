@@ -1,6 +1,6 @@
 # 引き継ぎ資料（HANDOVER）— 勘合（kango）
 
-最終更新：2026-11-09。保守する人が交代する時に、次の保守者と AI が迷わず続けられるようにするための資料です。
+最終更新：2026-11-14。保守する人が交代する時に、次の保守者と AI が迷わず続けられるようにするための資料です。
 
 ## 1. これは何か
 
@@ -14,7 +14,8 @@
 | 場所 | 中身 |
 |---|---|
 | `python/`・`swift/`（`Package.swift`） | 2つの実装 |
-| `data/brands.csv` | 会社と公式ドメインの一覧（追加の作法は `CONTRIBUTING.md`） |
+| `data/brands.csv` | 会社と公式ドメインの一覧（追加の作法は `CONTRIBUTING.md`）。日本 30 社・海外 25 社 |
+| `data/phrases.json` | 答えの文（日本語・英語）・急かす言葉と乗っ取りの頼みごとの一覧（多言語）・国ごとの相談先。`scripts/sync_brands.py` で Python と Swift に写す |
 | `conformance/` | 2つの実装が同じ答えを返すかの答え合わせ |
 | `SPEC.md`・`docs/` | 判定の規則・設計・脅威モデル・組み込み方 |
 | `CHANGELOG.md` | 版ごとの変更。答え（色）が変わる変更を先頭に書く |
@@ -39,9 +40,11 @@ GitHub（リポジトリ・Actions・Releases）だけです。秘密の値は�
 - 抜け道（すり抜け）の報告は `SECURITY.md` の手順で受け、公開の Issue にしない物を見分ける。
 - 会社の公式ドメインが変わった時は、各社の公式ページで確かめてから `data/brands.csv` を直す。
 
-## 7. 未解決の課題（2026-11-09）
+## 7. 未解決の課題（2026-11-14）
 
-開いている Issue・プルリクエストはありません。
+- v0.8.0（海外対応）は、マージの後に名札（`v0.8.0`）を付けてリリースを作る必要があります。README の `pip` と Swift の行は、もう v0.8.0 を指しています。
+- 相談先は日本・米国・英国・オーストラリアだけです。ほかの国は、その国の政府や警察の公式ページで確かめてから `data/phrases.json` に足します。
+- 公式の住所を確かめきれていない会社が 5 社あります（`checked` が空欄）。
 
 ## 8. 保守者が交代する時
 
@@ -51,3 +54,9 @@ GitHub（リポジトリ・Actions・Releases）だけです。秘密の値は�
 ## 9. AI に引き継ぐ時の最初の一言
 
 > kango の HANDOVER.md・README.md・CONTRIBUTING.md を読んで、版を出す手順と、いま気をつけることをまとめてください。まだ何も変更しないでください。
+
+---
+
+## English (short)
+
+kango is an open-source, deterministic phishing check with Python and Swift implementations that must give identical answers. The company list is `data/brands.csv`; answer texts (Japanese and English), multilingual phrase lists and per-country helplines are in `data/phrases.json`. Both are copied into the packages by `python3 scripts/sync_brands.py`, and CI fails if the copies drift. Rules are in `SPEC.md`; shared test vectors are in `conformance/`. To release: get CI green, note verdict-changing changes at the top of `CHANGELOG.md`, bump the version in `python/pyproject.toml` and the README install lines, then tag `v0.x.y`. Downstream users (the TORIDE iOS app and the shared MAMORUNE backend) pin kango by commit and bump it themselves.
