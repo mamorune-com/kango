@@ -33,7 +33,7 @@ Chase alert: A $45.00 transaction was made https://secure.chase.com/web/auth/das
 ### Python
 
 ```sh
-pip install "git+https://github.com/mamorune-com/kango@v0.8.0#subdirectory=python"
+pip install "git+https://github.com/mamorune-com/kango@v0.9.0#subdirectory=python"
 ```
 
 The `kango` package on PyPI is an unrelated project. `pip install kango` will not install this one.
@@ -69,7 +69,7 @@ Paste real messages rather than passing them with `echo` or as an argument, so t
 Add `https://github.com/mamorune-com/kango` with Xcode's *File → Add Package Dependencies…*, or add this line to the dependencies in `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/mamorune-com/kango", from: "0.8.0")
+.package(url: "https://github.com/mamorune-com/kango", from: "0.9.0")
 ```
 
 ```swift
@@ -116,7 +116,7 @@ The Python and Swift versions follow the same rules. Both test suites run the sa
 
 ## Companies covered
 
-[data/brands.csv](data/brands.csv) is the source of truth: 55 companies, 30 in Japan and 25 elsewhere — PayPal, Microsoft, Netflix, Meta (Facebook, Instagram, WhatsApp), eBay, Coinbase, Binance, Chase, Bank of America, Wells Fargo, HSBC, Barclays, Airbnb, Booking.com, Steam, DHL, FedEx, UPS, USPS, Royal Mail, Canada Post, Australia Post, DocuSign, the IRS and HMRC, plus Amazon, Apple and Google worldwide. The `checked` column is the date we confirmed the domains on the company's own official page. **A blank `checked` means we haven't confirmed them yet** (5 companies). We only add domains that the company itself lists; we don't guess.
+[data/brands.csv](data/brands.csv) is the source of truth: 82 companies, 40 in Japan and 42 elsewhere — major banks and brokerages in Japan, the US and Korea (Citi, Capital One, Schwab, Fidelity, Robinhood, Vanguard, KB Kookmin, Shinhan, Woori, Hana, NongHyup, KakaoBank, Toss, Kiwoom, Mirae Asset, Samsung Securities, Korea Investment), PayPal, Microsoft, Netflix, Meta (Facebook, Instagram, WhatsApp), eBay, Coinbase, Binance, Chase, Bank of America, Wells Fargo, HSBC, Barclays, Airbnb, Booking.com, Steam, DHL, FedEx, UPS, USPS, Royal Mail, Canada Post, Australia Post, DocuSign, the IRS and HMRC, plus Amazon, Apple and Google worldwide. The `checked` column is the date we confirmed the domains on the company's own official page. **A blank `checked` would mean we haven't confirmed them yet** (none right now). We only add domains that the company itself lists; we don't guess.
 
 To add or fix a company, see [CONTRIBUTING.md](CONTRIBUTING.md#english).
 

@@ -523,6 +523,19 @@
     {"note": "eBay ドイツの本物の住所（青）", "text": "eBay: Ihr Artikel wurde verschickt https://www.ebay.de/", "ledger": ["ebay"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["ebay"], "hosts": ["www.ebay.de"]},
     {"note": "Airbnb フランスの本物の住所（青）", "text": "Airbnb : votre réservation est confirmée https://www.airbnb.fr/", "ledger": ["airbnb"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["airbnb"], "hosts": ["www.airbnb.fr"]},
     {"note": "英語：自然な語順の会議アプリの導入依頼（黄）", "text": "For the meeting, install this app: https://meet-app.example/", "level": "amber", "codes": ["no_claim", "unknown_domain", "takeover"], "claimed": [], "hosts": ["meet-app.example"]},
-    {"note": "英語：アプリを入れてから面接に（黄）", "text": "Please download our video client before the interview https://meet-app.example/", "level": "amber", "codes": ["no_claim", "unknown_domain", "takeover"], "claimed": [], "hosts": ["meet-app.example"]}
+    {"note": "英語：アプリを入れてから面接に（黄）", "text": "Please download our video client before the interview https://meet-app.example/", "level": "amber", "codes": ["no_claim", "unknown_domain", "takeover"], "claimed": [], "hosts": ["meet-app.example"]},
+    {"note": "銀行・証券：楽天証券の公式の住所（楽天を台帳に入れていれば青）", "text": "楽天証券：取引報告書を交付しました https://www.rakuten-sec.co.jp/", "level": "green", "codes": ["in_ledger", "official"], "claimed": ["rakuten"], "hosts": ["www.rakuten-sec.co.jp"]},
+    {"note": "銀行・証券：SBI証券を台帳に入れていて、公式の住所なら青", "text": "【SBI証券】取引報告書のお知らせ https://site1.sbisec.co.jp/ETGate/", "ledger": ["sbisec"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["sbisec"], "hosts": ["site1.sbisec.co.jp"]},
+    {"note": "銀行・証券：SMBC日興証券を名乗り、似せた住所（赤）", "text": "SMBC日興証券：お取引の確認をお願いします https://smbcnikko-login.example/", "level": "red", "codes": ["not_in_ledger", "mimic"], "claimed": ["smbcnikko"], "hosts": ["smbcnikko-login.example"]},
+    {"note": "銀行・証券：三菱UFJ eスマート証券は、三菱UFJ銀行と取り違えない（青）", "text": "三菱UFJ eスマート証券からのお知らせ https://kabu.com/", "ledger": ["kabucom"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["kabucom"], "hosts": ["kabu.com"]},
+    {"note": "銀行・証券：野村證券を名乗り、似せた住所（赤）", "text": "野村證券：ログインの確認 https://nomura-sec.example/", "level": "red", "codes": ["not_in_ledger", "mimic"], "claimed": ["nomura"], "hosts": ["nomura-sec.example"]},
+    {"note": "銀行・証券：会社の名前が同じ別の会社（野村不動産）は、野村證券とみなさない（黄）", "text": "Nomura Real Estate: new listings https://www.nomura-re.co.jp/", "level": "amber", "codes": ["no_claim", "unknown_domain"], "claimed": [], "hosts": ["www.nomura-re.co.jp"]},
+    {"note": "米国：Charles Schwab を台帳に入れていて、公式の住所なら青", "text": "Charles Schwab: your statement is ready https://www.schwab.com/", "ledger": ["schwab"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["schwab"], "hosts": ["www.schwab.com"]},
+    {"note": "米国：Charles Schwab を名乗り、似せた住所（赤）", "text": "Charles Schwab alert: https://schwab-secure.example/login", "level": "red", "codes": ["not_in_ledger", "mimic"], "claimed": ["schwab"], "hosts": ["schwab-secure.example"]},
+    {"note": "米国：Citi を台帳に入れていて、公式の住所なら青", "text": "Citi: your monthly statement is available https://online.citi.com/", "ledger": ["citi"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["citi"], "hosts": ["online.citi.com"]},
+    {"note": "韓国：KB国民銀行を名乗り、似せた住所（赤）", "text": "[KB국민은행] 계좌 정지 https://kbstar-auth.example/", "level": "red", "codes": ["not_in_ledger", "mimic", "pressure"], "claimed": ["kbstar"], "hosts": ["kbstar-auth.example"]},
+    {"note": "韓国：KB国民銀行を台帳に入れていて、公式の住所なら青", "text": "[KB국민은행] 이번 달 명세서 안내 https://obank.kbstar.com/", "ledger": ["kbstar"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["kbstar"], "hosts": ["obank.kbstar.com"]},
+    {"note": "韓国：トスバンクを名乗り、公式でない住所（赤）", "text": "토스뱅크 송금 확인 https://toss-pay.example/", "level": "red", "codes": ["not_in_ledger", "off_domain"], "claimed": ["toss"], "hosts": ["toss-pay.example"]},
+    {"note": "海外：DHL の自社の住所（.dhl）も公式（青）", "text": "DHL: track your parcel https://m.dhl/", "level": "green", "codes": ["official"], "claimed": ["dhl"], "hosts": ["m.dhl"]}
   ]
 }
