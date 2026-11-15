@@ -83,10 +83,6 @@ public struct Verdict: Equatable, Sendable {
             Helpline(label: lang == "en" ? h.en : h.ja, tel: h.tel ?? "", url: h.url)
         }
     }
-
-    public static func == (a: Verdict, b: Verdict) -> Bool {
-        a.level == b.level && a.reasons == b.reasons && a.claimed == b.claimed && a.hosts == b.hosts
-    }
 }
 
 /// 勘合（割符の照合）。決定的・端末の中だけで動く。python/kango と同じ規則（SPEC.md）。
