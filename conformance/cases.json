@@ -508,6 +508,21 @@
     {"note": "韓国語：遠隔操作をさせる（黄）", "text": "원격 지원을 위해 앱을 설치해 주세요", "level": "amber", "codes": ["no_claim", "takeover"], "claimed": [], "hosts": []},
     {"note": "北米の電話番号（黄）", "text": "Call our fraud team at (800) 555-0199", "level": "amber", "codes": ["no_claim", "phone"], "claimed": [], "hosts": []},
     {"note": "国際的な書き方の電話番号（+44）（黄）", "text": "Call us now on +44 20 7946 0958", "level": "amber", "codes": ["no_claim", "phone"], "claimed": [], "hosts": []},
-    {"note": "数字が続く番号（注文番号など）は電話番号とみなさない（黄）", "text": "Order no. 800-555-01999 has shipped", "level": "amber", "codes": ["no_claim"], "claimed": [], "hosts": []}
+    {"note": "数字が続く番号（注文番号など）は電話番号とみなさない（黄）", "text": "Order no. 800-555-01999 has shipped", "level": "amber", "codes": ["no_claim"], "claimed": [], "hosts": []},
+    {"note": "英語：確認コードを渡させる（「share your verification code」）（黄）", "text": "Amazon: Your account is on hold. Please share your verification code to continue. https://www.amazon.com/", "level": "amber", "codes": ["in_ledger", "official", "takeover"], "claimed": ["amazon"], "hosts": ["www.amazon.com"]},
+    {"note": "英語：確認コードを相手に渡させる（share ... with our agent）（黄）", "text": "Share your 6-digit code with our agent to stop the payment.", "level": "amber", "codes": ["no_claim", "takeover"], "claimed": [], "hosts": []},
+    {"note": "英語：「確認コードを誰にも教えないで」は頼みごとではない（青）", "text": "Amazon: Never share your verification code with anyone. https://www.amazon.com/", "level": "green", "codes": ["in_ledger", "official"], "claimed": ["amazon"], "hosts": ["www.amazon.com"]},
+    {"note": "英語：紹介コードを友達に教えて、は乗っ取りの頼みごとではない（青）", "text": "Amazon: Share your referral code with friends! https://www.amazon.com/", "level": "green", "codes": ["in_ledger", "official"], "claimed": ["amazon"], "hosts": ["www.amazon.com"]},
+    {"note": "オーストラリアの全国共通番号（1300）（黄）", "text": "Amazon: Call 1300 975 707 about your order", "level": "amber", "codes": ["in_ledger", "phone"], "claimed": ["amazon"], "hosts": []},
+    {"note": "オーストラリアの全国共通番号（1800・ハイフン）（黄）", "text": "Your parcel is held. Call 1800-123-456", "level": "amber", "codes": ["no_claim", "phone"], "claimed": [], "hosts": []},
+    {"note": "オーストラリアの13で始まる6桁の番号（黄）", "text": "Amazon: call 13 22 21 to confirm", "level": "amber", "codes": ["in_ledger", "phone"], "claimed": ["amazon"], "hosts": []},
+    {"note": "オーストラリアの13で始まる6桁の番号（3桁・3桁）（黄）", "text": "Amazon: call 131 450 to confirm", "level": "amber", "codes": ["in_ledger", "phone"], "claimed": ["amazon"], "hosts": []},
+    {"note": "長いダッシュで区切った北米の番号（黄）", "text": "Call our fraud team at 800—555—0199", "level": "amber", "codes": ["no_claim", "phone"], "claimed": [], "hosts": []},
+    {"note": "1300 で始まっても数字が続く注文番号は電話番号とみなさない（青）", "text": "Amazon order 13001234567 https://www.amazon.com/", "level": "green", "codes": ["in_ledger", "official"], "claimed": ["amazon"], "hosts": ["www.amazon.com"]},
+    {"note": "HSBC 香港の本物の住所（青）", "text": "HSBC: view your statement https://www.hsbc.com.hk/", "ledger": ["hsbc"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["hsbc"], "hosts": ["www.hsbc.com.hk"]},
+    {"note": "eBay ドイツの本物の住所（青）", "text": "eBay: Ihr Artikel wurde verschickt https://www.ebay.de/", "ledger": ["ebay"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["ebay"], "hosts": ["www.ebay.de"]},
+    {"note": "Airbnb フランスの本物の住所（青）", "text": "Airbnb : votre réservation est confirmée https://www.airbnb.fr/", "ledger": ["airbnb"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["airbnb"], "hosts": ["www.airbnb.fr"]},
+    {"note": "英語：自然な語順の会議アプリの導入依頼（黄）", "text": "For the meeting, install this app: https://meet-app.example/", "level": "amber", "codes": ["no_claim", "unknown_domain", "takeover"], "claimed": [], "hosts": ["meet-app.example"]},
+    {"note": "英語：アプリを入れてから面接に（黄）", "text": "Please download our video client before the interview https://meet-app.example/", "level": "amber", "codes": ["no_claim", "unknown_domain", "takeover"], "claimed": [], "hosts": ["meet-app.example"]}
   ]
 }

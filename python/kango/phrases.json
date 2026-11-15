@@ -441,6 +441,8 @@
     "(reply|respond|text back) with (the |your |this )?(verification |security |confirmation |one-?time |login |sign-?in |[0-9]-digit )?(code|pin|otp)",
     "(tell|give|read out|read back|send|forward|provide) (us|me|our [a-z]+|the (agent|caller|representative)) (the|your|this|that) [a-z0-9\\- ]{0,25}(code|otp)",
     "(read|tell|give|send|forward) (the |this |that |your )?([a-z\\-]+ )?(code|otp) (to us|to me|back to|out to|to our|to the (agent|caller))",
+    "(?:^|[.!?:;\\n]\\s*|please\\s+|kindly\\s+|now\\s+)share (?!(your |the |this |that )?(referral|promo|promotion|discount|invite|invitation|coupon|gift|voucher|tracking|qr|zip|postal|post|area|country|source|dress|bar) )(your |the |this |that )?([a-z0-9\\-]+ ){0,2}(code|otp|pin|passcode)(?! with (anyone|no one|nobody|anybody|friends|family))",
+    "share (?!(your |the |this |that )?(referral|promo|promotion|discount|invite|invitation|coupon|gift|voucher|tracking|qr|zip|postal|post|area|country|source|dress|bar) )(your |the |this |that )?([a-z0-9\\-]+ ){0,2}(code|otp|pin|passcode) with (us|me|our [a-z]+|the (agent|caller|representative|team|support))",
     "scan (this|the|our) qr code",
     "(dime|dinos|díganos|dígame|envíanos|envíame|envíenos|compártenos|compárteme|indícanos|facilítanos|proporciónanos)( el| tu| su)? (código|pin)",
     "(donnez|communiquez|envoyez|transmettez|indiquez|dites)[- ](nous|moi) (le|votre|ce) (code|pin)",
@@ -483,7 +485,10 @@
    "key": "install_app",
    "patterns": [
     "(面接|会議|ミーティング|通話|面談|打ち合わせ|ウェビナー).{0,40}(アプリ|ソフト|ツール|プラグイン|拡張機能|ドライバ|コーデック).{0,20}(インストール|ダウンロード|入れて|更新して|アップデートして)",
-    "(interview|meeting|call|webinar|conference).{0,40}(app|software|plugin|plug-in|extension|driver|codec|client).{0,30}(install|download|update)"
+    "(interview|meeting|call|webinar|conference).{0,40}(app|software|plugin|plug-in|extension|driver|codec|client).{0,30}(install|download|update)",
+    "(アプリ|ソフト|ツール|プラグイン|拡張機能|ドライバ|コーデック).{0,20}(インストール|ダウンロード|入れて).{0,40}(面接|会議|ミーティング|通話|面談|打ち合わせ|ウェビナー)",
+    "(install|download) (this|the|our|a|that) ([a-z0-9\\-]+ ){0,2}(app|software|plugin|plug-in|extension|driver|codec|client).{0,40}(interview|meeting|call|webinar|conference)",
+    "(interview|meeting|call|webinar|conference).{0,40}(install|download) (this|the|our|a|that) ([a-z0-9\\-]+ ){0,2}(app|software|plugin|plug-in|extension|driver|codec|client)"
    ],
    "ja": "会議や面接のためと言って、アプリや部品を入れさせようとする",
    "en": "asks you to install an app or plug-in for a meeting or interview"

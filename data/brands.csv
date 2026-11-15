@@ -29,22 +29,22 @@ paypal,PayPal,contract,paypal|ペイパル,paypal.com,paypal,2026-11-15,PayPal
 microsoft,Microsoft,contract,microsoft account|microsoftアカウント|microsoft アカウント|マイクロソフトアカウント|マイクロソフト アカウント|microsoft 365|office 365|microsoft support|microsoft security|microsoft:|【microsoft】|【マイクロソフト】,www.microsoft.com|account.microsoft.com|accountprotection.microsoft.com|support.microsoft.com|login.microsoftonline.com|login.live.com|account.live.com,microsoft|microsoftonline|office365,2026-11-15,Microsoft
 netflix,Netflix,contract,netflix|ネットフリックス,netflix.com,netflix,2026-11-15,Netflix
 meta,Meta（Facebook・Instagram・WhatsApp）,contract,facebook account|facebookアカウント|facebook アカウント|フェイスブックアカウント|facebook security|facebook support|facebook:|【facebook】|instagram account|instagramアカウント|instagram アカウント|インスタグラムアカウント|instagram security|instagram support|instagram:|【instagram】|whatsapp account|whatsappアカウント|whatsapp support|whatsapp:|【whatsapp】|[meta account|[metaアカウント|[meta verified|[meta business|[meta support|[meta:|【meta】,facebook.com|instagram.com|whatsapp.com|meta.com|threads.net,facebook|instagram|whatsapp,2026-11-15,"Meta (Facebook, Instagram, WhatsApp)"
-ebay,eBay,contract,ebay|イーベイ,ebay.com|ebay.co.uk|ebay.com.au|ebay.ca|ebay.com.sg,ebay,2026-11-15,eBay
+ebay,eBay,contract,ebay|イーベイ,ebay.com|ebay.co.uk|ebay.com.au|ebay.ca|ebay.com.sg|ebay.at|ebay.be|ebay.fr|ebay.de|ebay.it|ebay.nl|ebay.es|ebay.ch|ebay.com.hk|ebay.ie|ebay.ph|ebay.pl|ebay.vn|ebay.co.jp,ebay,2026-11-15,eBay
 coinbase,Coinbase,contract,coinbase|コインベース,coinbase.com,coinbase,2026-11-15,Coinbase
 binance,Binance,contract,binance|バイナンス,binance.com,binance,2026-11-15,Binance
 chase,Chase,contract,[chase bank|jpmorgan chase|[chase card|[chase account|[chase online|[chase sapphire|[chase freedom|[chase alert|[chase fraud|[chase:|【chase】|[chase.com,chase.com|jpmorganchase.com|jpmorgan.com|chase.ca,[chase]|jpmorganchase,2026-11-15,Chase
 bofa,バンク・オブ・アメリカ,contract,bank of america|bankofamerica|[bofa],bankofamerica.com|bofa.com,bankofamerica|[bofa],2026-11-15,Bank of America
 wellsfargo,ウェルズ・ファーゴ,contract,wells fargo|wellsfargo,wellsfargo.com|wf.com,wellsfargo|wells-fargo,2026-11-15,Wells Fargo
-hsbc,HSBC,contract,hsbc,hsbc.co.uk|hsbc.com|hsbc.uk|hsbc.ae,hsbc,2026-11-15,HSBC
+hsbc,HSBC,contract,hsbc,hsbc.co.uk|hsbc.com|hsbc.uk|hsbc.ae|hsbc.com.hk|hsbc.co.in|hsbc.com.cn|hsbc.com.mx|hsbc.com.sg|hsbc.bm|hsbc.co.id|hsbc.com.mo|hsbc.com.my|hsbc.com.ph|hsbc.com.tw|hsbc.com.mt|hsbc.com.eg|hsbc.com.qa|hsbc.com.tr,hsbc,2026-11-15,HSBC
 barclays,バークレイズ,contract,barclays|barclaycard,barclays.co.uk|barclays.com|barclaycard.co.uk,barclays|barclaycard,2026-11-15,Barclays
-airbnb,Airbnb,contract,airbnb|エアビーアンドビー,airbnb.com|airbnb.co.uk|airbnb.es|airbnb.it|airbnb.at,airbnb,2026-11-15,Airbnb
+airbnb,Airbnb,contract,airbnb|エアビーアンドビー,airbnb.com|airbnb.co.uk|airbnb.es|airbnb.it|airbnb.at|airbnb.be|airbnb.dk|airbnb.com.ee|airbnb.fi|airbnb.fr|airbnb.de|airbnb.gr|airbnb.ie|airbnb.lv|airbnb.lt|airbnb.lu|airbnb.nl|airbnb.no|airbnb.pl|airbnb.pt|airbnb.com.ro|airbnb.si|airbnb.cat|airbnb.se|airbnb.ch|airbnb.org,airbnb,2026-11-15,Airbnb
 booking,Booking.com,contract,booking.com|ブッキングドットコム,booking.com,,2026-11-15,Booking.com
 steam,Steam,contract,[steam account|[steam guard|[steam support|[steam wallet|steamcommunity|steampowered|[steam:|【steam】,steampowered.com|steamcommunity.com|valvesoftware.com,steamcommunity|steampowered|[steam],2026-11-15,Steam
 yamato,ヤマト運輸,everyone,ヤマト|クロネコ|yamato transport,kuronekoyamato.co.jp,kuroneko|yamato,,Yamato Transport
 sagawa,佐川急便,everyone,佐川|sagawa express,sagawa-exp.co.jp,sagawa,,Sagawa Express
 jppost,日本郵便,everyone,日本郵便|郵便局|japan post,japanpost.jp,japanpost|japan-post,2026-10-31,Japan Post
 nta,国税庁,everyone,国税庁|[e-tax|税務署|national tax agency,nta.go.jp,[e-tax|[etax|[nta-,2026-10-31,National Tax Agency (Japan)
-dhl,DHL,everyone,dhl,dhl.com|dpdhl.com|dhl-news.com|dhl.de|dhl.fr|dhl.ae|dhl,dhl,2026-11-15,DHL
+dhl,DHL,everyone,dhl,dhl.com|dpdhl.com|dhl-news.com|dhl.de|dhl.fr|dhl.ae,dhl,2026-11-15,DHL
 fedex,FedEx,everyone,fedex|フェデックス,fedex.com,fedex,2026-11-15,FedEx
 ups,UPS,everyone,united parcel service|[ups package|[ups delivery|[ups parcel|[ups shipment|[ups tracking|[ups my choice|[ups:|【ups】|[ups.com,ups.com,[ups],2026-11-15,UPS
 usps,米国郵便公社（USPS）,everyone,usps|united states postal service|us postal service,usps.com,usps,2026-11-15,USPS (United States Postal Service)
