@@ -10,9 +10,9 @@
 
 - **海外の会社を名乗る連絡を、その会社の連絡として照合します。** 足したのは PayPal・Microsoft・Netflix・Meta（Facebook・Instagram・WhatsApp）・eBay・Coinbase・Binance・Chase・Bank of America・Wells Fargo・HSBC・Barclays・Airbnb・Booking.com・Steam（以上 `contract`）、DHL・FedEx・UPS・USPS・Royal Mail・Canada Post・Australia Post・DocuSign・IRS・HMRC（以上 `everyone`）です。**台帳に入れていない `contract` の会社を名乗る連絡は、本物でも赤になります（黄 → 赤）。** 日本の利用者でも、たとえば「PayPal」や「Netflix」と書かれたお知らせは、台帳に入れていなければ赤になります。
 - **住所にこれらの会社の名前を含む、公式でない住所は赤になります（黄 → 赤）。** 例：`paypal-resolution.example`・`dhl-customs.example`。
-- **公式の住所は、各社の公式ページで確かめたものだけです**（確かめた日は `checked`）。Amazon と Apple にも、各社の公式ページにある海外の住所（`amazon.co.uk`・`amazon.de`・`icloud.com` など）を足しました。
-- **英語などの急かす言葉と、乗っ取りの頼みごとでも黄になります（青 → 黄）。** 例：「suspended」「within 24 hours」「verify your identity」「tell us the verification code」「remote access」「git clone … npm install」。スペイン語・フランス語・ドイツ語・イタリア語・ポルトガル語・中国語・韓国語・インドネシア語・ベトナム語の言葉も探します。本物の確認コードの SMS（「Never share this code」）は、乗っ取りの頼みごとにしません。
-- **海外の電話番号も、電話番号として数えます（青 → 黄）。** `+` と国番号で始まる番号（`+44 20 7946 0958` など）と、北米の書き方（`(800) 555-0199`・`1-800-555-0199`）です。
+- **公式の住所は、各社の公式ページで確かめたものだけです**（確かめた日は `checked`）。Amazon と Apple にも、各社の公式ページにある海外の住所（`amazon.co.uk`・`amazon.de`・`icloud.com` など）を足しました。 eBay・HSBC・Airbnb は、各社の公式ページにある国ごとの住所（`ebay.de`・`hsbc.com.hk`・`airbnb.fr` など）も公式です。
+- **英語などの急かす言葉と、乗っ取りの頼みごとでも黄になります（青 → 黄）。** 例：「suspended」「within 24 hours」「verify your identity」「tell us the verification code」「remote access」「git clone … npm install」。スペイン語・フランス語・ドイツ語・イタリア語・ポルトガル語・中国語・韓国語・インドネシア語・ベトナム語の言葉も探します。「Please share your verification code」「share your code with our agent」のような頼み方や、「For the meeting, install this app」のような自然な語順のアプリの導入依頼も拾います。本物の確認コードの SMS（「Never share this code」）と、紹介コードを友達に教える案内（「Share your referral code with friends」）は、乗っ取りの頼みごとにしません。
+- **海外の電話番号も、電話番号として数えます（青 → 黄）。** `+` と国番号で始まる番号（`+44 20 7946 0958` など）、北米の書き方（`(800) 555-0199`・`1-800-555-0199`・長いダッシュで区切った `800—555—0199`）、オーストラリアの全国共通の番号（`1300 975 707`・`1800-123-456`・`13 22 21`・`131 450`）です。
 - **国税庁の言葉と名前の断片に、両端の印を付けました（赤 → 黄、黄 → 青になることがあります）。** これまでは `income-tax` の中の `e-tax` や、`santa-` の中の `nta-` も国税庁とみなしていました。
 - **ヤマト運輸を名乗る英語の言葉「Yamato Transport」を足しました。**
 
@@ -23,9 +23,9 @@
 - **言葉の両端の印（`[` と `]`）。** `data/brands.csv` の言葉の先頭や末尾に付けると、別の単語の中では当たらなくなります（`[ups]` は `groups` に当たらない）。SPEC.md の「言葉の両端の印」。
 - **`data/brands.csv` に `name_en`（英語の名前）の列を足しました。** Swift の `Brand` に `nameEn` と `displayName(_:)` があります。
 - **答えの文と言いまわしの一覧を `data/phrases.json` に移しました。** Python と Swift が同じファイルを読みます。`scripts/sync_brands.py` が写します。Python の `PRESSURE`・`TAKEOVER`・`HEADS`・`TODO`・`HELPLINES`・`MARK_LABELS` は、これまでの形（日本語）のまま残しています。
-- **関所（`kango.sekisho`）が、スペイン語・フランス語・ドイツ語・ポルトガル語・中国語・韓国語の言いまわしも探します**（指示の書きかえ・人に隠させる・鍵を送らせる・解析をやめさせる）。
+- **関所（`kango.sekisho`）が、スペイン語・フランス語・ドイツ語・ポルトガル語・中国語・韓国語の言いまわしも探します**（指示の書きかえ・人に隠させる・鍵を送らせる・解析をやめさせる）。 アクセントを後から付ける書き方や、ハングルを字母で組む書き方でも、見た目どおりの文字として読みます。`--lang en` の時は、画面の文も英語だけで出します。
 - 英語の README（[README.en.md](README.en.md)）。
-- 共通の見本に 51 件（海外の会社の青と赤・短い英語の名前の誤判定を防ぐ見本・多言語の言いまわし・海外の電話番号）、行の印の見本に 1 件を足しました。
+- 共通の見本に 66 件（海外の会社の青と赤・短い英語の名前の誤判定を防ぐ見本・多言語の言いまわし・海外の電話番号・国ごとの公式の住所）、行の印の見本に 1 件を足しました。
 
 ### 知っておいてほしい限界
 

@@ -676,7 +676,21 @@
    "ebay.co.uk",
    "ebay.com.au",
    "ebay.ca",
-   "ebay.com.sg"
+   "ebay.com.sg",
+   "ebay.at",
+   "ebay.be",
+   "ebay.fr",
+   "ebay.de",
+   "ebay.it",
+   "ebay.nl",
+   "ebay.es",
+   "ebay.ch",
+   "ebay.com.hk",
+   "ebay.ie",
+   "ebay.ph",
+   "ebay.pl",
+   "ebay.vn",
+   "ebay.co.jp"
   ],
   "stems": [
    "ebay"
@@ -799,7 +813,22 @@
    "hsbc.co.uk",
    "hsbc.com",
    "hsbc.uk",
-   "hsbc.ae"
+   "hsbc.ae",
+   "hsbc.com.hk",
+   "hsbc.co.in",
+   "hsbc.com.cn",
+   "hsbc.com.mx",
+   "hsbc.com.sg",
+   "hsbc.bm",
+   "hsbc.co.id",
+   "hsbc.com.mo",
+   "hsbc.com.my",
+   "hsbc.com.ph",
+   "hsbc.com.tw",
+   "hsbc.com.mt",
+   "hsbc.com.eg",
+   "hsbc.com.qa",
+   "hsbc.com.tr"
   ],
   "stems": [
    "hsbc"
@@ -840,7 +869,28 @@
    "airbnb.co.uk",
    "airbnb.es",
    "airbnb.it",
-   "airbnb.at"
+   "airbnb.at",
+   "airbnb.be",
+   "airbnb.dk",
+   "airbnb.com.ee",
+   "airbnb.fi",
+   "airbnb.fr",
+   "airbnb.de",
+   "airbnb.gr",
+   "airbnb.ie",
+   "airbnb.lv",
+   "airbnb.lt",
+   "airbnb.lu",
+   "airbnb.nl",
+   "airbnb.no",
+   "airbnb.pl",
+   "airbnb.pt",
+   "airbnb.com.ro",
+   "airbnb.si",
+   "airbnb.cat",
+   "airbnb.se",
+   "airbnb.ch",
+   "airbnb.org"
   ],
   "stems": [
    "airbnb"
@@ -979,8 +1029,7 @@
    "dhl-news.com",
    "dhl.de",
    "dhl.fr",
-   "dhl.ae",
-   "dhl"
+   "dhl.ae"
   ],
   "stems": [
    "dhl"

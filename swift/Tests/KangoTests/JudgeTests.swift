@@ -68,6 +68,16 @@ final class JudgeTests: XCTestCase {
         XCTAssertEqual(lines("en", "FR"), [])
     }
 
+    func testVerdictEqualityIncludesRegion() {
+        // 同じ文面でも、相談先の国が違えば別の答え。出す相談先が同じなら同じ答え
+        let text = "Your account will be suspended https://evil.example/"
+        let us = Judge.judge(text: text, ledger: [], lang: "en", region: "US")
+        XCTAssertEqual(us, Judge.judge(text: text, ledger: [], lang: "en", region: "us"))
+        XCTAssertNotEqual(us, Judge.judge(text: text, ledger: [], lang: "en", region: "GB"))
+        XCTAssertNotEqual(us, Judge.judge(text: text, ledger: [], lang: "en"))
+        XCTAssertEqual(Judge.judge(text: text, ledger: []), Judge.judge(text: text, ledger: [], region: "JP"))
+    }
+
     func testMarksLabelsInEnglish() {
         let lines = ["UPS: Your package is on hold.", "Pay the redelivery fee within 24 hours:", "https://ups-fee.example/pay"]
         let ja = Judge.marks(lines: lines, ledger: [])

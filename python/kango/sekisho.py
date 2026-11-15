@@ -55,7 +55,7 @@ RULES = [
      r"(?:do\s+not|don'?t|never)\s+(?:tell|inform|mention\s+(?:this\s+)?to|reveal\s+(?:this\s+)?to)\s+the\s+user"
      r"|(?:ユーザー|利用者|人間|使用者)に(?:は)?(?:言わ|伝え|知らせ|見せ|教え)(?:ないで|るな|ず)|黙って(?:実行|送|行)"
      r"|no\s+(?:se\s+lo\s+|le\s+)?(?:digas|menciones|cuentes)\s+(?:nada\s+)?al\s+usuario"
-     r"|ne\s+(?:le\s+)?(?:dis|dites)\s+(?:rien\s+)?pas\s+à\s+l.utilisateur|sans\s+(?:le\s+)?dire\s+à\s+l.utilisateur"
+     r"|ne\s+(?:le\s+|lui\s+)?(?:dis|dites)\s+(?:rien|pas)(?:\s+(?:de\s+)?(?:ça|cela|ceci))?\s+à\s+l.utilisateur|sans\s+(?:le\s+|rien\s+)?dire\s+à\s+l.utilisateur"
      r"|(?:sag|sage|erzähl|erwähne)\s+(?:es\s+|das\s+)?dem\s+(?:benutzer|nutzer|anwender)\s+nicht|ohne\s+(?:es\s+)?dem\s+(?:benutzer|nutzer)\s+zu\s+sagen"
      r"|não\s+(?:conte|diga|mencione)\s+(?:nada\s+)?ao\s+usuário"
      r"|不要(?:告诉|告訴|通知|让|讓)(?:用户|用戶|使用者)|(?:瞒着|瞞著)(?:用户|用戶)"
@@ -67,7 +67,7 @@ RULES = [
      r"|(?:api\s*キー|apiキー|トークン|パスワード|秘密鍵|認証情報|\.env|クッキー)[^。\n]{0,20}(?:送|アップロード|転送|貼り付け|投稿)"
      r"|(?:envía|enviar|sube|subir|reenvía)\s+(?:\w+\s+){0,4}(?:claves?\s+(?:de\s+)?api|tokens?|contraseñas?|credenciales|secretos?)"
      r"|(?:envoie[zr]?|transmet(?:s|tez|tre)|télécharge[zr]?)\s+(?:\w+\s+){0,4}(?:clés?\s+(?:d.)?api|jetons?|tokens?|mots?\s+de\s+passe|identifiants|secrets?)"
-     r"|(?:sende|schicke|lade)\s+(?:\w+\s+){0,4}(?:api-?schlüssel|tokens?|passw(?:ö|o)rter?|zugangsdaten|geheimnisse)"
+     r"|(?:sende|schicke|lade)\s+(?:\w+\s+){0,4}(?:api-?schlüssel|tokens?|passw(?:ort|örter|orte?r)|zugangsdaten|geheimnisse)"
      r"|(?:envie|enviar|mande|carregue)\s+(?:\w+\s+){0,4}(?:chaves?\s+(?:de\s+)?api|tokens?|senhas?|credenciais|segredos?)"
      r"|(?:api\s*密钥|api\s*密鑰|令牌|密码|密碼|私钥|私鑰|凭证|憑證|\.env)[^。\n]{0,20}(?:发送|發送|上传|上傳|转发|轉發|发给|發給)"
      r"|(?:发送|發送|上传|上傳|转发|轉發)[^。\n]{0,10}(?:api\s*密钥|api\s*密鑰|令牌|密码|密碼|私钥|私鑰|凭证|憑證)"
@@ -172,6 +172,22 @@ def _trusted(host: str, trusted: List[str]) -> bool:
     return any(host == t or host.endswith("." + t) for t in trusted)
 
 
+def _joins(prev: str, ch: str) -> bool:
+    """ch が、前の文字に付いて1つの文字になるもの（アクセントなどの付ける文字・ハングルの中声と終声の字母）か。"""
+    o = ord(ch)
+    if unicodedata.combining(ch) or unicodedata.category(ch) in ("Mn", "Mc", "Me"):
+        return True
+    p = ord(prev)
+    lead = 0x1100 <= p <= 0x115F or 0xA960 <= p <= 0xA97F
+    vowel = 0x1160 <= p <= 0x11A7 or 0xD7B0 <= p <= 0xD7C6
+    syllable = 0xAC00 <= p <= 0xD7A3
+    if 0x1160 <= o <= 0x11A7 or 0xD7B0 <= o <= 0xD7C6:   # 中声
+        return lead or vowel
+    if 0x11A8 <= o <= 0x11FF or 0xD7CB <= o <= 0xD7FB:   # 終声
+        return vowel or syllable or 0x11A8 <= p <= 0x11FF or 0xD7CB <= p <= 0xD7FB
+    return False
+
+
 def _line_of(text: str, pos: int) -> int:
     return text.count("\n", 0, pos) + 1
 
@@ -218,9 +234,22 @@ def check(text: str, trusted_hosts: Optional[Iterable[str]] = None,
 
     # 言いまわしは、見えない文字を抜いて、全角と半角をそろえてから読む（「無​視」のような分け書きを防ぐ）。
     # 抜いた文字の数だけ位置がずれるので、元の位置への対応表を持つ。
+    # アクセントを後から付ける書き方（e + ́）や、ハングルを字母（ᄋ+ᅵ+ᆫ…）で組む書き方は、見た目が同じでも
+    # 1文字ずつでは別の文字になる。もとの文字と、続く「付ける文字」をひとまとめにしてから NFKC にする。
     kept = [i for i, ch in enumerate(text) if not _INVISIBLE.match(ch)]
-    plain = "".join(unicodedata.normalize("NFKC", text[i]) if len(unicodedata.normalize("NFKC", text[i])) == 1
-                    else text[i] for i in kept)
+    groups: List[List[int]] = []
+    for i in kept:
+        if groups and _joins(text[groups[-1][-1]], text[i]):
+            groups[-1].append(i)
+        else:
+            groups.append([i])
+    plain_parts, where = [], []
+    for g in groups:
+        s = unicodedata.normalize("NFKC", "".join(text[i] for i in g))
+        plain_parts.append(s)
+        where.extend([g[0]] * len(s))
+    plain = "".join(plain_parts)
+    kept = where
     for code, rx, why, how in _RULES:
         for m in rx.finditer(plain):
             pos = kept[m.start()]
@@ -244,6 +273,17 @@ def check(text: str, trusted_hosts: Optional[Iterable[str]] = None,
     fp = fingerprint(text)
     return {"level": level, "head": head, "findings": findings, "sha256": fp,
             "approved": fp in set(approved or [])}
+
+
+# 画面に出す文（python -m kango.sekisho）。--lang en の時は英語だけにする。
+_CLI = {
+    "ja": {"disclaimer": "決まった規則で見つけた候補です。何も見つからなくても安全とは限りません。最後は人が確かめてください。",
+           "approved": "・人が前に確かめた文書と同じです（指紋が一致）。",
+           "line": "・%d行目 %s（%s）%s", "quote": "    「%s」", "red": "赤", "amber": "黄"},
+    "en": {"disclaimer": "These are candidates found by fixed rules. Finding nothing doesn't mean it's safe. A person should make the final check.",
+           "approved": "- Same as a document a person checked before (fingerprint matches).",
+           "line": "- Line %d %s (%s) %s", "quote": "    \"%s\"", "red": "Red", "amber": "Amber"},
+}
 
 
 def _main(argv: Optional[List[str]] = None) -> int:
@@ -281,7 +321,7 @@ def _main(argv: Optional[List[str]] = None) -> int:
         src = a.file or "stdin"
         sev = {"red": "red", "amber": "orange"}
         out = {"schema": "akaire-findings/v1", "tool": "kango-sekisho", "sources": [src],
-               "disclaimer": "決まった規則で見つけた候補です。何も見つからなくても安全とは限りません。最後は人が確かめてください。",
+               "disclaimer": _CLI[a.lang]["disclaimer"],
                "findings": [{"tool": "kango-sekisho", "src": "%s L%d" % (src, f["line"]),
                              "loc": {"line": f["line"], "quote": f["quote"]}, "sev": sev[f["sev"]],
                              "label": f["code"], "why": f["why"], "how": f["how"], "source": ""}
@@ -292,10 +332,10 @@ def _main(argv: Optional[List[str]] = None) -> int:
     else:
         print(r["head"])
         if r["approved"]:
-            print("・人が前に確かめた文書と同じです（指紋が一致）。")
+            print(_CLI[a.lang]["approved"])
         for f in r["findings"]:
-            print("・%d行目 %s（%s）%s" % (f["line"], "赤" if f["sev"] == "red" else "黄", f["code"], f["why"]))
-            print("    「%s」" % f["quote"])
+            print(_CLI[a.lang]["line"] % (f["line"], _CLI[a.lang][f["sev"]], f["code"], f["why"]))
+            print(_CLI[a.lang]["quote"] % f["quote"])
             print("    → %s" % f["how"])
     return 0
 

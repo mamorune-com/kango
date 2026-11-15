@@ -41,6 +41,15 @@ public struct Verdict: Equatable, Sendable {
         self.region = region
     }
 
+    /// 相談先を決める国・地域（大文字）。region が nil なら、日本語は "JP"、英語は ""（出さない）
+    var helplineRegion: String { (region ?? (lang == "ja" ? "JP" : "")).uppercased() }
+
+    /// 同じ答えか。相談先の国も比べる（"us" と "US"、日本語で nil と "JP" は、出す相談先が同じなので同じ答え）
+    public static func == (a: Verdict, b: Verdict) -> Bool {
+        a.level == b.level && a.reasons == b.reasons && a.claimed == b.claimed && a.hosts == b.hosts
+            && a.lang == b.lang && a.helplineRegion == b.helplineRegion
+    }
+
     static func levelName(_ l: Level) -> String {
         switch l {
         case .green: return "green"
@@ -70,8 +79,7 @@ public struct Verdict: Equatable, Sendable {
     /// 迷った時の窓口（青では出さない）
     public var helplines: [Helpline] {
         if level == .green { return [] }
-        let r = (region ?? (lang == "ja" ? "JP" : "")).uppercased()
-        return (Phrases.bundled.helplines[r] ?? []).map { h in
+        return (Phrases.bundled.helplines[helplineRegion] ?? []).map { h in
             Helpline(label: lang == "en" ? h.en : h.ja, tel: h.tel ?? "", url: h.url)
         }
     }
@@ -131,12 +139,14 @@ public enum Judge {
     /// ・0（または +81）で始まり、区切り（空白＝スペース・タブ・改行・U+1680、かっこ・ハイフン類・「.」「・」＝数字の間に3文字まで）を除いて
     ///   10〜11桁（+81 の時は9〜10桁）。2桁目が 0 の番号（0077 など）も数える。英国・フランス・ドイツなどの国内の書き方もこれに当たる。
     /// ・+ と国番号で始まる国際的な書き方（+81 以外）。区切りを除いて 8〜15桁。
-    /// ・北米の書き方（(800) 555-0199・800-555-0199・1-800-555-0199）。3桁・3桁・4桁を区切りでつなぐ（区切りの無い10桁は数えない）。
+    /// ・オーストラリアの全国共通の番号（1300・1800 で始まる10桁＝区切りは上と同じ。13 で始まる6桁＝「13 22 21」「131 450」のように空白で区切ったもの）。
+    /// ・北米の書き方（(800) 555-0199・800-555-0199・1-800-555-0199・800—555—0199）。3桁・3桁・4桁を区切り（空白・「.」・ハイフン類）でつなぐ（区切りの無い10桁は数えない）。
     static let phoneSeparators = #"[ \t\n\u1680()\-‐−–—―ー.・]{0,3}"#
     static let phonePattern = try! NSRegularExpression(
         pattern: #"(?<![0-9])(?:(?:\+81|0)"# + phoneSeparators + #"[0-9](?:"# + phoneSeparators + #"[0-9]){8,9}"#
             + #"|\+(?!81)[1-9](?:"# + phoneSeparators + #"[0-9]){7,14}"#
-            + #"|(?:1[ .\-])?(?:\([2-9][0-9]{2}\) ?|[2-9][0-9]{2}[ .\-])[2-9][0-9]{2}[ .\-][0-9]{4})(?![0-9])"#)
+            + #"|1[38]00(?:"# + phoneSeparators + #"[0-9]){6}|13 [0-9]{2} [0-9]{2}|13[1-9] [0-9]{3}"#
+            + #"|(?:1[ .\-‐−–—―])?(?:\([2-9][0-9]{2}\) ?|[2-9][0-9]{2}[ .\-‐−–—―])[2-9][0-9]{2}[ .\-‐−–—―][0-9]{4})(?![0-9])"#)
 
     /// 改行のなかま（CR・垂直タブ・改ページ・U+001C〜001F・U+0085・行と段落の区切り）。LF にそろえる
     /// （「.」や空白が何に当たるかが言語ごとに違い、答えが食い違うため）。
