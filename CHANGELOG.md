@@ -4,7 +4,7 @@
 
 ## v0.9.0
 
-日本・米国・韓国・英国・欧州・台湾の主な銀行と証券会社を、会社の一覧に足しました（56社）。お金に直接かかわる会社は、世界中でフィッシングに狙われているためです。
+日本・米国・韓国・英国・欧州・台湾の主な銀行と証券会社を、会社の一覧に足しました（56社）。お金に直接かかわる会社は、世界中でフィッシングに狙われているためです。支払いの入口になる Yahoo! JAPAN と LINE も足しました。
 
 ### 答えが変わる変更
 
@@ -20,11 +20,15 @@
 - **住所にこれらの会社の名前を含む、公式でない住所は赤になります（黄 → 赤）。** 例：`smbcnikko-login.example`・`schwab-secure.example`・`kbstar-auth.example`・`ing-diba-sicherheit.example`・`postgov-taiwan.example`。名前の断片は、ほかの会社と取り違えにくいものだけにしました（「nomura」だけでは野村證券とみなしません。野村不動産などと取り違えるためです）。ふつうの言葉や地名と重なる名前（ING・Revolut・Santander・Nationwide・Halifax）は、「ING Bank」「Santander UK」のように長くするか、両端の印を付けました。英語の -ing、revolution、地名のサンタンデールやハリファックスは、銀行とみなしません。
 - **楽天証券の住所（`rakuten-sec.co.jp`・`marketspeed.jp`・`ispeed.jp`）を、楽天の公式の住所に足しました（黄 → 青になることがあります）。**
 - **「三菱UFJ」だけでは、三菱UFJ銀行を名乗ったとみなさなくなりました。** 「三菱UFJ銀行」「三菱UFJダイレクト」「【三菱UFJ】」と書かれた時だけです。三菱UFJ eスマート証券や三菱UFJモルガン・スタンレー証券の連絡を、銀行の連絡と取り違えないためです。三菱UFJ信託銀行など、一覧に無いグループ会社の連絡は、銀行を台帳に入れていても青ではなく黄になります（青 → 黄）。
+- **Yahoo! JAPAN と LINE を、会社の一覧に足しました（`contract`）。** PayPay などの支払いにつながる入口のアカウントとして、乗っ取りに狙われているためです。名乗ったとみなす言葉は、ID・アカウント・安全確認の言いまわしだけです（「Yahoo! JAPAN ID」「ヤフーID」「【LINE】」「LINE安全確認」「LINEアカウントの停止」など）。「Yahoo!ニュース」や、友だちとの「LINEで送るね」「LINEアカウント持ってる？」は名乗りにしません。
+  - 公式の住所は、各社の公式ページにある住所だけにしました。Yahoo! JAPAN は `login.yahoo.co.jp`・`accounts.yahoo.co.jp`・`id.yahoo.co.jp`・`security.yahoo.co.jp`・`support.yahoo-net.jp`、LINE は `access.line.me`・`help.line.me`。両社とも `lycorp.co.jp`・`lycorp-security.jp`（LINEヤフーの会社とセキュリティの案内）。`yahoo.co.jp` 全体と `line.me` 全体は入れません。`line.me` には、だれでも作れるページ（`page.line.me` など）があるためです。
+  - **台帳に入れていない人には、これらを名乗る連絡は本物でも赤になります（黄 → 赤）。** 名乗った上で、公式でない住所（`news.yahoo.co.jp`・`page.line.me` など）へ誘う連絡も赤です。
+  - 似せた住所とみなす名前の断片は、`yahoo-co`・`yahoojp`・`yahoo-japan`・`yahoo.co.jp.`（公式の住所を頭に付けた偽の住所）・`line-me`・`lineme`・`line.me.` などだけにしました。名乗らずに送られた `news.yahoo.co.jp` や米国の `yahoo.com`、`online` を含む住所は、今までどおり黄で、赤にしません。
 - **DHL の自社の住所（`.dhl`、例：`m.dhl`）を、公式の住所に戻しました（赤 → 青）。** v0.8.0 で誤って外していました。
 
 ### 足したもの
 
-- 見本の文面を27件足しました（銀行・証券の本物は青、似せた住所は赤、野村不動産や英語の -ing は黄など）。
+- 見本の文面を37件足しました（銀行・証券の本物は青、似せた住所は赤、野村不動産や英語の -ing は黄など。うち10件は Yahoo! JAPAN と LINE）。
 
 ## v0.8.0
 
