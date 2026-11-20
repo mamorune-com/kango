@@ -326,6 +326,88 @@
   "name_en": "Google"
  },
  {
+  "id": "yahoo",
+  "name": "Yahoo! JAPAN",
+  "kind": "contract",
+  "words": [
+   "yahoo! japan id",
+   "yahoo! japanid",
+   "yahoo!japan id",
+   "yahoo!japanid",
+   "yahoo japan id",
+   "yahoo japanid",
+   "yahoo! japanアカウント",
+   "yahoo!japanアカウント",
+   "ヤフーid",
+   "ヤフー id",
+   "yahoo!セキュリティ",
+   "【yahoo! japan】",
+   "【yahoo!japan】",
+   "【yahoo japan】"
+  ],
+  "domains": [
+   "login.yahoo.co.jp",
+   "accounts.yahoo.co.jp",
+   "id.yahoo.co.jp",
+   "security.yahoo.co.jp",
+   "support.yahoo-net.jp",
+   "lycorp-security.jp",
+   "lycorp.co.jp"
+  ],
+  "stems": [
+   "yahoo-co",
+   "yahooco",
+   "yahoo-jp",
+   "yahoojp",
+   "yahoo-japan",
+   "yahoojapan",
+   "yahoo.co.jp.",
+   "yahoo-net",
+   "yahoo-id",
+   "yahooid"
+  ],
+  "checked": "2026-11-20",
+  "name_en": "Yahoo! JAPAN"
+ },
+ {
+  "id": "line",
+  "name": "LINE",
+  "kind": "contract",
+  "words": [
+   "【line】",
+   "line安全",
+   "line 安全",
+   "lineの安全",
+   "line公式からの",
+   "[line account",
+   "lineアカウントの利用",
+   "lineアカウントが停止",
+   "lineアカウントを停止",
+   "lineアカウントの停止",
+   "lineアカウントがロック",
+   "lineアカウントの確認",
+   "lineアカウントの認証",
+   "line認証",
+   "line 認証"
+  ],
+  "domains": [
+   "access.line.me",
+   "help.line.me",
+   "lycorp-security.jp",
+   "lycorp.co.jp"
+  ],
+  "stems": [
+   "lineme",
+   "line-me",
+   "line.me.",
+   "line-login",
+   "line-security",
+   "line-anzen"
+  ],
+  "checked": "2026-11-20",
+  "name_en": "LINE"
+ },
+ {
   "id": "saison",
   "name": "セゾンカード",
   "kind": "contract",

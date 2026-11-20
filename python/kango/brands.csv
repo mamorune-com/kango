@@ -14,6 +14,8 @@ au,au,contract,kddi|auじぶん|au id|au pay,au.com|kddi.com|auone.jp,kddi,2026-
 softbank,ソフトバンク,contract,ソフトバンク|softbank|ワイモバイル|y!mobile|linemo,softbank.jp|ymobile.jp|linemo.jp,softbank,2026-10-31,SoftBank
 apple,Apple,contract,apple|アップル|icloud,apple.com|icloud.com|me.com|mac.com,apple|icloud,2026-11-15,Apple
 google,Google,contract,googleアカウント|google アカウント|google account|グーグルアカウント|グーグル アカウント|gmail アカウント|gmailアカウント,accounts.google.com|myaccount.google.com|support.google.com|g.co,google,,Google
+yahoo,Yahoo! JAPAN,contract,yahoo! japan id|yahoo! japanid|yahoo!japan id|yahoo!japanid|yahoo japan id|yahoo japanid|yahoo! japanアカウント|yahoo!japanアカウント|ヤフーid|ヤフー id|yahoo!セキュリティ|【yahoo! japan】|【yahoo!japan】|【yahoo japan】,login.yahoo.co.jp|accounts.yahoo.co.jp|id.yahoo.co.jp|security.yahoo.co.jp|support.yahoo-net.jp|lycorp-security.jp|lycorp.co.jp,yahoo-co|yahooco|yahoo-jp|yahoojp|yahoo-japan|yahoojapan|yahoo.co.jp.|yahoo-net|yahoo-id|yahooid,2026-11-20,Yahoo! JAPAN
+line,LINE,contract,【line】|line安全|line 安全|lineの安全|line公式からの|[line account|lineアカウントの利用|lineアカウントが停止|lineアカウントを停止|lineアカウントの停止|lineアカウントがロック|lineアカウントの確認|lineアカウントの認証|line認証|line 認証,access.line.me|help.line.me|lycorp-security.jp|lycorp.co.jp,lineme|line-me|line.me.|line-login|line-security|line-anzen,2026-11-20,LINE
 saison,セゾンカード,contract,セゾン|saison card|saisoncard|セゾンポータル|saison portal,saisoncard.co.jp|saisonportal.jp|saison.link|saisonid.com|a-q-f.com|pointunyou.jp,saisoncard|saisonportal|saisonid,2026-11-02,Saison Card
 epos,エポスカード,contract,エポス|eposcard|epos card,eposcard.co.jp,eposcard,2026-11-02,Epos Card
 amex,アメリカン・エキスプレス,contract,アメックス|アメリカン・エキスプレス|アメリカンエキスプレス|american express|americanexpress|amex,americanexpress.com|aexp-static.com|amex,amex|americanexpress,2026-11-02,American Express
