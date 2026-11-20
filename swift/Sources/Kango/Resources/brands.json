@@ -54,7 +54,10 @@
    "rakuten-card.jp",
    "rakuten-static.com",
    "rakuten-wallet.co.jp",
-   "rakuten-insurance.co.jp"
+   "rakuten-insurance.co.jp",
+   "rakuten-sec.co.jp",
+   "marketspeed.jp",
+   "ispeed.jp"
   ],
   "stems": [
    "rakuten"
@@ -162,7 +165,10 @@
   "name": "三菱UFJ銀行",
   "kind": "contract",
   "words": [
-   "三菱ufj",
+   "三菱ufj銀行",
+   "三菱ufjダイレクト",
+   "三菱ufj-direct",
+   "【三菱ufj】",
    "mufg bank"
   ],
   "domains": [
@@ -544,6 +550,207 @@
   ],
   "checked": "2026-11-05",
   "name_en": "Pocket Card"
+ },
+ {
+  "id": "sbisec",
+  "name": "SBI証券",
+  "kind": "contract",
+  "words": [
+   "sbi証券",
+   "sbi securities",
+   "sbisec"
+  ],
+  "domains": [
+   "sbisec.co.jp"
+  ],
+  "stems": [
+   "sbisec",
+   "sbi-sec"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "SBI Securities"
+ },
+ {
+  "id": "nomura",
+  "name": "野村證券",
+  "kind": "contract",
+  "words": [
+   "野村證券",
+   "野村証券",
+   "nomura securities"
+  ],
+  "domains": [
+   "nomura.co.jp",
+   "nomura.com"
+  ],
+  "stems": [
+   "nomura-sec",
+   "nomurasec",
+   "nomura-shoken",
+   "nomurashoken",
+   "nomura-hometrade"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Nomura Securities"
+ },
+ {
+  "id": "smbcnikko",
+  "name": "SMBC日興証券",
+  "kind": "contract",
+  "words": [
+   "smbc日興",
+   "smbc nikko",
+   "smbcnikko",
+   "日興証券"
+  ],
+  "domains": [
+   "smbcnikko.co.jp"
+  ],
+  "stems": [
+   "smbcnikko",
+   "smbc-nikko"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "SMBC Nikko Securities"
+ },
+ {
+  "id": "monex",
+  "name": "マネックス証券",
+  "kind": "contract",
+  "words": [
+   "マネックス",
+   "monex"
+  ],
+  "domains": [
+   "monex.co.jp"
+  ],
+  "stems": [
+   "monex"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Monex Securities"
+ },
+ {
+  "id": "daiwa",
+  "name": "大和証券",
+  "kind": "contract",
+  "words": [
+   "大和証券",
+   "daiwa securities"
+  ],
+  "domains": [
+   "daiwa.co.jp",
+   "daiwa.jp"
+  ],
+  "stems": [
+   "daiwa-sec",
+   "daiwasec",
+   "daiwa-shoken",
+   "daiwashoken"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Daiwa Securities"
+ },
+ {
+  "id": "matsui",
+  "name": "松井証券",
+  "kind": "contract",
+  "words": [
+   "松井証券",
+   "matsui securities"
+  ],
+  "domains": [
+   "matsui.co.jp"
+  ],
+  "stems": [
+   "matsui-sec",
+   "matsuisec",
+   "matsui-shoken",
+   "matsuishoken"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Matsui Securities"
+ },
+ {
+  "id": "mizuhosc",
+  "name": "みずほ証券",
+  "kind": "contract",
+  "words": [
+   "みずほ証券",
+   "mizuho securities"
+  ],
+  "domains": [
+   "mizuho-sc.com",
+   "mizuho-sc.mfund.jp"
+  ],
+  "stems": [
+   "mizuho-sc",
+   "mizuhosc",
+   "mizuho-securities"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Mizuho Securities"
+ },
+ {
+  "id": "kabucom",
+  "name": "三菱UFJ eスマート証券",
+  "kind": "contract",
+  "words": [
+   "eスマート証券",
+   "三菱ufj eスマート",
+   "三菱ufj　eスマート",
+   "auカブコム",
+   "kabu.com",
+   "kabucom"
+  ],
+  "domains": [
+   "kabu.com",
+   "kabu.co.jp"
+  ],
+  "stems": [
+   "kabucom",
+   "kabu-com"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Mitsubishi UFJ eSmart Securities"
+ },
+ {
+  "id": "mufgmss",
+  "name": "三菱UFJモルガン・スタンレー証券",
+  "kind": "contract",
+  "words": [
+   "三菱ufjモルガン",
+   "モルガン・スタンレー証券",
+   "mufg morgan stanley"
+  ],
+  "domains": [
+   "sc.mufg.jp"
+  ],
+  "stems": [
+   "mufg-sc",
+   "mufgsc"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Mitsubishi UFJ Morgan Stanley Securities"
+ },
+ {
+  "id": "mizuho",
+  "name": "みずほ銀行",
+  "kind": "contract",
+  "words": [
+   "みずほ銀行",
+   "mizuho bank",
+   "みずほダイレクト"
+  ],
+  "domains": [
+   "mizuhobank.co.jp"
+  ],
+  "stems": [
+   "mizuhobank",
+   "mizuho-bank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Mizuho Bank"
  },
  {
   "id": "paypal",
@@ -941,6 +1148,911 @@
   "name_en": "Steam"
  },
  {
+  "id": "citi",
+  "name": "シティ（Citibank）",
+  "kind": "contract",
+  "words": [
+   "citibank",
+   "citigroup",
+   "[citi card",
+   "[citi account",
+   "[citi alert",
+   "[citi fraud",
+   "[citi online",
+   "[citi:",
+   "【citi】",
+   "[citi.com"
+  ],
+  "domains": [
+   "citi.com",
+   "citibank.com"
+  ],
+  "stems": [
+   "citibank",
+   "citicards",
+   "[citi-"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Citi"
+ },
+ {
+  "id": "capitalone",
+  "name": "キャピタル・ワン",
+  "kind": "contract",
+  "words": [
+   "capital one",
+   "capitalone"
+  ],
+  "domains": [
+   "capitalone.com"
+  ],
+  "stems": [
+   "capitalone",
+   "capital-one"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Capital One"
+ },
+ {
+  "id": "schwab",
+  "name": "チャールズ・シュワブ",
+  "kind": "contract",
+  "words": [
+   "schwab"
+  ],
+  "domains": [
+   "schwab.com"
+  ],
+  "stems": [
+   "schwab"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Charles Schwab"
+ },
+ {
+  "id": "fidelity",
+  "name": "フィデリティ証券（米国）",
+  "kind": "contract",
+  "words": [
+   "fidelity investments",
+   "[fidelity account",
+   "[fidelity alert",
+   "[fidelity:",
+   "【fidelity】",
+   "[fidelity.com",
+   "netbenefits"
+  ],
+  "domains": [
+   "fidelity.com"
+  ],
+  "stems": [
+   "fidelity-invest",
+   "fidelityinvest",
+   "[fidelity-"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Fidelity Investments"
+ },
+ {
+  "id": "robinhood",
+  "name": "Robinhood",
+  "kind": "contract",
+  "words": [
+   "robinhood"
+  ],
+  "domains": [
+   "robinhood.com"
+  ],
+  "stems": [
+   "robinhood"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Robinhood"
+ },
+ {
+  "id": "vanguard",
+  "name": "バンガード",
+  "kind": "contract",
+  "words": [
+   "vanguard group",
+   "[vanguard account",
+   "[vanguard alert",
+   "[vanguard:",
+   "【vanguard】",
+   "[vanguard.com"
+  ],
+  "domains": [
+   "vanguard.com",
+   "e-vanguard.com",
+   "evanguard.com",
+   "vanguardinvestments.com",
+   "m-vanguard.com"
+  ],
+  "stems": [
+   "[vanguard-",
+   "vanguardinvest",
+   "e-vanguard",
+   "evanguard"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Vanguard"
+ },
+ {
+  "id": "kbstar",
+  "name": "KB国民銀行",
+  "kind": "contract",
+  "words": [
+   "kb국민",
+   "국민은행",
+   "kb kookmin",
+   "kookmin bank",
+   "kbstar"
+  ],
+  "domains": [
+   "kbstar.com"
+  ],
+  "stems": [
+   "kbstar",
+   "kb-star"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "KB Kookmin Bank"
+ },
+ {
+  "id": "shinhan",
+  "name": "新韓銀行",
+  "kind": "contract",
+  "words": [
+   "신한은행",
+   "shinhan bank"
+  ],
+  "domains": [
+   "shinhan.com"
+  ],
+  "stems": [
+   "shinhanbank",
+   "shinhan-bank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Shinhan Bank"
+ },
+ {
+  "id": "woori",
+  "name": "ウリ銀行",
+  "kind": "contract",
+  "words": [
+   "우리은행",
+   "woori bank",
+   "wooribank"
+  ],
+  "domains": [
+   "wooribank.com"
+  ],
+  "stems": [
+   "wooribank",
+   "woori-bank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Woori Bank"
+ },
+ {
+  "id": "hana",
+  "name": "ハナ銀行",
+  "kind": "contract",
+  "words": [
+   "하나은행",
+   "hana bank",
+   "hanabank",
+   "kebhana"
+  ],
+  "domains": [
+   "hanabank.com",
+   "kebhana.com"
+  ],
+  "stems": [
+   "hanabank",
+   "hana-bank",
+   "kebhana"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Hana Bank"
+ },
+ {
+  "id": "nhbank",
+  "name": "NH農協銀行",
+  "kind": "contract",
+  "words": [
+   "nh농협",
+   "농협은행",
+   "nh bank",
+   "nonghyup"
+  ],
+  "domains": [
+   "nhbank.com",
+   "nonghyup.com"
+  ],
+  "stems": [
+   "nonghyup",
+   "nhbank",
+   "nh-bank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "NH NongHyup Bank"
+ },
+ {
+  "id": "kakaobank",
+  "name": "カカオバンク",
+  "kind": "contract",
+  "words": [
+   "카카오뱅크",
+   "kakaobank",
+   "kakao bank"
+  ],
+  "domains": [
+   "kakaobank.com"
+  ],
+  "stems": [
+   "kakaobank",
+   "kakao-bank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "KakaoBank"
+ },
+ {
+  "id": "toss",
+  "name": "トス（Toss）",
+  "kind": "contract",
+  "words": [
+   "토스뱅크",
+   "토스증권",
+   "toss bank",
+   "tossbank",
+   "toss securities",
+   "toss.im"
+  ],
+  "domains": [
+   "toss.im"
+  ],
+  "stems": [
+   "toss-im",
+   "tossbank",
+   "toss-bank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Toss"
+ },
+ {
+  "id": "kiwoom",
+  "name": "キウム証券",
+  "kind": "contract",
+  "words": [
+   "키움증권",
+   "kiwoom"
+  ],
+  "domains": [
+   "kiwoom.com"
+  ],
+  "stems": [
+   "kiwoom"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Kiwoom Securities"
+ },
+ {
+  "id": "miraeasset",
+  "name": "未来アセット証券",
+  "kind": "contract",
+  "words": [
+   "미래에셋",
+   "mirae asset",
+   "miraeasset"
+  ],
+  "domains": [
+   "miraeasset.com"
+  ],
+  "stems": [
+   "miraeasset",
+   "mirae-asset"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Mirae Asset Securities"
+ },
+ {
+  "id": "samsungsec",
+  "name": "サムスン証券",
+  "kind": "contract",
+  "words": [
+   "삼성증권",
+   "samsung securities",
+   "samsungpop"
+  ],
+  "domains": [
+   "samsungpop.com"
+  ],
+  "stems": [
+   "samsungpop",
+   "samsung-pop"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Samsung Securities"
+ },
+ {
+  "id": "kis",
+  "name": "韓国投資証券",
+  "kind": "contract",
+  "words": [
+   "한국투자증권",
+   "korea investment & securities",
+   "truefriend"
+  ],
+  "domains": [
+   "truefriend.com",
+   "koreainvestment.com"
+  ],
+  "stems": [
+   "truefriend",
+   "koreainvestment",
+   "korea-investment"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Korea Investment & Securities"
+ },
+ {
+  "id": "lloyds",
+  "name": "ロイズ銀行",
+  "kind": "contract",
+  "words": [
+   "lloyds bank",
+   "lloydsbank",
+   "ロイズ銀行"
+  ],
+  "domains": [
+   "lloydsbank.com",
+   "lloydsbankinggroup.com"
+  ],
+  "stems": [
+   "lloydsbank",
+   "lloyds-bank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Lloyds Bank"
+ },
+ {
+  "id": "halifax",
+  "name": "ハリファックス",
+  "kind": "contract",
+  "words": [
+   "halifax bank",
+   "halifax online",
+   "halifax account",
+   "【halifax】",
+   "[halifax:",
+   "bank of scotland"
+  ],
+  "domains": [
+   "halifax.co.uk",
+   "halifax-online.co.uk"
+  ],
+  "stems": [
+   "halifax-online",
+   "halifaxonline",
+   "halifax-bank",
+   "halifaxbank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Halifax"
+ },
+ {
+  "id": "natwest",
+  "name": "ナットウエスト",
+  "kind": "contract",
+  "words": [
+   "natwest"
+  ],
+  "domains": [
+   "natwest.com"
+  ],
+  "stems": [
+   "natwest"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "NatWest"
+ },
+ {
+  "id": "santander",
+  "name": "サンタンデール",
+  "kind": "contract",
+  "words": [
+   "banco santander",
+   "santander bank",
+   "santander uk",
+   "santander online",
+   "santander account",
+   "【santander】",
+   "[santander:",
+   "サンタンデール銀行"
+  ],
+  "domains": [
+   "santander.co.uk",
+   "santanderinternational.co.uk",
+   "bancosantander.es"
+  ],
+  "stems": [
+   "santander"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Santander"
+ },
+ {
+  "id": "nationwide",
+  "name": "ネーションワイド住宅金融組合",
+  "kind": "contract",
+  "words": [
+   "nationwide building society",
+   "[nationwide bank]",
+   "【nationwide】",
+   "[nationwide:"
+  ],
+  "domains": [
+   "nationwide.co.uk"
+  ],
+  "stems": [
+   "nationwide-bank",
+   "nationwidebank",
+   "nationwide-building",
+   "nationwidebuilding",
+   "nationwidebanking",
+   "nationwide-banking"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Nationwide Building Society"
+ },
+ {
+  "id": "monzo",
+  "name": "Monzo",
+  "kind": "contract",
+  "words": [
+   "monzo"
+  ],
+  "domains": [
+   "monzo.com"
+  ],
+  "stems": [
+   "monzo"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Monzo"
+ },
+ {
+  "id": "revolut",
+  "name": "Revolut",
+  "kind": "contract",
+  "words": [
+   "[revolut]"
+  ],
+  "domains": [
+   "revolut.com"
+  ],
+  "stems": [
+   "[revolut]"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Revolut"
+ },
+ {
+  "id": "tsb",
+  "name": "TSB銀行",
+  "kind": "contract",
+  "words": [
+   "[tsb bank",
+   "【tsb】",
+   "[tsb:"
+  ],
+  "domains": [
+   "tsb.co.uk"
+  ],
+  "stems": [
+   "tsb-bank",
+   "tsbbank",
+   "tsb-online",
+   "tsbonline"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "TSB Bank"
+ },
+ {
+  "id": "ing",
+  "name": "ING",
+  "kind": "contract",
+  "words": [
+   "[ing bank",
+   "[ing-bank",
+   "[ing direct",
+   "[ing-diba",
+   "[ing diba",
+   "[mijn ing]",
+   "【ing】",
+   "[ing:"
+  ],
+  "domains": [
+   "ing.de",
+   "ing.nl"
+  ],
+  "stems": [
+   "[ingbank",
+   "[ing-bank",
+   "[ing-diba",
+   "[ingdiba",
+   "[mijn-ing]",
+   "[mijning]"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "ING"
+ },
+ {
+  "id": "deutschebank",
+  "name": "ドイツ銀行",
+  "kind": "contract",
+  "words": [
+   "deutsche bank",
+   "deutschebank",
+   "ドイツ銀行"
+  ],
+  "domains": [
+   "deutsche-bank.de"
+  ],
+  "stems": [
+   "deutsche-bank",
+   "deutschebank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Deutsche Bank"
+ },
+ {
+  "id": "commerzbank",
+  "name": "コメルツ銀行",
+  "kind": "contract",
+  "words": [
+   "commerzbank"
+  ],
+  "domains": [
+   "commerzbank.de"
+  ],
+  "stems": [
+   "commerzbank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Commerzbank"
+ },
+ {
+  "id": "n26",
+  "name": "N26",
+  "kind": "contract",
+  "words": [
+   "[n26]"
+  ],
+  "domains": [
+   "n26.com"
+  ],
+  "stems": [
+   "[n26]"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "N26"
+ },
+ {
+  "id": "bnpparibas",
+  "name": "BNPパリバ",
+  "kind": "contract",
+  "words": [
+   "bnp paribas",
+   "bnpparibas",
+   "bnpパリバ"
+  ],
+  "domains": [
+   "bnpparibas",
+   "bnpparibas.com",
+   "bnpparibasfortis.be"
+  ],
+  "stems": [
+   "bnpparibas",
+   "bnp-paribas"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "BNP Paribas"
+ },
+ {
+  "id": "creditagricole",
+  "name": "クレディ・アグリコル",
+  "kind": "contract",
+  "words": [
+   "crédit agricole",
+   "credit agricole",
+   "credit-agricole",
+   "creditagricole"
+  ],
+  "domains": [
+   "credit-agricole.fr"
+  ],
+  "stems": [
+   "credit-agricole",
+   "creditagricole"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Crédit Agricole"
+ },
+ {
+  "id": "socgen",
+  "name": "ソシエテ・ジェネラル",
+  "kind": "contract",
+  "words": [
+   "société générale",
+   "societe generale",
+   "socgen"
+  ],
+  "domains": [
+   "sg.fr",
+   "socgen.com",
+   "societegenerale.com"
+  ],
+  "stems": [
+   "societegenerale",
+   "societe-generale",
+   "socgen"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Société Générale"
+ },
+ {
+  "id": "bbva",
+  "name": "BBVA",
+  "kind": "contract",
+  "words": [
+   "bbva"
+  ],
+  "domains": [
+   "bbva.es",
+   "bbva.com"
+  ],
+  "stems": [
+   "bbva"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "BBVA"
+ },
+ {
+  "id": "caixabank",
+  "name": "カイシャバンク",
+  "kind": "contract",
+  "words": [
+   "caixabank"
+  ],
+  "domains": [
+   "caixabank.es",
+   "caixabank.cat"
+  ],
+  "stems": [
+   "caixabank",
+   "caixa-bank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "CaixaBank"
+ },
+ {
+  "id": "intesa",
+  "name": "インテーザ・サンパオロ",
+  "kind": "contract",
+  "words": [
+   "intesa sanpaolo",
+   "intesasanpaolo"
+  ],
+  "domains": [
+   "intesasanpaolo.com"
+  ],
+  "stems": [
+   "intesasanpaolo",
+   "intesa-sanpaolo"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Intesa Sanpaolo"
+ },
+ {
+  "id": "unicredit",
+  "name": "ウニクレディト",
+  "kind": "contract",
+  "words": [
+   "unicredit"
+  ],
+  "domains": [
+   "unicredit.it",
+   "unicreditgroup.eu"
+  ],
+  "stems": [
+   "unicredit"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "UniCredit"
+ },
+ {
+  "id": "rabobank",
+  "name": "ラボバンク",
+  "kind": "contract",
+  "words": [
+   "rabobank"
+  ],
+  "domains": [
+   "rabobank.nl"
+  ],
+  "stems": [
+   "rabobank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Rabobank"
+ },
+ {
+  "id": "abnamro",
+  "name": "ABNアムロ",
+  "kind": "contract",
+  "words": [
+   "abn amro",
+   "abnamro"
+  ],
+  "domains": [
+   "abnamro.nl",
+   "abnamro.com"
+  ],
+  "stems": [
+   "abnamro",
+   "abn-amro"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "ABN AMRO"
+ },
+ {
+  "id": "esun",
+  "name": "玉山銀行",
+  "kind": "contract",
+  "words": [
+   "玉山銀行",
+   "玉山商業銀行",
+   "e.sun bank",
+   "esun bank"
+  ],
+  "domains": [
+   "esunbank.com",
+   "esunbank.com.tw"
+  ],
+  "stems": [
+   "esunbank",
+   "esun-bank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "E.SUN Bank"
+ },
+ {
+  "id": "cathaybk",
+  "name": "國泰世華銀行",
+  "kind": "contract",
+  "words": [
+   "國泰世華",
+   "国泰世華",
+   "国泰世华",
+   "cathay united"
+  ],
+  "domains": [
+   "cathaybk.com.tw"
+  ],
+  "stems": [
+   "cathaybk",
+   "cathay-bk"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Cathay United Bank"
+ },
+ {
+  "id": "fubon",
+  "name": "台北富邦銀行",
+  "kind": "contract",
+  "words": [
+   "台北富邦",
+   "臺北富邦",
+   "富邦銀行",
+   "taipei fubon"
+  ],
+  "domains": [
+   "fubon.com"
+  ],
+  "stems": [
+   "fubon"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Taipei Fubon Bank"
+ },
+ {
+  "id": "taishin",
+  "name": "台新銀行",
+  "kind": "contract",
+  "words": [
+   "台新銀行",
+   "台新国際",
+   "台新國際",
+   "taishin bank",
+   "taishin"
+  ],
+  "domains": [
+   "taishinbank.com.tw"
+  ],
+  "stems": [
+   "taishin"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Taishin Bank"
+ },
+ {
+  "id": "megabank",
+  "name": "兆豐銀行",
+  "kind": "contract",
+  "words": [
+   "兆豐銀行",
+   "兆豐國際",
+   "兆丰银行",
+   "mega international commercial"
+  ],
+  "domains": [
+   "megabank.com.tw"
+  ],
+  "stems": [
+   "megabank",
+   "mega-bank"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Mega International Commercial Bank"
+ },
+ {
+  "id": "taiwanbank",
+  "name": "臺灣銀行",
+  "kind": "contract",
+  "words": [
+   "臺灣銀行",
+   "台灣銀行",
+   "台湾銀行",
+   "台湾银行",
+   "bank of taiwan"
+  ],
+  "domains": [
+   "bot.com.tw"
+  ],
+  "stems": [
+   "bankoftaiwan",
+   "bank-of-taiwan",
+   "botcomtw",
+   "bot-com-tw"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Bank of Taiwan"
+ },
+ {
+  "id": "yuanta",
+  "name": "元大證券",
+  "kind": "contract",
+  "words": [
+   "元大證券",
+   "元大证券",
+   "元大銀行",
+   "yuanta"
+  ],
+  "domains": [
+   "yuanta.com.tw",
+   "yuanta.com",
+   "yuantabank.com.tw"
+  ],
+  "stems": [
+   "yuanta"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Yuanta Securities"
+ },
+ {
   "id": "yamato",
   "name": "ヤマト運輸",
   "kind": "everyone",
@@ -1029,7 +2141,8 @@
    "dhl-news.com",
    "dhl.de",
    "dhl.fr",
-   "dhl.ae"
+   "dhl.ae",
+   "dhl"
   ],
   "stems": [
    "dhl"
@@ -1155,6 +2268,27 @@
   ],
   "checked": "2026-11-15",
   "name_en": "Australia Post"
+ },
+ {
+  "id": "chunghwapost",
+  "name": "中華郵政",
+  "kind": "everyone",
+  "words": [
+   "中華郵政",
+   "中华邮政",
+   "chunghwa post"
+  ],
+  "domains": [
+   "post.gov.tw"
+  ],
+  "stems": [
+   "chunghwapost",
+   "chunghwa-post",
+   "postgov",
+   "post-gov"
+  ],
+  "checked": "2026-11-15",
+  "name_en": "Chunghwa Post"
  },
  {
   "id": "docusign",
