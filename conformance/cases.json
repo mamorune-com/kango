@@ -560,6 +560,9 @@
     {"note": "台湾：國泰世華銀行を台帳に入れていて、公式の住所なら青", "text": "國泰世華銀行 帳單通知 https://www.cathaybk.com.tw/cathaybk/", "ledger": ["cathaybk"], "level": "green", "codes": ["in_ledger", "official"], "claimed": ["cathaybk"], "hosts": ["www.cathaybk.com.tw"]},
     {"note": "台湾：玉山銀行を名乗り、似せた住所（赤）", "text": "【玉山銀行】帳戶異常 https://esunbank-tw.example/", "level": "red", "codes": ["not_in_ledger", "mimic"], "claimed": ["esun"], "hosts": ["esunbank-tw.example"]},
     {"note": "台湾：中華郵政を名乗り、似せた住所（赤）", "text": "中華郵政:您有包裹等待投遞 https://postgov-taiwan.example/", "level": "red", "codes": ["mimic"], "claimed": ["chunghwapost"], "hosts": ["postgov-taiwan.example"]},
-    {"note": "台湾：中華郵政の公式の住所なら青（誰にでも届く会社）", "text": "中華郵政 包裹查詢 https://postserv.post.gov.tw/", "level": "green", "codes": ["official"], "claimed": ["chunghwapost"], "hosts": ["postserv.post.gov.tw"]}
+    {"note": "台湾：中華郵政の公式の住所なら青（誰にでも届く会社）", "text": "中華郵政 包裹查詢 https://postserv.post.gov.tw/", "level": "green", "codes": ["official"], "claimed": ["chunghwapost"], "hosts": ["postserv.post.gov.tw"]},
+    {"note": "大文字の HTTPS：リンクの頭が大文字でも、小文字と同じ答え（青）", "text": "【楽天カード】ご請求額が確定しました HTTPS://www.rakuten-card.co.jp/e-navi/", "level": "green", "codes": ["in_ledger", "official"], "claimed": ["rakuten"], "hosts": ["www.rakuten-card.co.jp"]},
+    {"note": "大文字の HTTPS：頭と住所が大文字まじりでも、住所は小文字にそろえて照らす（青）", "text": "【楽天カード】ご請求額が確定しました httpS://WWW.RAKUTEN-CARD.CO.JP/e-navi/", "level": "green", "codes": ["in_ledger", "official"], "claimed": ["rakuten"], "hosts": ["www.rakuten-card.co.jp"]},
+    {"note": "大文字の HTTP：頭を大文字まじりにしても、似せた住所は見逃さない（赤）", "text": "【楽天カード】ご請求額が確定しました hTTp://rakuten-card.example.com/x", "level": "red", "codes": ["in_ledger", "mimic"], "claimed": ["rakuten"], "hosts": ["rakuten-card.example.com"]}
   ]
 }
