@@ -197,6 +197,19 @@ def _quote(s: str) -> str:
     return s if len(s) <= 80 else s[:77] + "..."
 
 
+def _is_emoji(ch: str) -> bool:
+    o = ord(ch)
+    return o >= 0x1F000 or 0x2600 <= o <= 0x27BF
+
+
+def _emoji_join(text: str, i: int) -> bool:
+    """text[i] の U+200D が、絵文字と絵文字の間にあるか（前の絵文字の後ろの U+FE0F と肌の色の印は飛ばす）。"""
+    j = i - 1
+    while j >= 0 and (text[j] == "\ufe0f" or 0x1F3FB <= ord(text[j]) <= 0x1F3FF):
+        j -= 1
+    return j >= 0 and i + 1 < len(text) and _is_emoji(text[j]) and _is_emoji(text[i + 1])
+
+
 def check(text: str, trusted_hosts: Optional[Iterable[str]] = None,
           approved: Optional[Iterable[str]] = None, lang: str = "ja") -> dict:
     """文書を調べる。
@@ -219,6 +232,8 @@ def check(text: str, trusted_hosts: Optional[Iterable[str]] = None,
     for m in _INVISIBLE.finditer(text):
         if m.group() == "﻿" and m.start() == 0:
             continue  # 文書の先頭の BOM は、ふつうに付くもの
+        if m.group() == "\u200d" and _emoji_join(text, m.start()):
+            continue  # 絵文字どうしをつなぐ文字（👨‍👩‍👧 など）は、絵文字の一部
         add("invisible", "red", m.start(), text[max(0, m.start() - 10):m.end() + 10])
 
     # 隠した所（コメント・見えない HTML）の範囲。言いまわしがここにあれば赤。
