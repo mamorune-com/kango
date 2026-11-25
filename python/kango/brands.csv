@@ -9,12 +9,12 @@ smbc,三井住友銀行,contract,三井住友銀行,smbc.co.jp,smbc,2026-10-31,S
 mufg,三菱UFJ銀行,contract,三菱ufj銀行|三菱ufjダイレクト|三菱ufj-direct|【三菱ufj】|mufg bank,bk.mufg.jp|mufg.jp,mufg,2026-10-31,MUFG Bank
 jcb,JCB,contract,jcb,jcb.co.jp|global.jcb,jcb,2026-10-31,JCB
 aeon,イオンカード,contract,イオンカード|イオン銀行,aeon.co.jp|aeonbank.co.jp,aeon,,AEON Card
-docomo,ドコモ,contract,ドコモ|docomo|dカード,docomo.ne.jp|nttdocomo.co.jp,docomo,2026-10-31,NTT docomo
+docomo,ドコモ,contract,ドコモ|docomo|dカード,docomo.ne.jp|nttdocomo.co.jp|ahamo.com,docomo,2026-10-31,NTT docomo
 au,au,contract,kddi|auじぶん|au id|au pay,au.com|kddi.com|auone.jp,kddi,2026-10-31,au (KDDI)
 softbank,ソフトバンク,contract,ソフトバンク|softbank|ワイモバイル|y!mobile|linemo,softbank.jp|ymobile.jp|linemo.jp,softbank,2026-10-31,SoftBank
 apple,Apple,contract,apple|アップル|icloud,apple.com|icloud.com|me.com|mac.com,apple|icloud,2026-11-15,Apple
-google,Google,contract,googleアカウント|google アカウント|google account|グーグルアカウント|グーグル アカウント|gmail アカウント|gmailアカウント,accounts.google.com|myaccount.google.com|support.google.com|g.co,google,,Google
-yahoo,Yahoo! JAPAN,contract,yahoo! japan id|yahoo! japanid|yahoo!japan id|yahoo!japanid|yahoo japan id|yahoo japanid|yahoo! japanアカウント|yahoo!japanアカウント|ヤフーid|ヤフー id|yahoo!セキュリティ|【yahoo! japan】|【yahoo!japan】|【yahoo japan】,login.yahoo.co.jp|accounts.yahoo.co.jp|id.yahoo.co.jp|security.yahoo.co.jp|support.yahoo-net.jp|lycorp-security.jp|lycorp.co.jp,yahoo-co|yahooco|yahoo-jp|yahoojp|yahoo-japan|yahoojapan|yahoo.co.jp.|yahoo-net|yahoo-id|yahooid,2026-11-20,Yahoo! JAPAN
+google,Google,contract,googleアカウント|google アカウント|google account|グーグルアカウント|グーグル アカウント|gmail アカウント|gmailアカウント,accounts.google.com|myaccount.google.com|support.google.com|meet.google.com|g.co,google,,Google
+yahoo,Yahoo! JAPAN,contract,yahoo! japan id|yahoo! japanid|yahoo!japan id|yahoo!japanid|yahoo japan id|yahoo japanid|yahoo! japanアカウント|yahoo!japanアカウント|ヤフーid|ヤフー id|yahoo!セキュリティ|【yahoo! japan】|【yahoo!japan】|【yahoo japan】|【yahoo!ショッピング】|【yahoo! ショッピング】,login.yahoo.co.jp|accounts.yahoo.co.jp|id.yahoo.co.jp|security.yahoo.co.jp|support.yahoo-net.jp|lycorp-security.jp|lycorp.co.jp|order.shopping.yahoo.co.jp,yahoo-co|yahooco|yahoo-jp|yahoojp|yahoo-japan|yahoojapan|yahoo.co.jp.|yahoo-net|yahoo-id|yahooid,2026-11-20,Yahoo! JAPAN
 line,LINE,contract,【line】|line安全|line 安全|lineの安全|line公式からの|[line account|lineアカウントの利用|lineアカウントが停止|lineアカウントを停止|lineアカウントの停止|lineアカウントがロック|lineアカウントの確認|lineアカウントの認証|line認証|line 認証,access.line.me|help.line.me|lycorp-security.jp|lycorp.co.jp,lineme|line-me|line.me.|line-login|line-security|line-anzen,2026-11-20,LINE
 saison,セゾンカード,contract,セゾン|saison card|saisoncard|セゾンポータル|saison portal,saisoncard.co.jp|saisonportal.jp|saison.link|saisonid.com|a-q-f.com|pointunyou.jp,saisoncard|saisonportal|saisonid,2026-11-02,Saison Card
 epos,エポスカード,contract,エポス|eposcard|epos card,eposcard.co.jp,eposcard,2026-11-02,Epos Card

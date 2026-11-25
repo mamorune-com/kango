@@ -33,7 +33,7 @@ Chase alert: A $45.00 transaction was made https://secure.chase.com/web/auth/das
 ### Python
 
 ```sh
-pip install "git+https://github.com/mamorune-com/kango@v0.9.0#subdirectory=python"
+pip install "git+https://github.com/mamorune-com/kango@v0.10.0#subdirectory=python"
 ```
 
 The `kango` package on PyPI is an unrelated project. `pip install kango` will not install this one.
@@ -69,7 +69,7 @@ Paste real messages rather than passing them with `echo` or as an argument, so t
 Add `https://github.com/mamorune-com/kango` with Xcode's *File → Add Package Dependencies…*, or add this line to the dependencies in `Package.swift`:
 
 ```swift
-.package(url: "https://github.com/mamorune-com/kango", from: "0.9.0")
+.package(url: "https://github.com/mamorune-com/kango", from: "0.10.0")
 ```
 
 ```swift

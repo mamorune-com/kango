@@ -227,7 +227,8 @@
   ],
   "domains": [
    "docomo.ne.jp",
-   "nttdocomo.co.jp"
+   "nttdocomo.co.jp",
+   "ahamo.com"
   ],
   "stems": [
    "docomo"
@@ -317,6 +318,7 @@
    "accounts.google.com",
    "myaccount.google.com",
    "support.google.com",
+   "meet.google.com",
    "g.co"
   ],
   "stems": [
@@ -343,7 +345,9 @@
    "yahoo!セキュリティ",
    "【yahoo! japan】",
    "【yahoo!japan】",
-   "【yahoo japan】"
+   "【yahoo japan】",
+   "【yahoo!ショッピング】",
+   "【yahoo! ショッピング】"
   ],
   "domains": [
    "login.yahoo.co.jp",
@@ -352,7 +356,8 @@
    "security.yahoo.co.jp",
    "support.yahoo-net.jp",
    "lycorp-security.jp",
-   "lycorp.co.jp"
+   "lycorp.co.jp",
+   "order.shopping.yahoo.co.jp"
   ],
   "stems": [
    "yahoo-co",

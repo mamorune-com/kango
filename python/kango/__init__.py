@@ -160,6 +160,15 @@ def _norm(s: str) -> str:
     return _bare_text(_prep(s)).lower()
 
 
+def _heading(low: str) -> str:
+    """正規化した文面の先頭（空白・タブ・改行を除く）が「【」なら、最初の「】」までの見出し（【】を含む）。無ければ ""。"""
+    t = low.lstrip(" \t\n")
+    if not t.startswith("\u3010"):
+        return ""
+    k = t.find("\u3011")
+    return t[:k + 1] if k > 0 else ""
+
+
 def host_of(url: str) -> Optional[str]:
     """リンクの本当の行き先の住所（ホスト名）。ブラウザと同じ読み方をする：
     \\ は / と同じ・@ より前（利用者名とパスワード）は住所ではない・: の後ろは番号（ポート）・「。」は「.」と同じ。"""
@@ -228,6 +237,13 @@ def _judge(text: str, ledger: Iterable[str], brands: Optional[List[dict]] = None
     owned = set(ledger or ())
     low = _norm(text)
     claimed = [b for b in brands if any(_has(low, _norm(w)) for w in b["words"])]
+    # 文面が【】の見出しで始まり、見出しの中で会社を名乗っていれば、名乗った会社は見出しの会社だけ
+    # （本文に別の会社名がただ出てくるだけ＝「Apple Pay に登録」など、を名乗りとみなさない）
+    head = _heading(low)
+    if head:
+        named = [b for b in claimed if any(_has(head, _norm(w)) for w in b["words"])]
+        if named:
+            claimed = named
     urls, bare, plain = _scan(text)
     hosts = [h for h in (host_of(u) for u in urls) if h] + bare
     reasons: List[dict] = []

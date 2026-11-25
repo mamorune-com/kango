@@ -292,6 +292,13 @@ public enum Judge {
         hostCharsPattern.firstMatch(in: h, range: NSRange(h.startIndex..., in: h)) != nil
     }
 
+    /// 正規化した文面の先頭（空白・タブ・改行を除く）が「【」なら、最初の「】」までの見出し（【】を含む）。無ければ空。
+    static func heading(_ low: [Unicode.Scalar]) -> [Unicode.Scalar] {
+        let t = low.drop { $0 == " " || $0 == "\t" || $0 == "\n" }
+        guard t.first == "\u{3010}", let k = t.firstIndex(of: "\u{3011}") else { return [] }
+        return Array(t[t.startIndex...k])
+    }
+
     public static func isOfficial(_ host: String, _ brand: Brand) -> Bool {
         brand.domains.contains { host == $0 || host.hasSuffix("." + $0) }
     }
@@ -313,7 +320,13 @@ public enum Judge {
         let ph = Phrases.bundled
         let low = norm(text)
         let lowScalars = Array(low.unicodeScalars)
-        let claimed = brands.filter { b in b.words.contains { hasToken(lowScalars, norm($0)) } }
+        var claimed = brands.filter { b in b.words.contains { hasToken(lowScalars, norm($0)) } }
+        // 文面が【】の見出しで始まり、見出しの中で会社を名乗っていれば、名乗った会社は見出しの会社だけ
+        let head = heading(lowScalars)
+        if !head.isEmpty {
+            let named = claimed.filter { b in b.words.contains { hasToken(head, norm($0)) } }
+            if !named.isEmpty { claimed = named }
+        }
         let found = scan(text)
         let hosts = unique(found.urls.compactMap(host(of:)) + found.bare)
         var reasons: [Verdict.Reason] = []
